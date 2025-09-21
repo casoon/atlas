@@ -134,9 +134,11 @@ export function effectName(target: Element | string, options: EffectOptions = {}
 
 ### Import Patterns
 ```typescript
-// Granular CSS imports
-import '@casoon/atlas-styles/glass.css';
-import '@casoon/atlas-styles/orbs.css';
+// Recommended CSS imports
+import '@casoon/atlas-styles';               // All styles
+import '@casoon/atlas-styles/glass.css';     // Only glass effects
+import '@casoon/atlas-styles/orbs.css';      // Only orb effects
+import '@casoon/atlas-styles/core.css';      // Only core design system
 
 // Individual effect imports
 import { ripple } from '@casoon/atlas-effects/ripple';

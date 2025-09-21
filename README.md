@@ -38,10 +38,11 @@ pnpm add @casoon/atlas-styles @casoon/atlas-effects @casoon/atlas-components
 ### Basic Usage
 
 ```typescript
-// Import styles (works with any CSS import method)
-import '@casoon/atlas-styles';
+// Import styles (recommended)
+import '@casoon/atlas-styles';               // All styles
 // Or import specific modules
-import '@casoon/atlas-styles/glass.css';
+import '@casoon/atlas-styles/glass.css';     // Glass effects only
+import '@casoon/atlas-styles/orbs.css';      // Orb effects only
 import '@casoon/atlas-styles/effects';
 
 // Import effects
@@ -121,14 +122,12 @@ import '@casoon/atlas-styles/glass.css';
 ### 📂 Subpath Imports
 
 ```typescript
-// CSS Styles
+// CSS Styles (recommended)
 import '@casoon/atlas-styles';           // All styles
 import '@casoon/atlas-styles/glass.css';     // Only glass effects
 import '@casoon/atlas-styles/orbs.css';      // Only orb effects
-// Or use deep paths:
-import '@casoon/atlas-styles/dist/index.css';  // All styles (explicit)
-import '@casoon/atlas-styles/dist/glass.css';
-import '@casoon/atlas-styles/dist/orbs.css';
+import '@casoon/atlas-styles/animations.css'; // Only animations
+import '@casoon/atlas-styles/core.css';      // Only core styles
 
 // JavaScript Effects
 import { ripple } from '@casoon/atlas-effects/ripple';
