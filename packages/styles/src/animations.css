@@ -1,28 +1,24 @@
 /*!
- * tailwindcss-animations - Tailwind v4 Package
- * Version: 0.9.0
+ * CASOON Atlas Animations - Complete Animation System for Tailwind v4
+ * Version: 0.0.1
+ * Repository: https://github.com/casoon/atlas
+ * Author: Jörn Seidel (joern.seidel@casoon.de)
+ * License: MIT
  *
- * For use with Tailwind CSS v4
- * Usage: @import "@casoon/tailwindcss-animations/index.css";
+ * Advanced animation system with 80+ animations and keyframes
+ * Part of CASOON Atlas UI effects library
+ *
+ * Usage: @import "@casoon/styles/animations";
+ * Package: @casoon/styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */
 
 /*!
- * Casoon Animations - Complete Animation System for Tailwind v4
- * Version: 0.9.0 — COMPLETELY CONSOLIDATED & ENHANCED
- *
- * SYSTEMATICALLY CONSOLIDATED FROM:
- * - src/index.css (main animation engine)
- * - src/styles/utilities/core.css (core keyframes and utilities)
- * - src/styles/utilities/stagger.css (stagger orchestration)
- * - src/styles/components/button.css (button interactions)
- * - src/styles/components/navigation.css (nav animations)
- * - src/styles/fallbacks.css (accessibility fallbacks)
- *
+ * CASOON Atlas Animations - Complete Animation System for Tailwind v4
  * TOTAL: 6 CSS FILES → Pure Tailwind v4 (80+ animations + advanced features)
  *
- * New Features Added:
+ * Features:
  * ✅ Scroll-based animations with Intersection Observer support
  * ✅ Advanced easing functions (spring, bounce, elastic)
  * ✅ Extended stagger system (up to 12 items)
@@ -30,8 +26,7 @@
  * ✅ Modern CSS features (view-timeline, scroll-timeline)
  * ✅ Comprehensive reduced motion support
  * ✅ Touch-friendly micro-interactions
- *
- * Usage: @import "@casoon/tailwindcss-animations/index.css";
+ * ✅ SSR-safe, tree-shakeable, framework-agnostic
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

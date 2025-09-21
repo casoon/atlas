@@ -1,17 +1,21 @@
 /*!
- * tailwindcss-core - Tailwind v4 Package
- * Version: 0.9.0
+ * CASOON Atlas Core - Design System Foundation for Tailwind v4
+ * Version: 0.0.1
+ * Repository: https://github.com/casoon/atlas
+ * Author: Jörn Seidel (joern.seidel@casoon.de)
+ * License: MIT
  *
- * For use with Tailwind CSS v4
- * Usage: @import "@casoon/tailwindcss-core/index.css";
+ * Core design system with tokens, utilities, and components
+ * Part of CASOON Atlas UI effects library
+ *
+ * Usage: @import "@casoon/styles/core";
+ * Package: @casoon/styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */
 
 /*!
- * Casoon Core - Tailwind v4 Complete Foundation Package
- * Version: 0.9.0 — Modular Architecture
- *
+ * CASOON Atlas Core - Complete Foundation Package
  * Ultra-complete foundation with 7 integrated systems:
  * - Core Utilities, Forms, Cards & Components
  * - Navigation System (navbar, tabs, breadcrumbs, drawer)
@@ -22,8 +26,7 @@
  * - Typography System (prose, blog, marketing, docs styles)
  *
  * Total: 145+ classes, optimized for production
- *
- * Usage: @import "@casoon/tailwindcss-core/index.css";
+ * SSR-safe, tree-shakeable, framework-agnostic
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

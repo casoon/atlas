@@ -1,27 +1,21 @@
 /*!
- * tailwindcss-utilities - Tailwind v4 Package
- * Version: 0.9.0
+ * CASOON Atlas Utilities - Comprehensive Utility System for Tailwind v4
+ * Version: 0.0.1
+ * Repository: https://github.com/casoon/atlas
+ * Author: Jörn Seidel (joern.seidel@casoon.de)
+ * License: MIT
  *
- * For use with Tailwind CSS v4
- * Usage: @import "@casoon/tailwindcss-utilities/index.css";
+ * Complete utility system with modern design tokens
+ * Part of CASOON Atlas UI effects library
+ *
+ * Usage: @import "@casoon/styles/utilities";
+ * Package: @casoon/styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */
 
 /*!
- * Casoon Utilities - Complete Utility System for Tailwind v4
- * Version: 0.9.0 — COMPLETELY CONSOLIDATED & ENHANCED
- *
- * SYSTEMATICALLY CONSOLIDATED FROM:
- * - src/index.css (main file with @utility definitions)
- * - src/styles/base/tokens.css
- * - src/styles/tokens/design-tokens.css
- * - src/styles/utilities/core.css
- * - src/styles/utilities/layout.css
- * - src/styles/utilities/effects.css
- * - src/styles/components/surfaces.css
- * - src/styles/patterns/component-presets.css
- *
+ * CASOON Atlas Utilities - Complete Utility System for Tailwind v4
  * TOTAL: 8 CSS FILES → Pure Tailwind v4 (120+ classes + 80+ @utility)
  *
  * Features:
@@ -31,8 +25,7 @@
  * ✅ Progressive Enhancement & Fallbacks
  * ✅ Container Queries & Responsive Design
  * ✅ Performance optimized with reduced motion support
- *
- * Usage: @import "@casoon/tailwindcss-utilities/index.css";
+ * ✅ SSR-safe, tree-shakeable, framework-agnostic
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

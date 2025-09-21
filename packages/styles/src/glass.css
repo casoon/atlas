@@ -1,16 +1,22 @@
 /*!
- * tailwindcss-glass - Tailwind v4 Package
- * Version: 0.9.0
+ * CASOON Atlas Glass - Complete Glassmorphism System for Tailwind v4
+ * Version: 0.0.1
+ * Repository: https://github.com/casoon/atlas
+ * Author: Jörn Seidel (joern.seidel@casoon.de)
+ * License: MIT
  *
- * For use with Tailwind CSS v4
- * Usage: @import "@casoon/tailwindcss-glass/index.css";
+ * Advanced glassmorphism effects with backdrop-filter support
+ * Part of CASOON Atlas UI effects library
+ *
+ * Usage: @import "@casoon/styles/glass";
+ * Package: @casoon/styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */
 
 /*!
- * Casoon Glass - Complete Glassmorphism System for Tailwind v4
- * Version: 0.9.0 — Pure Glass Effects & Glass Cards
+ * CASOON Atlas Glass - Complete Glassmorphism System for Tailwind v4
+ * Pure Glass Effects & Glass Cards
  *
  * Features:
  * - Glass Backdrop Filter Effects
@@ -18,8 +24,7 @@
  * - Glass Cards (with backdrop-filter)
  * - Glass UI Components (buttons, nav, etc.)
  * - Glass Animation Effects
- *
- * Usage: @import "@casoon/tailwindcss-glass/index.css";
+ * - SSR-safe, tree-shakeable, framework-agnostic
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

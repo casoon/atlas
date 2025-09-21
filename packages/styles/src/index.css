@@ -1,9 +1,16 @@
 /*!
  * CASOON Atlas - Complete Style Collection for Tailwind v4
  * Version: 0.0.1 — Modern UI Effects & Utilities
+ * Repository: https://github.com/casoon/atlas
+ * Author: Jörn Seidel (joern.seidel@casoon.de)
+ * License: MIT
+ *
+ * A comprehensive, modern UI effects library built for Tailwind v4
+ * SSR-safe, tree-shakeable, framework-agnostic
  *
  * Usage: @import "@casoon/styles";
  * Individual imports: @import "@casoon/styles/glass";
+ * Package: @casoon/styles
  */
 
 /* Core design system foundation */

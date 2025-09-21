@@ -1,18 +1,25 @@
 /*!
- * tailwindcss-orbs - Tailwind v4 Package
- * Version: 0.9.0
+ * CASOON Atlas Orbs - Floating Orb Effects for Tailwind v4
+ * Version: 0.0.1
+ * Repository: https://github.com/casoon/atlas
+ * Author: Jörn Seidel (joern.seidel@casoon.de)
+ * License: MIT
  *
- * For use with Tailwind CSS v4
- * Usage: @import "@casoon/tailwindcss-orbs/index.css";
+ * Floating animated orb particles with physics and visual effects
+ * Part of CASOON Atlas UI effects library
+ *
+ * Usage: @import "@casoon/styles/orbs";
+ * Package: @casoon/styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */
 
 /*!
- * Casoon Orbs - Tailwind v4 Directive Definitions
- * Version: 0.8.5 — For processing by Tailwind in consumer projects
+ * CASOON Atlas Orbs - Complete Orb System with Animations
+ * Advanced floating orb effects with physics-based animations
+ * Scene presets and customizable orb compositions
  *
- * Usage: @import "@casoon/tailwindcss-orbs/index.css";
+ * SSR-safe, tree-shakeable, framework-agnostic
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */
