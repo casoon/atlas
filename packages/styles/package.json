@@ -11,6 +11,11 @@
   ],
   "exports": {
     ".": "./dist/index.css",
+    "./dist/core.css": "./dist/core.css",
+    "./dist/glass.css": "./dist/glass.css",
+    "./dist/orbs.css": "./dist/orbs.css",
+    "./dist/animations.css": "./dist/animations.css",
+    "./dist/utilities.css": "./dist/utilities.css",
     "./core.css": "./dist/core.css",
     "./glass.css": "./dist/glass.css",
     "./orbs.css": "./dist/orbs.css",
