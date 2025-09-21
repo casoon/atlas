@@ -1,6 +1,6 @@
 {
   "name": "@casoon/atlas-styles",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Pure CSS design system with glass effects, gradients, and utilities for Tailwind v4",
   "type": "module",
   "files": [

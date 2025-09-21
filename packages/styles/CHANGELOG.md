@@ -1,5 +1,17 @@
 # @casoon/atlas-styles
 
+## 0.0.4
+
+### Patch Changes
+
+- Add deep path exports for maximum build system compatibility
+
+  - Added explicit deep path exports with /dist/ prefix for all CSS files
+  - Users can now import using both short and deep path syntax
+  - Explicit index.css deep path export added
+  - Enhanced compatibility with various build systems and bundlers
+  - Maintains full backward compatibility with existing imports
+
 ## 0.0.3
 
 ### Patch Changes
