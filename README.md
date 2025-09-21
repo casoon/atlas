@@ -2,7 +2,7 @@
 
 **A comprehensive, modern UI effects library built for Tailwind v4 and the modern web.**
 
-CAASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless components**, and **Tailwind v4-compatible styles** designed for maximum flexibility and performance.
+CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless components**, and **Tailwind v4-compatible styles** designed for maximum flexibility and performance across all JavaScript frameworks.
 
 [![npm version](https://img.shields.io/npm/v/@casoon/effects)](https://npmjs.com/package/@casoon/effects)
 [![GitHub](https://img.shields.io/badge/GitHub-casoon/atlas-181717?logo=github)](https://github.com/casoon/atlas)
@@ -483,9 +483,9 @@ MIT License - see [LICENSE](./LICENSE) file for details.
 ## 👨‍💻 Author
 
 **Jörn Seidel**  
-🌐 [CASOON - Digital Transformation](https://www.casoon.de)  
+🌐 [CASOON](https://www.casoon.de)  
 📧 joern.seidel@casoon.de  
-💼 [LinkedIn](https://linkedin.com/in/joern-seidel)  
+💼 [LinkedIn](https://www.linkedin.com/in/casoon)  
 🐙 [GitHub](https://github.com/casoon)
 
 ---
