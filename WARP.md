@@ -51,6 +51,21 @@ pnpm --filter @casoon/effects clean
 # TypeScript compilation serves as primary validation via build process
 ```
 
+### Versioning and Releases
+```bash
+# Create a changeset (describe changes and bump types)
+pnpm changeset
+
+# Apply version bumps from changesets
+pnpm version
+
+# Build and publish packages to npm
+pnpm release
+
+# View current versions
+pnpm list --depth=0
+```
+
 ## Architecture and Code Structure
 
 ### Monorepo Structure

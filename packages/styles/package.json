@@ -1,6 +1,7 @@
 {
   "name": "@casoon/styles",
   "version": "0.0.1",
+  "description": "Pure CSS design system with glass effects, gradients, and utilities for Tailwind v4",
   "type": "module",
   "files": ["dist"],
   "sideEffects": ["./dist/**/*.css"],
@@ -16,5 +17,16 @@
     "build": "rimraf dist && mkdir -p dist && cp src/*.css dist/",
     "clean": "rimraf dist"
   },
-  "keywords": ["tailwind", "css", "glass", "effects", "utilities", "v4"]
+  "keywords": ["tailwind", "css", "glass", "effects", "utilities", "v4"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/casoon/atlas.git",
+    "directory": "packages/styles"
+  },
+  "homepage": "https://github.com/casoon/atlas#readme",
+  "bugs": {
+    "url": "https://github.com/casoon/atlas/issues"
+  },
+  "author": "CASOON",
+  "license": "MIT"
 }

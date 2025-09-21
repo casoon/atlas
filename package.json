@@ -1,5 +1,6 @@
 {
   "name": "casoon-atlas",
+  "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@9",
   "scripts": {
@@ -7,11 +8,15 @@
     "clean": "pnpm -r clean",
     "dev": "pnpm -r --parallel dev",
     "demo": "cd demo && pnpm dev",
-    "demo:build": "pnpm build && cd demo && pnpm build"
+    "demo:build": "pnpm build && cd demo && pnpm build",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
+    "rimraf": "^5.0.0",
     "tsup": "^8.0.0",
-    "typescript": "^5.6.3",
-    "rimraf": "^5.0.0"
+    "typescript": "^5.6.3"
   }
 }

@@ -1,6 +1,7 @@
 {
   "name": "@casoon/effects",
   "version": "0.0.1",
+  "description": "13+ interactive JavaScript effects - SSR-safe, tree-shakeable, framework-agnostic",
   "type": "module",
   "files": ["dist"],
   "sideEffects": false,
@@ -27,6 +28,18 @@
     "build": "tsup",
     "clean": "rimraf dist"
   },
+  "keywords": ["effects", "animations", "javascript", "ssr", "tree-shaking", "ui"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/casoon/atlas.git",
+    "directory": "packages/effects"
+  },
+  "homepage": "https://github.com/casoon/atlas#readme",
+  "bugs": {
+    "url": "https://github.com/casoon/atlas/issues"
+  },
+  "author": "CASOON",
+  "license": "MIT",
   "devDependencies": { 
     "tsup": "^8.0.0", 
     "typescript": "^5.6.3" 

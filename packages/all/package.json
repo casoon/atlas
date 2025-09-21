@@ -1,6 +1,7 @@
 {
   "name": "@casoon/all",
   "version": "0.0.1",
+  "description": "Complete CASOON Atlas UI effects library - all packages combined",
   "type": "module",
   "files": ["dist"],
   "sideEffects": false,
@@ -14,6 +15,18 @@
     "build": "tsup",
     "clean": "rimraf dist"
   },
+  "keywords": ["casoon", "atlas", "ui", "effects", "components", "styles", "meta-package"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/casoon/atlas.git",
+    "directory": "packages/all"
+  },
+  "homepage": "https://github.com/casoon/atlas#readme",
+  "bugs": {
+    "url": "https://github.com/casoon/atlas/issues"
+  },
+  "author": "CASOON",
+  "license": "MIT",
   "dependencies": {
     "@casoon/styles": "workspace:*",
     "@casoon/effects": "workspace:*",
