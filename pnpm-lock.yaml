@@ -23,13 +23,13 @@ importers:
 
   packages/all:
     dependencies:
-      '@casoon/components':
+      '@casoon/atlas-components':
         specifier: workspace:*
         version: link:../components
-      '@casoon/effects':
+      '@casoon/atlas-effects':
         specifier: workspace:*
         version: link:../effects
-      '@casoon/styles':
+      '@casoon/atlas-styles':
         specifier: workspace:*
         version: link:../styles
     devDependencies:
