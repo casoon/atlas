@@ -27,6 +27,17 @@
   "bugs": {
     "url": "https://github.com/casoon/atlas/issues"
   },
-  "author": "CASOON",
-  "license": "MIT"
+  "author": {
+    "name": "Jörn Seidel",
+    "email": "joern.seidel@casoon.de",
+    "url": "https://www.casoon.de"
+  },
+  "license": "MIT",
+  "funding": {
+    "type": "individual",
+    "url": "https://www.casoon.de"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

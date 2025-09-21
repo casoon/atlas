@@ -1,8 +1,23 @@
 {
   "name": "casoon-atlas",
   "version": "0.0.1",
+  "description": "CASOON Atlas - A comprehensive, modern UI effects library built for Tailwind v4",
   "private": true,
   "packageManager": "pnpm@9",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/casoon/atlas.git"
+  },
+  "homepage": "https://github.com/casoon/atlas#readme",
+  "bugs": {
+    "url": "https://github.com/casoon/atlas/issues"
+  },
+  "author": {
+    "name": "Jörn Seidel",
+    "email": "joern.seidel@casoon.de",
+    "url": "https://www.casoon.de"
+  },
+  "license": "MIT",
   "scripts": {
     "build": "pnpm -r build",
     "clean": "pnpm -r clean",

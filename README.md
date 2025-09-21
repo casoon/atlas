@@ -5,9 +5,11 @@
 CAASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless components**, and **Tailwind v4-compatible styles** designed for maximum flexibility and performance.
 
 [![npm version](https://img.shields.io/npm/v/@casoon/effects)](https://npmjs.com/package/@casoon/effects)
+[![GitHub](https://img.shields.io/badge/GitHub-casoon/atlas-181717?logo=github)](https://github.com/casoon/atlas)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6+-blue)](https://typescriptlang.org)
 [![Tailwind v4](https://img.shields.io/badge/Tailwind-v4-38bdf8)](https://tailwindcss.com)
 [![SSR Safe](https://img.shields.io/badge/SSR-Safe-green)](#ssr-compatibility)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## 📦 Packages Overview
 
@@ -433,8 +435,8 @@ We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md)
 ### Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/casoon-atlas
-cd casoon-atlas
+git clone https://github.com/casoon/atlas.git
+cd atlas
 
 # Install dependencies
 pnpm install
@@ -472,14 +474,22 @@ See [CHANGELOG.md](./CHANGELOG.md) for detailed version history.
 
 ## 🛡️ Security
 
-For security concerns, please email security@casoon.com
+For security concerns, please email joern.seidel@casoon.de
 
 ## 📄 License
 
 MIT License - see [LICENSE](./LICENSE) file for details.
 
+## 👨‍💻 Author
+
+**Jörn Seidel**  
+🌐 [CASOON - Digital Transformation](https://www.casoon.de)  
+📧 joern.seidel@casoon.de  
+💼 [LinkedIn](https://linkedin.com/in/joern-seidel)  
+🐙 [GitHub](https://github.com/casoon)
+
 ---
 
 **Built with ❤️ for the modern web**
 
-CAASOON Atlas is designed to make beautiful, interactive UIs accessible to every developer, regardless of framework choice or experience level.
+CASOON Atlas is designed to make beautiful, interactive UIs accessible to every developer, regardless of framework choice or experience level.
