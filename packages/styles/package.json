@@ -11,6 +11,7 @@
   ],
   "exports": {
     ".": "./dist/index.css",
+    "./dist/index.css": "./dist/index.css",
     "./dist/core.css": "./dist/core.css",
     "./dist/glass.css": "./dist/glass.css",
     "./dist/orbs.css": "./dist/orbs.css",

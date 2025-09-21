@@ -126,6 +126,7 @@ import '@casoon/atlas-styles';           // All styles
 import '@casoon/atlas-styles/glass.css';     // Only glass effects
 import '@casoon/atlas-styles/orbs.css';      // Only orb effects
 // Or use deep paths:
+import '@casoon/atlas-styles/dist/index.css';  // All styles (explicit)
 import '@casoon/atlas-styles/dist/glass.css';
 import '@casoon/atlas-styles/dist/orbs.css';
 
