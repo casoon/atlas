@@ -43,7 +43,7 @@ const indexHeader = `/*!
  * SSR-safe, tree-shakeable, framework-agnostic
  *
  * Usage: @import "@casoon/atlas-styles";
- * Individual imports: @import "@casoon/atlas-styles/glass";
+ * Individual imports: @import "@casoon/atlas-styles/glass.css";
  * Package: @casoon/atlas-styles
  */
 

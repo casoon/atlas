@@ -41,7 +41,7 @@ pnpm add @casoon/atlas-styles @casoon/atlas-effects @casoon/atlas-components
 // Import styles (works with any CSS import method)
 import '@casoon/atlas-styles';
 // Or import specific modules
-import '@casoon/atlas-styles/glass';
+import '@casoon/atlas-styles/glass.css';
 import '@casoon/atlas-styles/effects';
 
 // Import effects
@@ -66,7 +66,7 @@ const tabs = createTabs(['home', 'about', 'contact']);
 // Component script (runs on server)
 import { onMount } from 'astro:client';
 import { ripple } from '@casoon/atlas-effects/ripple';
-import '@casoon/atlas-styles/glass';
+import '@casoon/atlas-styles/glass.css';
 ---
 
 <button id="cta" class="glass">Click me!</button>
@@ -97,7 +97,7 @@ import '@casoon/atlas-styles/glass';
 <button bind:this={button} class="glass">Click me!</button>
 
 <style>
-  @import '@casoon/atlas-styles/glass';
+  @import '@casoon/atlas-styles/glass.css';
 </style>
 ```
 
@@ -123,8 +123,8 @@ import '@casoon/atlas-styles/glass';
 ```typescript
 // CSS Styles
 import '@casoon/atlas-styles';           // All styles
-import '@casoon/atlas-styles/glass';     // Only glass effects
-import '@casoon/atlas-styles/orbs';      // Only orb effects
+import '@casoon/atlas-styles/glass.css';     // Only glass effects
+import '@casoon/atlas-styles/orbs.css';      // Only orb effects
 
 // JavaScript Effects
 import { ripple } from '@casoon/atlas-effects/ripple';

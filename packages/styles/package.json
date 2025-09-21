@@ -11,11 +11,11 @@
   ],
   "exports": {
     ".": "./dist/index.css",
-    "./core": "./dist/core.css",
-    "./glass": "./dist/glass.css",
-    "./orbs": "./dist/orbs.css",
-    "./animations": "./dist/animations.css",
-    "./utilities": "./dist/utilities.css"
+    "./core.css": "./dist/core.css",
+    "./glass.css": "./dist/glass.css",
+    "./orbs.css": "./dist/orbs.css",
+    "./animations.css": "./dist/animations.css",
+    "./utilities.css": "./dist/utilities.css"
   },
   "scripts": {
     "build": "rimraf dist && node build.js",

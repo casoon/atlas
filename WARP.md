@@ -80,7 +80,7 @@ pnpm list --depth=0
 - **Pure CSS modules** with subpath exports for granular imports
 - **Tailwind v4 compatible** using `@theme` and `@utility` directives
 - **Design token system** with CSS custom properties for theming
-- **Modular imports**: `@casoon/atlas-styles/glass`, `@casoon/atlas-styles/orbs`, etc.
+- **Modular imports**: `@casoon/atlas-styles/glass.css`, `@casoon/atlas-styles/orbs.css`, etc.
 
 #### @casoon/atlas-effects
 - **SSR-safe effects** - no DOM access at module level, function-based initialization only
@@ -135,8 +135,8 @@ export function effectName(target: Element | string, options: EffectOptions = {}
 ### Import Patterns
 ```typescript
 // Granular CSS imports
-import '@casoon/atlas-styles/glass';
-import '@casoon/atlas-styles/orbs';
+import '@casoon/atlas-styles/glass.css';
+import '@casoon/atlas-styles/orbs.css';
 
 // Individual effect imports
 import { ripple } from '@casoon/atlas-effects/ripple';
