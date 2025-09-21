@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CASOON Atlas Demo</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { 
+      margin: 0; 
+      font-family: system-ui, -apple-system, sans-serif; 
+      background: linear-gradient(135deg, #0f172a, #1e293b); 
+      color: #e2e8f0; 
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🌟 CASOON Atlas Demo</h1>
+      <p>Interactive showcase of all effects and components</p>
+    </header>
+    
+    <nav id="nav">
+      <button data-section="effects">Effects</button>
+      <button data-section="components">Components</button>
+      <button data-section="styles">Styles</button>
+    </nav>
+
+    <main id="main">
+      <!-- Content will be dynamically loaded -->
+    </main>
+  </div>
+  
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

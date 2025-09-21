@@ -1,0 +1,2406 @@
+/*!
+ * tailwindcss-core - Tailwind v4 Package
+ * Version: 0.9.0
+ *
+ * For use with Tailwind CSS v4
+ * Usage: @import "@casoon/tailwindcss-core/index.css";
+ */
+
+/* Note: @import "tailwindcss"; should be added by the consumer */
+
+/*!
+ * Casoon Core - Tailwind v4 Complete Foundation Package
+ * Version: 0.9.0 — Modular Architecture
+ *
+ * Ultra-complete foundation with 7 integrated systems:
+ * - Core Utilities, Forms, Cards & Components
+ * - Navigation System (navbar, tabs, breadcrumbs, drawer)
+ * - Scroll System (custom scrollbars, snap, reveal animations)
+ * - Gradients System (dynamic backgrounds & effects)
+ * - Loading System (spinners, skeleton, progress indicators)
+ * - Micro Interactions (hover effects, animations)
+ * - Typography System (prose, blog, marketing, docs styles)
+ *
+ * Total: 145+ classes, optimized for production
+ *
+ * Usage: @import "@casoon/tailwindcss-core/index.css";
+ */
+
+/* Note: @import "tailwindcss"; should be added by the consumer */
+
+/* =========================================================
+   DESIGN SYSTEM FOUNDATION
+   ========================================================= */
+
+/* Design Tokens - Complete token system for all components */
+/*!
+ * Design Tokens - Complete Design System Foundation
+ * Core color, spacing, typography, and motion tokens
+ */
+
+@theme {
+  /* Color tokens - Primary design system */
+  --cs-bg: #0b0c0f;
+  --cs-surface: #14161a;
+  --cs-elev1: #1b1e24;
+  --cs-elev2: #21252d;
+  --cs-text: #eef1f6;
+  --cs-text-muted: #b6bfcc;
+  --cs-border: #2a2f39;
+  --cs-brand: #4f7cff;
+  --cs-brand-contrast: #0b0d12;
+
+  /* State colors */
+  --cs-success: #22c55e;
+  --cs-warning: #f59e0b;
+  --cs-danger: #ef4444;
+  --cs-info: #06b6d4;
+
+  /* Typography tokens */
+  --cs-font-sans:
+    ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
+    'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  --cs-font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  --cs-font-size: 16px;
+  --cs-line: 1.5;
+
+  /* Spacing tokens with density support */
+  --cs-density: 1;
+  --cs-space-1: calc(4px * var(--cs-density));
+  --cs-space-2: calc(8px * var(--cs-density));
+  --cs-space-3: calc(12px * var(--cs-density));
+  --cs-space-4: calc(16px * var(--cs-density));
+  --cs-space-6: calc(24px * var(--cs-density));
+  --cs-space-8: calc(32px * var(--cs-density));
+
+  /* Border radius & shadow tokens */
+  --cs-radius: 10px;
+  --cs-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(0, 0, 0, 0.1);
+  --cs-shadow-2: 0 8px 24px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.18);
+
+  /* Motion tokens */
+  --cs-transition: 180ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  --cs-anim-duration-sm: 160ms;
+  --cs-anim-duration-md: 280ms;
+  --cs-anim-duration-lg: 420ms;
+  --cs-anim-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --cs-anim-ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --cs-anim-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Z-index tokens - Extended scale */
+  --cs-z-0: 0;
+  --cs-z-1: 1;
+  --cs-z-base: 1;
+  --cs-z-10: 10;
+  --cs-z-20: 20;
+  --cs-z-30: 30;
+  --cs-z-popover: 30;
+  --cs-z-40: 40;
+  --cs-z-tooltip: 40;
+  --cs-z-50: 50;
+  --cs-z-toast: 50;
+  --cs-z-60: 60;
+  --cs-z-modal: 60;
+  --cs-z-70: 70;
+  --cs-z-80: 80;
+  --cs-z-90: 90;
+  --cs-z-100: 100;
+  --cs-z-200: 200;
+  --cs-z-300: 300;
+  --cs-z-400: 400;
+  --cs-z-500: 500;
+  --cs-z-600: 600;
+  --cs-z-700: 700;
+  --cs-z-800: 800;
+  --cs-z-900: 900;
+  --cs-z-999: 999;
+  --cs-z-high: 9999;
+  --cs-z-9999: 9999;
+  --cs-z-max: 2147483647;
+  /* Additional semantic z-index tokens from v0.8.x */
+  --cs-z-drawer: 1000;
+  --cs-z-dropdown: 1000;
+  --cs-z-fixed: 1030;
+  --cs-z-nav: 1020;
+  --cs-z-nav-overlay: 1010;
+  --cs-z-orb: 5;
+  --cs-z-overlay: 1040;
+  --cs-z-sticky: 1020;
+
+  /* Layout tokens */
+  --cs-page-max: 1200px;
+  --cs-page-pad: var(--cs-space-4);
+
+  /* Backdrop/blur tokens */
+  --cs-acrylic-blur: 14px;
+  --cs-acrylic-tint: rgba(20, 22, 26, 0.55);
+  --cs-acrylic-border: rgba(255, 255, 255, 0.06);
+
+  /* Progressive color tokens */
+  --cs-brand-oklch: oklch(60% 0.15 255);
+  --cs-brand-ink: var(--cs-brand-contrast);
+
+  /* Fluid typography tokens */
+  --cs-fs-xs: clamp(0.78rem, 0.75rem + 0.2cqi, 0.84rem);
+  --cs-fs-sm: clamp(0.88rem, 0.82rem + 0.3cqi, 0.95rem);
+  --cs-fs-md: clamp(1rem, 0.95rem + 0.4cqi, 1.125rem);
+  --cs-fs-lg: clamp(1.25rem, 1.05rem + 0.8cqi, 1.5rem);
+  --cs-fs-xl: clamp(1.5rem, 1.2rem + 1.2cqi, 1.875rem);
+  --cs-fs-2xl: clamp(1.875rem, 1.4rem + 1.6cqi, 2.25rem);
+
+  /* Form tokens */
+  --cs-form-bg: var(--cs-surface);
+  --cs-form-border: var(--cs-border);
+  --cs-form-radius: var(--cs-radius);
+  --cs-form-shadow: var(--cs-shadow-1);
+  --cs-form-focus: var(--cs-brand);
+
+  /* Typography component tokens */
+  --cs-prose-headings: var(--cs-text);
+  --cs-prose-body: var(--cs-text-muted);
+  --cs-prose-links: var(--cs-brand);
+  --cs-prose-bold: var(--cs-text);
+  --cs-prose-quotes: var(--cs-text-muted);
+  --cs-prose-captions: var(--cs-text-muted);
+
+  /* Gradients system tokens */
+  --cs-gradient-primary: linear-gradient(
+    135deg,
+    var(--cs-brand),
+    color-mix(in srgb, var(--cs-brand) 80%, var(--cs-info))
+  );
+  --cs-gradient-success: linear-gradient(
+    135deg,
+    var(--cs-success),
+    color-mix(in srgb, var(--cs-success) 70%, var(--cs-info))
+  );
+  --cs-gradient-warning: linear-gradient(
+    135deg,
+    var(--cs-warning),
+    color-mix(in srgb, var(--cs-warning) 80%, var(--cs-danger))
+  );
+  --cs-gradient-sunset: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef);
+  --cs-gradient-ocean: linear-gradient(135deg, #667eea, #764ba2);
+  --cs-gradient-forest: linear-gradient(135deg, #11998e, #38ef7d);
+
+  /* Extended gradient color stop tokens for comprehensive utilities */
+  --cs-gradient-sunset-start: #ff6b6b;
+  --cs-gradient-sunset-mid: #ffd93d;
+  --cs-gradient-sunset-end: #6bcf7f;
+
+  --cs-gradient-ocean-start: #667eea;
+  --cs-gradient-ocean-end: #764ba2;
+
+  --cs-gradient-fire-start: #f093fb;
+  --cs-gradient-fire-end: #f5576c;
+
+  --cs-gradient-mint-start: #4facfe;
+  --cs-gradient-mint-end: #00f2fe;
+
+  --cs-gradient-purple-start: #a8edea;
+  --cs-gradient-purple-end: #fed6e3;
+
+  --cs-gradient-orange-start: #ffeaa7;
+  --cs-gradient-orange-end: #fab1a0;
+
+  --cs-gradient-blue-start: #74b9ff;
+  --cs-gradient-blue-end: #0984e3;
+
+  --cs-gradient-pink-start: #fd79a8;
+  --cs-gradient-pink-end: #fdcb6e;
+
+  /* Custom gradient variables (user customizable) */
+  --cs-gradient-custom-start: #667eea;
+  --cs-gradient-custom-mid: ;
+  --cs-gradient-custom-end: #764ba2;
+
+  --cs-gradient-white: #ffffff;
+
+  /* Shared stops list fallback (for radial/conic) */
+  --cs-gradient-stops:
+    var(--cs-gradient-ocean-start), var(--cs-gradient-ocean-end);
+
+  /* Gradient fade color tokens */
+  --cs-gradient-fade-color: rgba(79, 124, 255, 0.6);
+  --cs-gradient-fade-mid: rgba(79, 124, 255, 0.3);
+
+  /* Animation defaults for gradient animations */
+  --cs-anim-gradient-duration: 4s;
+  --cs-anim-gradient-ease: var(--cs-anim-ease-in-out);
+  --cs-anim-gradient-iteration: infinite;
+
+  /* Loading system tokens */
+  --cs-loading-spinner-size: 40px;
+  --cs-loading-spinner-border: 4px;
+  --cs-loading-duration-fast: 0.8s;
+  --cs-loading-duration-normal: 1.2s;
+  --cs-loading-duration-slow: 2s;
+
+  /* Micro interactions tokens */
+  --cs-hover-lift: -2px;
+  --cs-hover-scale: 1.02;
+  --cs-hover-glow-spread: 8px;
+  --cs-tap-scale: 0.98;
+
+  /* Scrollbar design tokens */
+  --cs-scroll-thumb-gray: #6b7280;
+  --cs-scroll-thumb-blue: #3b82f6;
+  --cs-scroll-thumb-primary: var(--cs-brand);
+  --cs-scroll-track: rgba(0, 0, 0, 0.08);
+  --cs-scroll-track-light: rgba(0, 0, 0, 0.04);
+  --cs-scroll-thumb-radius: 8px;
+  --cs-scrollbar-size: 10px;
+  --cs-scrollbar-size-thin: 6px;
+
+  /* Scroll shadow tokens */
+  --cs-scroll-shadow-color: rgba(0, 0, 0, 0.08);
+  --cs-scroll-shadow-size: 12px;
+
+  /* Scroll animation tokens */
+  --cs-scroll-reveal-distance: 16px;
+  --cs-scroll-reveal-scale: 0.96;
+
+  /* Navigation design tokens */
+  --cs-nav-primary: var(--cs-brand);
+  --cs-nav-text: var(--cs-text);
+  --cs-nav-text-muted: var(--cs-text-muted);
+  --cs-nav-text-secondary: color-mix(in srgb, var(--cs-text) 75%, transparent);
+  --cs-nav-text-disabled: color-mix(in srgb, var(--cs-text) 40%, transparent);
+  --cs-nav-border: var(--cs-border);
+  --cs-nav-border-light: color-mix(in srgb, var(--cs-border) 60%, transparent);
+  --cs-nav-bg: var(--cs-surface);
+  --cs-nav-bg-hover: color-mix(
+    in srgb,
+    var(--cs-surface) 80%,
+    var(--cs-text) 8%
+  );
+  --cs-nav-bg-secondary: color-mix(
+    in srgb,
+    var(--cs-surface) 60%,
+    var(--cs-bg)
+  );
+  --cs-nav-bg-disabled: color-mix(in srgb, var(--cs-surface) 50%, transparent);
+  --cs-nav-height: 64px;
+  --cs-nav-transition: var(--cs-transition);
+  --cs-nav-transition-fast: calc(var(--cs-transition) * 0.75);
+  --cs-nav-transition-base: var(--cs-transition);
+  --cs-nav-backdrop-bg: rgba(0, 0, 0, 0.5);
+  --cs-nav-backdrop-blur: var(--cs-acrylic-blur);
+
+  /* Typography base tokens */
+  --cs-prose-font-size: 1rem;
+  --cs-prose-line-height: 1.75;
+  --cs-prose-color: color-mix(in srgb, currentColor 85%, transparent);
+  --cs-prose-headings-color: color-mix(in srgb, currentColor 95%, transparent);
+  --cs-prose-links-color: #3b82f6;
+  --cs-prose-links-hover: color-mix(in srgb, #3b82f6 80%, transparent);
+  --cs-prose-spacing: 1.5rem;
+  --cs-prose-max-width: 65ch;
+
+  /* Typography scale tokens */
+  --cs-prose-xs: 0.8125rem;
+  --cs-prose-sm: 0.875rem;
+  --cs-prose-base: 1rem;
+  --cs-prose-lg: 1.125rem;
+  --cs-prose-xl: 1.25rem;
+  --cs-prose-2xl: 1.5rem;
+  --cs-prose-3xl: 1.875rem;
+  --cs-prose-4xl: 2.25rem;
+  --cs-prose-5xl: 3rem;
+
+  /* Typography weight tokens */
+  --cs-prose-weight-light: 300;
+  --cs-prose-weight-normal: 400;
+  --cs-prose-weight-medium: 500;
+  --cs-prose-weight-semibold: 600;
+  --cs-prose-weight-bold: 700;
+  --cs-prose-weight-extrabold: 800;
+  --cs-prose-weight-black: 900;
+
+  /* Typography family tokens */
+  --cs-prose-font-sans:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --cs-prose-font-serif: Georgia, 'Times New Roman', Times, serif;
+  --cs-prose-font-mono:
+    'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
+    monospace;
+
+  /* Typography spacing tokens */
+  --cs-prose-spacing-tight: 1.25rem;
+  --cs-prose-spacing-normal: 1.5rem;
+  --cs-prose-spacing-relaxed: 1.75rem;
+  --cs-prose-spacing-loose: 2rem;
+
+  /* Code styling tokens */
+  --cs-prose-code-bg: color-mix(in srgb, currentColor 8%, transparent);
+  --cs-prose-code-border: color-mix(in srgb, currentColor 10%, transparent);
+  --cs-prose-pre-bg: color-mix(in srgb, currentColor 5%, transparent);
+}
+
+/* =========================================================
+   BASE LAYER - Core accessibility and utilities
+   ========================================================= */
+
+/* Core Accessibility Utilities */
+/* =========================================================
+   BASE ACCESSIBILITY UTILITIES
+   ========================================================= */
+
+/* Screen reader only content */
+@utility cs-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus management utilities */
+@utility cs-focus-ring {
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px var(--cs-brand, #4f7cff),
+      0 0 0 4px color-mix(in srgb, var(--cs-brand, #4f7cff) 20%, transparent);
+    transition: box-shadow var(--cs-transition);
+  }
+}
+
+@utility cs-focus-ring-within {
+  &:focus-within {
+    box-shadow:
+      0 0 0 2px var(--cs-brand, #4f7cff),
+      0 0 0 6px color-mix(in srgb, var(--cs-brand, #4f7cff) 22%, transparent);
+    border-radius: var(--cs-radius);
+  }
+}
+
+/* Core Layout Utilities */
+/* =========================================================
+   BASE LAYOUT UTILITIES
+   ========================================================= */
+
+/* Container utilities */
+@utility cs-container-fluid {
+  width: 100%;
+  padding-left: var(--cs-page-pad);
+  padding-right: var(--cs-page-pad);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: none;
+  background-color: var(--cs-surface, #14161a);
+  color: var(--cs-text, #eef1f6);
+
+  @media (min-width: 768px) {
+    padding-left: calc(var(--cs-page-pad) + var(--cs-space-2));
+    padding-right: calc(var(--cs-page-pad) + var(--cs-space-2));
+  }
+
+  @media (min-width: 1200px) {
+    max-width: var(--cs-page-max);
+  }
+}
+
+/* Z-Index utilities - Complete scale */
+@utility cs-z-0 {
+  z-index: var(--cs-z-0);
+  position: relative;
+}
+@utility cs-z-1 {
+  z-index: var(--cs-z-1);
+  position: relative;
+}
+@utility cs-z-base {
+  z-index: var(--cs-z-base);
+  position: relative;
+}
+@utility cs-z-10 {
+  z-index: var(--cs-z-10);
+  position: relative;
+}
+@utility cs-z-20 {
+  z-index: var(--cs-z-20);
+  position: relative;
+}
+@utility cs-z-30 {
+  z-index: var(--cs-z-30);
+  position: relative;
+}
+@utility cs-z-popover {
+  z-index: var(--cs-z-popover);
+  position: relative;
+}
+@utility cs-z-40 {
+  z-index: var(--cs-z-40);
+  position: relative;
+}
+@utility cs-z-tooltip {
+  z-index: var(--cs-z-tooltip);
+  position: relative;
+}
+@utility cs-z-50 {
+  z-index: var(--cs-z-50);
+  position: relative;
+}
+@utility cs-z-toast {
+  z-index: var(--cs-z-toast);
+  position: relative;
+}
+@utility cs-z-60 {
+  z-index: var(--cs-z-60);
+  position: relative;
+}
+@utility cs-z-modal {
+  z-index: var(--cs-z-modal);
+  position: relative;
+}
+@utility cs-z-70 {
+  z-index: var(--cs-z-70);
+  position: relative;
+}
+@utility cs-z-80 {
+  z-index: var(--cs-z-80);
+  position: relative;
+}
+@utility cs-z-90 {
+  z-index: var(--cs-z-90);
+  position: relative;
+}
+@utility cs-z-100 {
+  z-index: var(--cs-z-100);
+  position: relative;
+}
+@utility cs-z-200 {
+  z-index: var(--cs-z-200);
+  position: relative;
+}
+@utility cs-z-300 {
+  z-index: var(--cs-z-300);
+  position: relative;
+}
+@utility cs-z-400 {
+  z-index: var(--cs-z-400);
+  position: relative;
+}
+@utility cs-z-500 {
+  z-index: var(--cs-z-500);
+  position: relative;
+}
+@utility cs-z-600 {
+  z-index: var(--cs-z-600);
+  position: relative;
+}
+@utility cs-z-700 {
+  z-index: var(--cs-z-700);
+  position: relative;
+}
+@utility cs-z-800 {
+  z-index: var(--cs-z-800);
+  position: relative;
+}
+@utility cs-z-900 {
+  z-index: var(--cs-z-900);
+  position: relative;
+}
+@utility cs-z-999 {
+  z-index: var(--cs-z-999);
+  position: relative;
+}
+@utility cs-z-high {
+  z-index: var(--cs-z-high);
+  position: relative;
+}
+@utility cs-z-9999 {
+  z-index: var(--cs-z-9999);
+  position: relative;
+}
+@utility cs-z-max {
+  z-index: var(--cs-z-max);
+  position: relative;
+}
+
+/* Additional semantic z-index utilities from v0.8.x */
+@utility cs-z-drawer {
+  z-index: var(--cs-z-drawer);
+  position: relative;
+}
+@utility cs-z-dropdown {
+  z-index: var(--cs-z-dropdown);
+  position: relative;
+}
+@utility cs-z-fixed {
+  z-index: var(--cs-z-fixed);
+  position: fixed;
+}
+@utility cs-z-nav {
+  z-index: var(--cs-z-nav);
+  position: relative;
+}
+@utility cs-z-nav-overlay {
+  z-index: var(--cs-z-nav-overlay);
+  position: relative;
+}
+@utility cs-z-orb {
+  z-index: var(--cs-z-orb);
+  position: relative;
+}
+@utility cs-z-overlay {
+  z-index: var(--cs-z-overlay);
+  position: relative;
+}
+@utility cs-z-sticky {
+  z-index: var(--cs-z-sticky);
+  position: sticky;
+}
+
+/* =========================================================
+   LAYOUT UTILITIES
+   Page layout and spacing utilities
+   ========================================================= */
+@utility cs-page-max {
+  max-width: var(--cs-page-max);
+}
+@utility cs-page-pad {
+  padding: var(--cs-page-pad);
+}
+
+/* Shadow utilities */
+@utility cs-shadow-0 {
+  box-shadow: var(--cs-shadow-0);
+}
+@utility cs-shadow-1 {
+  box-shadow: var(--cs-shadow-1);
+}
+@utility cs-shadow-2 {
+  box-shadow: var(--cs-shadow-2);
+}
+
+/* =========================================================
+   COLOR SYSTEM UTILITIES
+   Core color utilities from design tokens
+   ========================================================= */
+@utility cs-bg {
+  background-color: var(--cs-bg);
+}
+@utility cs-surface {
+  background-color: var(--cs-surface);
+}
+@utility cs-surface-2 {
+  background-color: var(--cs-surface-2);
+}
+@utility cs-elev1 {
+  background-color: var(--cs-elev1);
+}
+@utility cs-elev2 {
+  background-color: var(--cs-elev2);
+}
+@utility cs-text {
+  color: var(--cs-text);
+}
+@utility cs-text-muted {
+  color: var(--cs-text-muted);
+}
+@utility cs-text-inverse {
+  color: var(--cs-text-inverse);
+}
+@utility cs-brand {
+  color: var(--cs-brand);
+}
+@utility cs-brand-contrast {
+  color: var(--cs-brand-contrast);
+}
+@utility cs-success {
+  color: var(--cs-success);
+}
+@utility cs-warning {
+  color: var(--cs-warning);
+}
+@utility cs-danger {
+  color: var(--cs-danger);
+}
+@utility cs-info {
+  color: var(--cs-info);
+}
+@utility cs-border {
+  border-color: var(--cs-border);
+}
+
+/* =========================================================
+   COMPONENT SYSTEMS - All UI components
+   ========================================================= */
+
+/* Cards System - Feature, product, pricing cards */
+/* =========================================================
+   CARD SYSTEM COMPONENTS
+   Standard card components without glass effects
+   ========================================================= */
+
+/* Feature Card Component */
+@utility cs-card-feature {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: var(--cs-card-space-lg, 1.5rem);
+  background: var(--cs-card-bg, #ffffff);
+  border: 1px solid var(--cs-card-border, #e5e7eb);
+  border-radius: var(--cs-card-radius, 12px);
+  box-shadow: var(--cs-card-shadow, 0 1px 2px rgba(0, 0, 0, 0.05));
+  padding: var(--cs-card-space-xl, 2rem);
+  text-align: center;
+  position: relative;
+  transition: var(--cs-card-transition, all 0.2s ease);
+
+  &:hover {
+    transform: translateY(var(--cs-card-hover-lift, -2px));
+    box-shadow: var(--cs-card-shadow-hover, 0 4px 6px rgba(0, 0, 0, 0.07));
+  }
+}
+
+/* Product Card Component */
+@utility cs-card-product {
+  background: var(--cs-card-bg, #ffffff);
+  border-radius: var(--cs-card-radius, 12px);
+  box-shadow: var(--cs-card-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  transition: var(--cs-card-transition, all 0.2s ease);
+  overflow: hidden;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:hover {
+    transform: translateY(var(--cs-card-hover-lift, -2px));
+    box-shadow: var(--cs-card-shadow-hover, 0 4px 6px rgba(0, 0, 0, 0.1));
+  }
+}
+
+/* Pricing Card Component */
+@utility cs-card-pricing {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--cs-card-bg, #ffffff);
+  border: 2px solid var(--cs-card-border, #e5e7eb);
+  border-radius: var(--cs-card-radius, 12px);
+  box-shadow: var(--cs-card-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  padding: var(--cs-card-space-xl, 2rem);
+  text-align: center;
+  position: relative;
+  transition: var(--cs-card-transition, all 0.2s ease);
+
+  &:hover {
+    transform: translateY(var(--cs-card-hover-lift, -4px));
+    box-shadow: var(--cs-card-shadow-hover, 0 8px 25px rgba(0, 0, 0, 0.15));
+  }
+}
+
+/* Testimonial Card Component */
+@utility cs-card-testimonial {
+  background: var(--cs-card-bg, #ffffff);
+  border-radius: var(--cs-card-radius, 12px);
+  box-shadow: var(--cs-card-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
+  transition: var(--cs-card-transition, all 0.2s ease);
+  overflow: hidden;
+  padding: var(--cs-card-padding, 1.5rem);
+  max-width: 24rem;
+  text-align: center;
+  position: relative;
+
+  &:hover {
+    box-shadow: var(--cs-card-shadow-hover, 0 4px 6px rgba(0, 0, 0, 0.1));
+    transform: translateY(var(--cs-card-hover-lift, -2px));
+  }
+}
+
+/* =========================================================
+   CARD HELPER COMPONENTS
+   ========================================================= */
+
+/* Card Image */
+@utility cs-card-image {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  background: color-mix(in srgb, currentColor 5%, transparent);
+}
+
+/* Card Content */
+@utility cs-card-content {
+  padding: var(--cs-card-padding, 1.5rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Card Title */
+@utility cs-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cs-card-text, currentColor);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Card Description */
+@utility cs-card-description {
+  color: var(
+    --cs-card-text-muted,
+    color-mix(in srgb, currentColor 70%, transparent)
+  );
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+/* Card Price */
+@utility cs-card-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--cs-success, #059669);
+  margin: 0;
+}
+
+/* Card Actions */
+@utility cs-card-actions {
+  padding: 0 var(--cs-card-padding, 1.5rem) var(--cs-card-padding, 1.5rem);
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Testimonial Quote */
+@utility cs-testimonial-quote {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(
+    --cs-card-text-muted,
+    color-mix(in srgb, currentColor 85%, transparent)
+  );
+  margin-bottom: 1.5rem;
+  position: relative;
+
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    font-size: 3rem;
+    color: color-mix(in srgb, currentColor 20%, transparent);
+    line-height: 1;
+  }
+}
+
+/* Testimonial Author */
+@utility cs-testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Primary Button for Cards */
+@utility cs-button-primary-card {
+  background: linear-gradient(
+    135deg,
+    var(--cs-brand, #3b82f6),
+    color-mix(in srgb, var(--cs-brand, #3b82f6) 80%, #000000)
+  );
+  color: var(--cs-brand-ink, #ffffff);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: calc(var(--cs-radius, 10px) / 2);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--cs-transition, 200ms ease);
+  flex: 1;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--cs-brand, #3b82f6) 40%, transparent);
+  }
+
+  &:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px var(--cs-brand, #3b82f6),
+      0 0 0 4px color-mix(in srgb, var(--cs-brand, #3b82f6) 20%, transparent);
+  }
+}
+
+/* Forms System - Input, labels, validation */
+/* =========================================================
+   FORMS SYSTEM COMPONENTS
+   Complete form system with modern styling
+   ========================================================= */
+
+/* Form Base */
+@utility cs-form-base {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cs-space-4, 1rem);
+}
+
+/* Input Base */
+@utility cs-input-base {
+  padding: var(--cs-space-3, 12px) var(--cs-space-4, 16px);
+  border: 1px solid var(--cs-form-border, #e5e7eb);
+  border-radius: var(--cs-form-radius, 8px);
+  transition: var(--cs-transition, 180ms ease);
+  background: var(--cs-form-bg, #ffffff);
+  color: var(--cs-text, #111827);
+
+  &:focus {
+    outline: none;
+    border-color: var(--cs-form-focus, #3b82f6);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--cs-form-focus, #3b82f6) 15%, transparent);
+  }
+}
+
+/* Modern Form */
+@utility cs-form-modern {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cs-space-4, 1rem);
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--cs-card-bg, #ffffff);
+  border-radius: var(--cs-radius, 10px);
+  box-shadow: var(--cs-shadow-1, 0 1px 3px rgba(0, 0, 0, 0.1));
+}
+
+/* Modern Input */
+@utility cs-input-modern {
+  padding: var(--cs-space-3, 12px) var(--cs-space-4, 16px);
+  border: 2px solid color-mix(in srgb, currentColor 10%, transparent);
+  border-radius: var(--cs-form-radius, 8px);
+  transition: var(--cs-transition, 180ms ease);
+  background: var(--cs-form-bg, #ffffff);
+  font-size: var(--cs-fs-md, 1rem);
+  line-height: var(--cs-line, 1.5);
+  color: var(--cs-text, #111827);
+
+  &:focus {
+    outline: none;
+    border-color: var(--cs-form-focus, #3b82f6);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--cs-form-focus, #3b82f6) 20%, transparent);
+  }
+
+  &::placeholder {
+    color: var(--cs-text-muted, #6b7280);
+  }
+}
+
+/* Modern Label */
+@utility cs-label-modern {
+  font-weight: 600;
+  color: var(--cs-text, #111827);
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: var(--cs-fs-sm, 0.875rem);
+}
+
+/* Modern Primary Button */
+@utility cs-button-primary-modern {
+  background: linear-gradient(
+    135deg,
+    var(--cs-brand, #3b82f6),
+    color-mix(in srgb, var(--cs-brand, #3b82f6) 80%, #000000)
+  );
+  color: var(--cs-brand-ink, #ffffff);
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--cs-form-radius, 8px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--cs-transition, 180ms ease);
+  font-size: var(--cs-fs-md, 1rem);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px
+      color-mix(in srgb, var(--cs-brand, #3b82f6) 30%, transparent);
+  }
+
+  &:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px var(--cs-brand, #3b82f6),
+      0 0 0 4px color-mix(in srgb, var(--cs-brand, #3b82f6) 20%, transparent);
+  }
+}
+
+/* Form Group */
+@utility cs-form-group {
+  position: relative;
+  margin-bottom: var(--cs-space-4, 1rem);
+}
+
+/* =========================================================
+   FORM VALIDATION SYSTEM
+   ========================================================= */
+
+/* Form Validation States */
+@utility cs-input-validation {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+@utility cs-validation-error {
+  display: flex;
+  color: var(--cs-danger, #ef4444);
+}
+
+@utility cs-validation-success {
+  display: flex;
+  color: var(--cs-success, #22c55e);
+}
+
+@utility cs-validation-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@utility cs-input-error {
+  border-color: var(--cs-danger, #ef4444) !important;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--cs-danger, #ef4444) 20%, transparent) !important;
+}
+
+@utility cs-input-success {
+  border-color: var(--cs-success, #22c55e) !important;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--cs-success, #22c55e) 20%, transparent) !important;
+}
+
+/* =========================================================
+   INPUT GROUP UTILITIES
+   ========================================================= */
+
+/* Input Group Utilities */
+@utility cs-input-group {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+@utility cs-input-addon {
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  background: color-mix(in srgb, currentColor 5%, transparent);
+  border: 1px solid var(--cs-form-border, #e5e7eb);
+  color: var(--cs-text-muted, #6b7280);
+  font-size: 0.875rem;
+}
+
+@utility cs-input-addon-left {
+  border-right: none;
+  border-radius: var(--cs-form-radius, 8px) 0 0 var(--cs-form-radius, 8px);
+}
+
+@utility cs-input-addon-right {
+  border-left: none;
+  border-radius: 0 var(--cs-form-radius, 8px) var(--cs-form-radius, 8px) 0;
+}
+
+@utility cs-input-with-addon-left {
+  border-radius: 0 var(--cs-form-radius, 8px) var(--cs-form-radius, 8px) 0;
+  border-left: none;
+}
+
+@utility cs-input-with-addon-right {
+  border-radius: var(--cs-form-radius, 8px) 0 0 var(--cs-form-radius, 8px);
+  border-right: none;
+}
+
+/* =========================================================
+   FORM LAYOUT UTILITIES
+   ========================================================= */
+
+/* Form Layout Utilities */
+@utility cs-form-row {
+  display: flex;
+  gap: var(--cs-space-4, 1rem);
+  align-items: flex-start;
+}
+
+@utility cs-form-col {
+  flex: 1;
+  min-width: 0;
+}
+
+/* =========================================================
+   FORM TOKEN UTILITIES
+   Direct form token utilities from design system
+   ========================================================= */
+@utility cs-form-bg {
+  background-color: var(--cs-form-bg);
+}
+@utility cs-form-border {
+  border-color: var(--cs-form-border);
+}
+@utility cs-form-radius {
+  border-radius: var(--cs-form-radius);
+}
+@utility cs-form-shadow {
+  box-shadow: var(--cs-form-shadow);
+}
+@utility cs-form-focus {
+  border-color: var(--cs-form-focus);
+}
+
+/* =========================================================
+   INTEGRATED SYSTEMS - Complex feature systems
+   ========================================================= */
+
+/* Typography System - Prose, callouts, lead text */
+/* =========================================================
+   TYPOGRAPHY SYSTEM
+   ========================================================= */
+
+/* Prose typography system */
+.cs-prose {
+  color: var(--cs-prose-body);
+  max-width: 65ch;
+  line-height: 1.75;
+  font-size: var(--cs-fs-md);
+}
+
+.cs-prose h1,
+.cs-prose h2,
+.cs-prose h3,
+.cs-prose h4,
+.cs-prose h5,
+.cs-prose h6 {
+  color: var(--cs-prose-headings);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.cs-prose h1 {
+  font-size: var(--cs-fs-2xl);
+}
+.cs-prose h2 {
+  font-size: var(--cs-fs-xl);
+}
+.cs-prose h3 {
+  font-size: var(--cs-fs-lg);
+}
+
+.cs-prose p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.cs-prose a {
+  color: var(--cs-prose-links);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.cs-prose a:hover {
+  text-decoration: none;
+}
+
+.cs-prose strong {
+  color: var(--cs-prose-bold);
+  font-weight: 600;
+}
+
+.cs-prose ul,
+.cs-prose ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.cs-prose li {
+  margin-bottom: 0.5rem;
+}
+
+.cs-prose blockquote {
+  border-left: 4px solid var(--cs-border);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--cs-prose-quotes);
+}
+
+.cs-prose code {
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  padding: 0.25rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: var(--cs-font-mono);
+}
+
+.cs-prose pre {
+  background: var(--cs-elev1);
+  padding: 1.25rem;
+  border-radius: var(--cs-radius);
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.cs-prose pre code {
+  background: none;
+  padding: 0;
+}
+
+.cs-callout {
+  padding: var(--cs-space-4) var(--cs-space-6);
+  border-radius: var(--cs-radius);
+  border-left: 4px solid var(--cs-info);
+  background: color-mix(in srgb, var(--cs-info) 5%, var(--cs-surface));
+  color: var(--cs-text);
+  margin: 1.5rem 0;
+}
+
+.cs-callout.cs-callout-info {
+  border-left-color: var(--cs-info);
+  background: color-mix(in srgb, var(--cs-info) 5%, var(--cs-surface));
+}
+
+.cs-callout.cs-callout-warning {
+  border-left-color: var(--cs-warning);
+  background: color-mix(in srgb, var(--cs-warning) 5%, var(--cs-surface));
+}
+
+.cs-callout.cs-callout-danger {
+  border-left-color: var(--cs-danger);
+  background: color-mix(in srgb, var(--cs-danger) 5%, var(--cs-surface));
+}
+
+.cs-callout.cs-callout-success {
+  border-left-color: var(--cs-success);
+  background: color-mix(in srgb, var(--cs-success) 5%, var(--cs-surface));
+}
+
+.cs-lead {
+  font-size: var(--cs-fs-lg);
+  line-height: 1.6;
+  color: var(--cs-text-muted);
+}
+
+/* =========================================================
+   FLUID TYPOGRAPHY UTILITIES
+   Responsive typography using CSS clamp()
+   ========================================================= */
+@utility cs-fs-xs {
+  font-size: var(--cs-fs-xs);
+}
+@utility cs-fs-sm {
+  font-size: var(--cs-fs-sm);
+}
+@utility cs-fs-md {
+  font-size: var(--cs-fs-md);
+}
+@utility cs-fs-lg {
+  font-size: var(--cs-fs-lg);
+}
+@utility cs-fs-xl {
+  font-size: var(--cs-fs-xl);
+}
+@utility cs-fs-2xl {
+  font-size: var(--cs-fs-2xl);
+}
+
+/* Line Height utilities */
+@utility cs-leading-relaxed {
+  line-height: var(--cs-leading-relaxed);
+}
+@utility cs-leading-loose {
+  line-height: var(--cs-leading-loose);
+}
+
+/* Text Balance utility */
+@utility cs-text-balance {
+  text-wrap: var(--cs-text-balance);
+}
+
+/* Navigation System - Navbar, links, brand */
+/* =========================================================
+   NAVIGATION SYSTEM
+   ========================================================= */
+
+@utility cs-navbar {
+  position: relative;
+  z-index: var(--cs-z-40, 40);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--cs-surface, #ffffff);
+  border-bottom: 1px solid var(--cs-border, #e5e7eb);
+  transition: var(--cs-transition, 180ms ease);
+}
+
+@utility cs-navbar-brand {
+  display: inline-block;
+  padding: 0.3125rem 0;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--cs-text, #111827);
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@utility cs-navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@utility cs-navbar-link {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  color: var(--cs-text-muted, #6b7280);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  transition: var(--cs-transition, 180ms ease);
+
+  &:hover {
+    color: var(--cs-text);
+    background-color: color-mix(in srgb, currentColor 8%, transparent);
+    text-decoration: none;
+  }
+
+  &.active {
+    color: var(--cs-brand);
+    background-color: color-mix(in srgb, var(--cs-brand) 10%, transparent);
+  }
+}
+
+/* Gradient System - CASOON signature gradients */
+/* =========================================================
+   COMPREHENSIVE GRADIENT SYSTEM - Complete Collection
+   ========================================================= */
+
+/* =========================================================
+   Core Gradient Background Utilities
+   ========================================================= */
+
+@utility cs-gradient-sunset {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-sunset-start),
+    var(--cs-gradient-sunset-mid, var(--cs-gradient-sunset-end)),
+    var(--cs-gradient-sunset-end)
+  );
+}
+
+@utility cs-gradient-ocean {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-ocean-start),
+    var(--cs-gradient-ocean-end)
+  );
+}
+
+@utility cs-gradient-fire {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-fire-start),
+    var(--cs-gradient-fire-end)
+  );
+}
+
+@utility cs-gradient-mint {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-mint-start),
+    var(--cs-gradient-mint-end)
+  );
+}
+
+@utility cs-gradient-purple {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-purple-start),
+    var(--cs-gradient-purple-end)
+  );
+}
+
+@utility cs-gradient-orange {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-orange-start),
+    var(--cs-gradient-orange-end)
+  );
+}
+
+@utility cs-gradient-blue {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-blue-start),
+    var(--cs-gradient-blue-end)
+  );
+}
+
+@utility cs-gradient-pink {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-pink-start),
+    var(--cs-gradient-pink-end)
+  );
+}
+
+/* Custom gradient variants - 2-stop and 3-stop */
+@utility cs-gradient-custom-2 {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-custom-start),
+    var(--cs-gradient-custom-end)
+  );
+}
+
+@utility cs-gradient-custom {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-custom-start),
+    var(--cs-gradient-custom-mid, var(--cs-gradient-custom-end)),
+    var(--cs-gradient-custom-end)
+  );
+}
+
+@utility cs-gradient-custom-3 {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-custom-start),
+    var(--cs-gradient-custom-mid, var(--cs-gradient-custom-end)),
+    var(--cs-gradient-custom-end)
+  );
+}
+
+/* =========================================================
+   Directional Fade Gradients
+   ========================================================= */
+
+/* Basic directional fades */
+@utility cs-gradient-fade-r {
+  background: linear-gradient(
+    to right,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    var(--cs-gradient-fade-mid, rgba(79, 124, 255, 0.3)) 50%,
+    transparent 100%
+  );
+}
+
+@utility cs-gradient-fade-l {
+  background: linear-gradient(
+    to left,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    var(--cs-gradient-fade-mid, rgba(79, 124, 255, 0.3)) 50%,
+    transparent 100%
+  );
+}
+
+@utility cs-gradient-fade-b {
+  background: linear-gradient(
+    to bottom,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    var(--cs-gradient-fade-mid, rgba(79, 124, 255, 0.3)) 50%,
+    transparent 100%
+  );
+}
+
+@utility cs-gradient-fade-t {
+  background: linear-gradient(
+    to top,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    var(--cs-gradient-fade-mid, rgba(79, 124, 255, 0.3)) 50%,
+    transparent 100%
+  );
+}
+
+/* Diagonal fade variants */
+@utility cs-gradient-fade-br {
+  background: linear-gradient(
+    to bottom right,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 100%
+  );
+}
+
+@utility cs-gradient-fade-bl {
+  background: linear-gradient(
+    to bottom left,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 100%
+  );
+}
+
+@utility cs-gradient-fade-tr {
+  background: linear-gradient(
+    to top right,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 100%
+  );
+}
+
+@utility cs-gradient-fade-tl {
+  background: linear-gradient(
+    to top left,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 100%
+  );
+}
+
+/* Intensity variants for fade gradients */
+@utility cs-gradient-fade-subtle {
+  --cs-gradient-fade-color: rgba(79, 124, 255, 0.3);
+  --cs-gradient-fade-mid: rgba(79, 124, 255, 0.1);
+}
+
+@utility cs-gradient-fade-medium {
+  --cs-gradient-fade-color: rgba(79, 124, 255, 0.6);
+  --cs-gradient-fade-mid: rgba(79, 124, 255, 0.3);
+}
+
+@utility cs-gradient-fade-strong {
+  --cs-gradient-fade-color: rgba(79, 124, 255, 0.8);
+  --cs-gradient-fade-mid: rgba(79, 124, 255, 0.5);
+}
+
+/* Smooth fade with color-mix support */
+@utility cs-gradient-fade-smooth {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 100%
+  );
+
+  @supports (background: color-mix(in srgb, red 50%, transparent)) {
+    background: linear-gradient(
+      135deg,
+      var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+      color-mix(
+          in srgb,
+          var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 30%,
+          transparent
+        )
+        60%,
+      transparent 100%
+    );
+  }
+}
+
+/* =========================================================
+   Radial Gradient Utilities
+   ========================================================= */
+
+@utility cs-gradient-radial-fade {
+  background: radial-gradient(
+    circle at center,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    var(--cs-gradient-fade-mid, rgba(79, 124, 255, 0.2)) 40%,
+    transparent 70%
+  );
+}
+
+@utility cs-gradient-radial-fade-tl {
+  background: radial-gradient(
+    circle at top left,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 60%
+  );
+}
+
+@utility cs-gradient-radial-fade-tr {
+  background: radial-gradient(
+    circle at top right,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 60%
+  );
+}
+
+@utility cs-gradient-radial-fade-bl {
+  background: radial-gradient(
+    circle at bottom left,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 60%
+  );
+}
+
+@utility cs-gradient-radial-fade-br {
+  background: radial-gradient(
+    circle at bottom right,
+    var(--cs-gradient-fade-color, rgba(79, 124, 255, 0.6)) 0%,
+    transparent 60%
+  );
+}
+
+@utility cs-gradient-radial-center {
+  background: radial-gradient(circle at center, var(--cs-gradient-stops));
+}
+
+@utility cs-gradient-radial-top {
+  background: radial-gradient(circle at top, var(--cs-gradient-stops));
+}
+
+@utility cs-gradient-radial-bottom {
+  background: radial-gradient(circle at bottom, var(--cs-gradient-stops));
+}
+
+/* =========================================================
+   Conic Gradient Utilities
+   ========================================================= */
+
+@utility cs-gradient-conic {
+  background: conic-gradient(var(--cs-gradient-stops));
+}
+
+@utility cs-gradient-conic-center {
+  background: conic-gradient(from 0deg at 50% 50%, var(--cs-gradient-stops));
+}
+
+/* =========================================================
+   Mesh Gradient (Multi-layer System)
+   ========================================================= */
+
+@utility cs-gradient-mesh {
+  background:
+    radial-gradient(
+      at 27% 37%,
+      color-mix(in srgb, var(--cs-brand) 50%, transparent) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 97% 21%,
+      color-mix(in srgb, var(--cs-info) 50%, transparent) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 52% 99%,
+      color-mix(in srgb, var(--cs-success) 50%, transparent) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 10% 29%,
+      color-mix(in srgb, var(--cs-warning) 50%, transparent) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 97% 96%,
+      color-mix(in srgb, var(--cs-danger) 50%, transparent) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 33% 50%,
+      color-mix(in srgb, var(--cs-brand) 50%, transparent) 0px,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 79% 53%,
+      color-mix(in srgb, var(--cs-info) 50%, transparent) 0px,
+      transparent 50%
+    );
+}
+
+/* =========================================================
+   CASOON SIGNATURE GRADIENT PRESETS
+   ========================================================= */
+
+/* CASOON Original - Your signature gradient */
+@utility cs-bg-casoon-original {
+  background:
+    radial-gradient(circle at 20% 80%, #1e40af 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, #0891b2 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, #f97316 0%, transparent 50%),
+    linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+/* CASOON Theme Variations */
+@utility cs-bg-casoon-warm {
+  background:
+    radial-gradient(circle at 25% 75%, #dc2626 0%, transparent 55%),
+    radial-gradient(circle at 75% 25%, #f59e0b 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, #ea580c 0%, transparent 60%),
+    linear-gradient(135deg, #1f2937, #374151);
+}
+
+@utility cs-bg-casoon-cool {
+  background:
+    radial-gradient(circle at 30% 70%, #3b82f6 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, #06b6d4 0%, transparent 55%),
+    radial-gradient(circle at 45% 45%, #8b5cf6 0%, transparent 45%),
+    linear-gradient(135deg, #111827, #1f2937);
+}
+
+@utility cs-bg-casoon-forest {
+  background:
+    radial-gradient(circle at 15% 85%, #059669 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, #10b981 0%, transparent 60%),
+    radial-gradient(circle at 55% 35%, #065f46 0%, transparent 40%),
+    linear-gradient(135deg, #064e3b, #134e4a);
+}
+
+/* CASOON Utility Variants */
+@utility cs-bg-casoon-animated {
+  background:
+    radial-gradient(circle at 20% 80%, #1e40af 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, #0891b2 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, #f97316 0%, transparent 50%),
+    linear-gradient(135deg, #0f172a, #1e293b);
+  background-size: 400% 400%;
+  animation: cs-gradient-shift 8s ease-in-out infinite;
+}
+
+@utility cs-bg-casoon-subtle {
+  background:
+    radial-gradient(circle at 20% 80%, #1e40af 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, #0891b2 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, #f97316 0%, transparent 50%),
+    linear-gradient(135deg, #0f172a, #1e293b);
+  filter: brightness(0.8) saturate(0.7) opacity(0.9);
+}
+
+@utility cs-bg-casoon-intense {
+  background:
+    radial-gradient(circle at 20% 80%, #1e40af 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, #0891b2 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, #f97316 0%, transparent 50%),
+    linear-gradient(135deg, #0f172a, #1e293b);
+  filter: brightness(1.2) saturate(1.3) contrast(1.1);
+}
+
+/* =========================================================
+   ADDITIONAL SIGNATURE PRESETS
+   ========================================================= */
+
+@utility cs-bg-nebula-purple {
+  background:
+    radial-gradient(circle at 20% 20%, #8b5cf6 0%, transparent 70%),
+    radial-gradient(circle at 80% 80%, #ec4899 0%, transparent 60%),
+    radial-gradient(circle at 40% 60%, #3b82f6 0%, transparent 80%),
+    linear-gradient(135deg, #0c0a1d, #1e1b3b);
+}
+
+@utility cs-bg-deep-ocean {
+  background:
+    radial-gradient(circle at 25% 25%, #1e40af 0%, transparent 65%),
+    radial-gradient(circle at 75% 75%, #0891b2 0%, transparent 55%),
+    radial-gradient(circle at 50% 80%, #0e7490 0%, transparent 70%),
+    linear-gradient(135deg, #0c1e3d, #164e63);
+}
+
+@utility cs-bg-corporate-blue {
+  background:
+    radial-gradient(circle at 30% 30%, #1e40af 0%, transparent 70%),
+    radial-gradient(circle at 70% 70%, #3b82f6 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, #1d4ed8 0%, transparent 80%),
+    linear-gradient(135deg, #1e3a8a, #1e40af);
+}
+
+/* =========================================================
+   GRADIENT TEXT UTILITIES
+   ========================================================= */
+
+@utility cs-gradient-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility cs-gradient-text-sunset {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-sunset-start),
+    var(--cs-gradient-sunset-mid, var(--cs-gradient-sunset-end)),
+    var(--cs-gradient-sunset-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility cs-gradient-text-ocean {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-ocean-start),
+    var(--cs-gradient-ocean-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility cs-gradient-text-fire {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-fire-start),
+    var(--cs-gradient-fire-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility cs-gradient-text-custom-2 {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-custom-start),
+    var(--cs-gradient-custom-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility cs-gradient-text-custom {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-custom-start),
+    var(--cs-gradient-custom-mid, var(--cs-gradient-custom-end)),
+    var(--cs-gradient-custom-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility cs-gradient-text-custom-3 {
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-custom-start),
+    var(--cs-gradient-custom-mid, var(--cs-gradient-custom-end)),
+    var(--cs-gradient-custom-end)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================================
+   GRADIENT ANIMATION UTILITIES
+   ========================================================= */
+
+@utility cs-gradient-animate {
+  background-size: 400% 400%;
+  animation: cs-gradient-shift var(--cs-anim-gradient-duration)
+    var(--cs-anim-gradient-ease) var(--cs-anim-gradient-iteration);
+}
+
+@utility cs-gradient-shift-x {
+  background-size: 200% 100%;
+  animation: cs-gradient-shift-x 3s linear infinite;
+}
+
+@utility cs-gradient-shift-y {
+  background-size: 100% 200%;
+  animation: cs-gradient-shift-y 3s linear infinite;
+}
+
+@utility cs-gradient-rotate {
+  background-size: 200% 200%;
+  animation: cs-gradient-rotate 8s linear infinite;
+}
+
+@utility cs-gradient-pulse {
+  animation: cs-gradient-pulse 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@utility cs-gradient-pulse-slow {
+  animation: cs-gradient-pulse-slow 4s ease-in-out infinite;
+}
+
+@utility cs-gradient-breathe {
+  animation: cs-gradient-breathe 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@utility cs-gradient-wave {
+  background-size:
+    300% 300%,
+    300% 300%;
+  animation: cs-gradient-wave 6s ease-in-out infinite;
+}
+
+@utility cs-gradient-shimmer {
+  background-size: 200% 100%;
+  animation: cs-gradient-shimmer 2s linear infinite;
+}
+
+/* Speed and direction variants */
+@utility cs-gradient-animate-slow {
+  animation-duration: 8s;
+}
+
+@utility cs-gradient-animate-fast {
+  animation-duration: 1.5s;
+}
+
+@utility cs-gradient-animate-reverse {
+  animation-direction: reverse;
+}
+
+@utility cs-gradient-animate-alternate {
+  animation-direction: alternate;
+}
+
+@utility cs-gradient-animate-hover-pause {
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* =========================================================
+   ADVANCED GRADIENT EFFECTS
+   ========================================================= */
+
+@utility cs-gradient-shine {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: cs-gradient-shine 3s linear infinite;
+}
+
+@utility cs-hover-ripple {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.4) 10%,
+      transparent 80%
+    );
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 9999px;
+    animation: none;
+    z-index: 1;
+  }
+
+  &:active::after {
+    animation: cs-hover-ripple 0.6s ease-out;
+  }
+}
+
+@utility cs-gradient-ambient-rotate {
+  background: conic-gradient(from 0deg, var(--cs-gradient-stops));
+  animation: cs-ambient-rotate 20s linear infinite;
+}
+
+@utility cs-gradient-zoom-fade {
+  animation: cs-gradient-zoom-fade 800ms var(--cs-anim-ease-in-out) both;
+}
+
+/* =========================================================
+   GRADIENT BORDER COMPONENT
+   ========================================================= */
+
+@utility cs-gradient-border {
+  position: relative;
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--cs-gradient-ocean-start),
+    var(--cs-gradient-ocean-end)
+  );
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--cs-gradient-white);
+    border-radius: calc(0.5rem - 1px);
+    z-index: 0;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* =========================================================
+   ANIMATION KEYFRAMES
+   ========================================================= */
+
+@keyframes cs-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes cs-gradient-shift-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes cs-gradient-shift-y {
+  0% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 50% 100%;
+  }
+}
+
+@keyframes cs-gradient-rotate {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes cs-gradient-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes cs-gradient-pulse-slow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes cs-gradient-breathe {
+  0%,
+  100% {
+    filter: brightness(0.8) saturate(1.2);
+    transform: scale(1);
+  }
+  50% {
+    filter: brightness(1.2) saturate(1.8);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes cs-gradient-wave {
+  0% {
+    background-position:
+      0% 50%,
+      100% 50%;
+  }
+  25% {
+    background-position:
+      50% 0%,
+      50% 100%;
+  }
+  50% {
+    background-position:
+      100% 50%,
+      0% 50%;
+  }
+  75% {
+    background-position:
+      50% 100%,
+      50% 0%;
+  }
+  100% {
+    background-position:
+      0% 50%,
+      100% 50%;
+  }
+}
+
+@keyframes cs-gradient-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes cs-gradient-shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes cs-hover-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes cs-ambient-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cs-gradient-zoom-fade {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY & PERFORMANCE
+   ========================================================= */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cs-bg-casoon-animated,
+  .cs-gradient-animate,
+  .cs-gradient-shift-x,
+  .cs-gradient-shift-y,
+  .cs-gradient-rotate,
+  .cs-gradient-pulse,
+  .cs-gradient-pulse-slow,
+  .cs-gradient-breathe,
+  .cs-gradient-wave,
+  .cs-gradient-shimmer,
+  .cs-gradient-shine,
+  .cs-gradient-ambient-rotate,
+  .cs-gradient-zoom-fade {
+    animation: none !important;
+    background-size: 100% 100% !important;
+  }
+
+  .cs-hover-ripple::after {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cs-bg-casoon-original,
+  .cs-bg-casoon-warm,
+  .cs-bg-casoon-cool,
+  .cs-bg-casoon-forest,
+  .cs-bg-casoon-animated,
+  .cs-bg-casoon-subtle,
+  .cs-bg-casoon-intense {
+    filter: contrast(1.5) brightness(1.2) !important;
+  }
+}
+
+/* High-contrast/forced colors mode for gradient border */
+@media (prefers-contrast: more) {
+  .cs-gradient-border::before {
+    outline: 1px solid currentColor;
+    outline-offset: -1px;
+  }
+}
+
+@media (forced-colors: active) {
+  .cs-gradient-border {
+    forced-color-adjust: none;
+    background: CanvasText;
+  }
+
+  .cs-gradient-border::before {
+    background: Canvas;
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 480px) {
+  .cs-gradient-animate {
+    animation-duration: calc(var(--cs-anim-gradient-duration) * 1.25);
+  }
+}
+
+/* TEMPORARY: Remaining systems inline until extracted */
+
+/* SCROLL SYSTEM */
+@utility cs-scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, currentColor 20%, transparent) transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, currentColor 20%, transparent);
+    border-radius: 4px;
+
+    &:hover {
+      background: color-mix(in srgb, currentColor 35%, transparent);
+    }
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@utility cs-scrollbar-custom {
+  scrollbar-width: auto;
+  scrollbar-color: var(--cs-brand)
+    color-mix(in srgb, var(--cs-brand) 10%, transparent);
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: color-mix(in srgb, var(--cs-brand) 5%, transparent);
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--cs-brand);
+    border-radius: 6px;
+    border: 2px solid color-mix(in srgb, var(--cs-brand) 5%, transparent);
+
+    &:hover {
+      background: color-mix(in srgb, var(--cs-brand) 85%, #000);
+    }
+  }
+}
+
+@utility cs-scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+@utility cs-scroll-snap-y {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+@utility cs-snap-start {
+  scroll-snap-align: start;
+}
+@utility cs-snap-center {
+  scroll-snap-align: center;
+}
+@utility cs-snap-end {
+  scroll-snap-align: end;
+}
+@utility cs-scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* LOADING SYSTEM */
+@utility cs-spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid color-mix(in srgb, currentColor 20%, transparent);
+  border-radius: 50%;
+  border-top-color: currentColor;
+  animation: cs-spin 0.8s linear infinite;
+}
+
+@utility cs-spinner-lg {
+  width: 2rem;
+  height: 2rem;
+  border-width: 3px;
+}
+
+@utility cs-spinner-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 2px;
+}
+
+@keyframes cs-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility cs-pulse {
+  animation: cs-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes cs-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@utility cs-skeleton {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, currentColor 10%, transparent) 0%,
+    color-mix(in srgb, currentColor 18%, transparent) 50%,
+    color-mix(in srgb, currentColor 10%, transparent) 100%
+  );
+  background-size: 200% 100%;
+  animation: cs-skeleton 1.5s ease-in-out infinite;
+  border-radius: 0.375rem;
+}
+
+@keyframes cs-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* MICRO INTERACTIONS */
+@utility cs-hover-lift {
+  transition: transform var(--cs-transition);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@utility cs-hover-scale {
+  transition: transform var(--cs-transition);
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+@utility cs-hover-glow {
+  transition: box-shadow var(--cs-transition);
+
+  &:hover {
+    box-shadow: 0 8px 25px color-mix(in srgb, var(--cs-brand) 25%, transparent);
+  }
+}
+
+@utility cs-interactive {
+  transition: all var(--cs-transition);
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px color-mix(in srgb, currentColor 15%, transparent);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px color-mix(in srgb, currentColor 20%, transparent);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE & ACCESSIBILITY
+   ========================================================= */
+
+/* Print Optimizations */
+@media print {
+  .cs-prose {
+    color: black !important;
+  }
+
+  .cs-navbar {
+    display: none !important;
+  }
+
+  .cs-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

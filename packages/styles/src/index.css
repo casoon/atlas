@@ -1,0 +1,22 @@
+/*!
+ * CASOON Atlas - Complete Style Collection for Tailwind v4
+ * Version: 0.0.1 — Modern UI Effects & Utilities
+ *
+ * Usage: @import "@casoon/styles";
+ * Individual imports: @import "@casoon/styles/glass";
+ */
+
+/* Core design system foundation */
+@import "./core.css";
+
+/* Glass morphism effects */
+@import "./glass.css";
+
+/* Orb & particle effects */
+@import "./orbs.css";
+
+/* Animation utilities */
+@import "./animations.css";
+
+/* Additional utilities */
+@import "./utilities.css";

@@ -1,0 +1,20 @@
+{
+  "name": "@casoon/styles",
+  "version": "0.0.1",
+  "type": "module",
+  "files": ["dist"],
+  "sideEffects": ["./dist/**/*.css"],
+  "exports": {
+    ".": "./dist/index.css",
+    "./core": "./dist/core.css",
+    "./glass": "./dist/glass.css",
+    "./orbs": "./dist/orbs.css",
+    "./animations": "./dist/animations.css",
+    "./utilities": "./dist/utilities.css"
+  },
+  "scripts": {
+    "build": "rimraf dist && mkdir -p dist && cp src/*.css dist/",
+    "clean": "rimraf dist"
+  },
+  "keywords": ["tailwind", "css", "glass", "effects", "utilities", "v4"]
+}

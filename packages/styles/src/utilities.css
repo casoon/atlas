@@ -1,0 +1,1417 @@
+/*!
+ * tailwindcss-utilities - Tailwind v4 Package
+ * Version: 0.9.0
+ *
+ * For use with Tailwind CSS v4
+ * Usage: @import "@casoon/tailwindcss-utilities/index.css";
+ */
+
+/* Note: @import "tailwindcss"; should be added by the consumer */
+
+/*!
+ * Casoon Utilities - Complete Utility System for Tailwind v4
+ * Version: 0.9.0 — COMPLETELY CONSOLIDATED & ENHANCED
+ *
+ * SYSTEMATICALLY CONSOLIDATED FROM:
+ * - src/index.css (main file with @utility definitions)
+ * - src/styles/base/tokens.css
+ * - src/styles/tokens/design-tokens.css
+ * - src/styles/utilities/core.css
+ * - src/styles/utilities/layout.css
+ * - src/styles/utilities/effects.css
+ * - src/styles/components/surfaces.css
+ * - src/styles/patterns/component-presets.css
+ *
+ * TOTAL: 8 CSS FILES → Pure Tailwind v4 (120+ classes + 80+ @utility)
+ *
+ * Features:
+ * ✅ Tree-Shaking Support with @utility directives
+ * ✅ Modern Design System with comprehensive tokens
+ * ✅ Accessibility-first components and utilities
+ * ✅ Progressive Enhancement & Fallbacks
+ * ✅ Container Queries & Responsive Design
+ * ✅ Performance optimized with reduced motion support
+ *
+ * Usage: @import "@casoon/tailwindcss-utilities/index.css";
+ */
+
+/* Note: @import "tailwindcss"; should be added by the consumer */
+
+/* =========================================================
+   CONSOLIDATED DESIGN TOKENS & THEME
+   Complete design system with light/dark theme support
+   ========================================================= */
+@theme {
+  /* === CORE COLOR SYSTEM === */
+  --cs-bg: #0b0c0f;
+  --cs-surface: #14161a;
+  --cs-elev1: #1b1e24;
+  --cs-elev2: #21252d;
+  --cs-text: #eef1f6;
+  --cs-text-muted: #b6bfcc;
+  --cs-border: #2a2f39;
+  --cs-brand: #4f7cff;
+  --cs-brand-contrast: #0b0d12;
+  --cs-brand-ink: var(--cs-brand-contrast);
+
+  /* STATE COLORS */
+  --cs-success: #22c55e;
+  --cs-warning: #f59e0b;
+  --cs-danger: #ef4444;
+  --cs-info: #06b6d4;
+
+  /* === TYPOGRAPHY SYSTEM === */
+  --cs-font-sans:
+    ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
+    'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  --cs-font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  --cs-font-size: 16px;
+  --cs-line: 1.5;
+
+  /* FLUID TYPOGRAPHY SCALE */
+  --cs-fs-xs: clamp(0.78rem, 0.75rem + 0.2cqi, 0.84rem);
+  --cs-fs-sm: clamp(0.88rem, 0.82rem + 0.3cqi, 0.95rem);
+  --cs-fs-md: clamp(1rem, 0.95rem + 0.4cqi, 1.125rem);
+  --cs-fs-lg: clamp(1.25rem, 1.05rem + 0.8cqi, 1.5rem);
+  --cs-fs-xl: clamp(1.5rem, 1.2rem + 1.2cqi, 1.875rem);
+  --cs-fs-2xl: clamp(1.875rem, 1.4rem + 1.6cqi, 2.25rem);
+
+  /* TYPOGRAPHY UTILITIES */
+  --cs-leading-relaxed: 1.625;
+  --cs-leading-loose: 2;
+  --cs-text-balance: balance;
+
+  /* === SPACING SYSTEM === */
+  --cs-density: 1;
+  --cs-space-1: calc(4px * var(--cs-density));
+  --cs-space-2: calc(8px * var(--cs-density));
+  --cs-space-3: calc(12px * var(--cs-density));
+  --cs-space-4: calc(16px * var(--cs-density));
+  --cs-space-6: calc(24px * var(--cs-density));
+  --cs-space-8: calc(32px * var(--cs-density));
+
+  /* === RADIUS & SHADOW SYSTEM === */
+  --cs-radius: 10px;
+  --cs-radius-sm: calc(var(--cs-radius) - 4px);
+  --cs-radius-lg: calc(var(--cs-radius) + 6px);
+
+  --cs-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(0, 0, 0, 0.1);
+  --cs-shadow-2: 0 8px 24px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.18);
+
+  /* === MOTION SYSTEM === */
+  --cs-transition: 180ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  --cs-anim-duration-sm: 160ms;
+  --cs-anim-duration-md: 280ms;
+  --cs-anim-duration-lg: 420ms;
+  --cs-anim-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --cs-anim-ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --cs-anim-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* === Z-INDEX SYSTEM === */
+  --cs-z-0: 0;
+  --cs-z-1: 1;
+  --cs-z-base: 1;
+  --cs-z-10: 10;
+  --cs-z-20: 20;
+  --cs-z-30: 30;
+  --cs-z-popover: 30;
+  --cs-z-40: 40;
+  --cs-z-tooltip: 40;
+  --cs-z-50: 50;
+  --cs-z-toast: 50;
+  --cs-z-60: 60;
+  --cs-z-modal: 60;
+  --cs-z-70: 70;
+  --cs-z-80: 80;
+  --cs-z-90: 90;
+  --cs-z-100: 100;
+  --cs-z-200: 200;
+  --cs-z-300: 300;
+  --cs-z-400: 400;
+  --cs-z-500: 500;
+  --cs-z-600: 600;
+  --cs-z-700: 700;
+  --cs-z-800: 800;
+  --cs-z-900: 900;
+  --cs-z-999: 999;
+  --cs-z-9999: 9999;
+  --cs-z-max: 2147483647;
+
+  /* === LAYOUT SYSTEM === */
+  --cs-page-max: 1200px;
+  --cs-page-pad: var(--cs-space-4);
+
+  /* === GLASS/BACKDROP SYSTEM === */
+  --cs-acrylic-blur: 14px;
+  --cs-acrylic-tint: rgba(20, 22, 26, 0.55);
+  --cs-acrylic-border: rgba(255, 255, 255, 0.06);
+
+  /* === PROGRESSIVE COLOR TOKENS === */
+  --cs-brand-oklch: oklch(60% 0.15 255);
+}
+
+/* =========================================================
+   LIGHT THEME SUPPORT
+   Complete theme switching system
+   ========================================================= */
+@media (prefers-color-scheme: light) {
+  @theme {
+    --cs-bg: #ffffff;
+    --cs-surface: #f7f8fa;
+    --cs-elev1: #ffffff;
+    --cs-elev2: #ffffff;
+    --cs-text: #101217;
+    --cs-text-muted: #475066;
+    --cs-border: #dfe3ea;
+    --cs-brand: #375dfb;
+    --cs-brand-contrast: #ffffff;
+    --cs-shadow-1:
+      0 1px 2px rgba(18, 24, 40, 0.06), 0 1px 1px rgba(18, 24, 40, 0.04);
+    --cs-shadow-2:
+      0 10px 24px rgba(18, 24, 40, 0.1), 0 2px 8px rgba(18, 24, 40, 0.06);
+    --cs-acrylic-tint: rgba(255, 255, 255, 0.65);
+    --cs-acrylic-border: rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* Manual theme override classes */
+.cs-theme-light {
+  --cs-bg: #ffffff;
+  --cs-surface: #f7f8fa;
+  --cs-elev1: #ffffff;
+  --cs-elev2: #ffffff;
+  --cs-text: #101217;
+  --cs-text-muted: #475066;
+  --cs-border: #dfe3ea;
+  --cs-brand: #375dfb;
+  --cs-brand-contrast: #ffffff;
+  --cs-shadow-1:
+    0 1px 2px rgba(18, 24, 40, 0.06), 0 1px 1px rgba(18, 24, 40, 0.04);
+  --cs-shadow-2:
+    0 10px 24px rgba(18, 24, 40, 0.1), 0 2px 8px rgba(18, 24, 40, 0.06);
+  --cs-acrylic-tint: rgba(255, 255, 255, 0.65);
+  --cs-acrylic-border: rgba(0, 0, 0, 0.06);
+}
+
+.cs-theme-dark {
+  --cs-bg: #0b0c0f;
+  --cs-surface: #14161a;
+  --cs-elev1: #1b1e24;
+  --cs-elev2: #21252d;
+  --cs-text: #eef1f6;
+  --cs-text-muted: #b6bfcc;
+  --cs-border: #2a2f39;
+  --cs-brand: #4f7cff;
+  --cs-brand-contrast: #0b0d12;
+}
+
+/* =========================================================
+   ACCESSIBILITY UTILITIES
+   Screen readers, focus management, keyboard navigation
+   ========================================================= */
+
+@utility cs-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@utility cs-focus-ring {
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px var(--cs-brand, #4f7cff),
+      0 0 0 4px color-mix(in srgb, var(--cs-brand, #4f7cff) 20%, transparent);
+    transition: box-shadow var(--cs-transition);
+  }
+}
+
+@utility cs-focus-ring-within {
+  &:focus-within {
+    box-shadow:
+      0 0 0 2px var(--cs-brand, #4f7cff),
+      0 0 0 6px color-mix(in srgb, var(--cs-brand, #4f7cff) 22%, transparent);
+    border-radius: var(--cs-radius);
+  }
+}
+
+/* =========================================================
+   Z-INDEX UTILITIES
+   Complete z-index scale for modern UI layering
+   ========================================================= */
+
+@utility cs-z-0 {
+  z-index: var(--cs-z-0);
+  position: relative;
+}
+@utility cs-z-1 {
+  z-index: var(--cs-z-1);
+  position: relative;
+}
+@utility cs-z-base {
+  z-index: var(--cs-z-base);
+  position: relative;
+}
+@utility cs-z-10 {
+  z-index: var(--cs-z-10);
+  position: relative;
+}
+@utility cs-z-20 {
+  z-index: var(--cs-z-20);
+  position: relative;
+}
+@utility cs-z-30 {
+  z-index: var(--cs-z-30);
+  position: relative;
+}
+@utility cs-z-popover {
+  z-index: var(--cs-z-popover);
+  position: relative;
+}
+@utility cs-z-40 {
+  z-index: var(--cs-z-40);
+  position: relative;
+}
+@utility cs-z-tooltip {
+  z-index: var(--cs-z-tooltip);
+  position: relative;
+}
+@utility cs-z-50 {
+  z-index: var(--cs-z-50);
+  position: relative;
+}
+@utility cs-z-toast {
+  z-index: var(--cs-z-toast);
+  position: relative;
+}
+@utility cs-z-60 {
+  z-index: var(--cs-z-60);
+  position: relative;
+}
+@utility cs-z-modal {
+  z-index: var(--cs-z-modal);
+  position: relative;
+}
+@utility cs-z-70 {
+  z-index: var(--cs-z-70);
+  position: relative;
+}
+@utility cs-z-80 {
+  z-index: var(--cs-z-80);
+  position: relative;
+}
+@utility cs-z-90 {
+  z-index: var(--cs-z-90);
+  position: relative;
+}
+@utility cs-z-100 {
+  z-index: var(--cs-z-100);
+  position: relative;
+}
+@utility cs-z-200 {
+  z-index: var(--cs-z-200);
+  position: relative;
+}
+@utility cs-z-300 {
+  z-index: var(--cs-z-300);
+  position: relative;
+}
+@utility cs-z-400 {
+  z-index: var(--cs-z-400);
+  position: relative;
+}
+@utility cs-z-500 {
+  z-index: var(--cs-z-500);
+  position: relative;
+}
+@utility cs-z-600 {
+  z-index: var(--cs-z-600);
+  position: relative;
+}
+@utility cs-z-700 {
+  z-index: var(--cs-z-700);
+  position: relative;
+}
+@utility cs-z-800 {
+  z-index: var(--cs-z-800);
+  position: relative;
+}
+@utility cs-z-900 {
+  z-index: var(--cs-z-900);
+  position: relative;
+}
+@utility cs-z-999 {
+  z-index: var(--cs-z-999);
+  position: relative;
+}
+@utility cs-z-9999 {
+  z-index: var(--cs-z-9999);
+  position: relative;
+}
+@utility cs-z-max {
+  z-index: var(--cs-z-max);
+  position: relative;
+}
+
+/* =========================================================
+   CORE UTILITIES & COMPONENTS
+   Main utility definitions using modern @utility syntax
+   ========================================================= */
+
+/* === LOADING & PROGRESS UTILITIES === */
+
+@utility cs-spinner {
+  animation: cs-rotate 1s linear infinite;
+  will-change: transform;
+}
+
+@utility cs-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--cs-border) 25%,
+    var(--cs-elev1) 50%,
+    var(--cs-border) 75%
+  );
+  background-size: 200% 100%;
+  animation: cs-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--cs-radius);
+}
+
+@keyframes cs-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes cs-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility cs-progress {
+  width: 100%;
+  height: 8px;
+  background: var(--cs-border);
+  border-radius: var(--cs-radius);
+  overflow: hidden;
+  position: relative;
+}
+
+@utility cs-progress-bar {
+  height: 100%;
+  background: var(--cs-brand);
+  border-radius: inherit;
+  transition: width var(--cs-transition);
+}
+
+@utility cs-progress-indeterminate {
+  background: linear-gradient(90deg, transparent, var(--cs-brand), transparent);
+  background-size: 200% 100%;
+  animation: cs-progress-slide 1.5s ease-in-out infinite;
+}
+
+@keyframes cs-progress-slide {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* === SCROLL & OVERFLOW UTILITIES === */
+
+@utility cs-scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+@utility cs-scroll-auto {
+  scroll-behavior: auto;
+}
+
+@utility cs-scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+@utility cs-scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility cs-snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+@utility cs-snap-y {
+  scroll-snap-type: y mandatory;
+}
+
+@utility cs-snap-both {
+  scroll-snap-type: both mandatory;
+}
+
+@utility cs-snap-none {
+  scroll-snap-type: none;
+}
+
+@utility cs-snap-start {
+  scroll-snap-align: start;
+}
+
+@utility cs-snap-end {
+  scroll-snap-align: end;
+}
+
+@utility cs-snap-center {
+  scroll-snap-align: center;
+}
+
+/* === ENHANCED CARD UTILITIES === */
+
+@utility cs-card-product {
+  background: var(--cs-elev1);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius-lg);
+  padding: var(--cs-space-6);
+  transition: all var(--cs-transition);
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--cs-shadow-2);
+    border-color: var(--cs-brand);
+  }
+}
+
+@utility cs-card-hero {
+  background: linear-gradient(135deg, var(--cs-elev1), var(--cs-elev2));
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius-lg);
+  padding: var(--cs-space-8);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--cs-brand),
+      var(--cs-success),
+      var(--cs-info)
+    );
+  }
+}
+
+@utility cs-card-compact {
+  background: var(--cs-elev1);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+  padding: var(--cs-space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--cs-space-3);
+  transition: all var(--cs-transition);
+
+  &:hover {
+    background: var(--cs-elev2);
+  }
+}
+
+@utility cs-container-fluid {
+  width: 100%;
+  padding-left: var(--cs-page-pad);
+  padding-right: var(--cs-page-pad);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: none;
+  background-color: var(--cs-surface, #14161a);
+  color: var(--cs-text, #eef1f6);
+
+  @container (min-width: 768px) {
+    padding-left: calc(var(--cs-page-pad) + var(--cs-space-2));
+    padding-right: calc(var(--cs-page-pad) + var(--cs-space-2));
+  }
+
+  @container (min-width: 1200px) {
+    max-width: var(--cs-page-max);
+  }
+}
+
+/* =========================================================
+   LAYOUT UTILITIES
+   Modern layout patterns and micro-recipes
+   ========================================================= */
+
+@utility cs-stack {
+  display: grid;
+  gap: var(--cs-space-3);
+}
+
+@utility cs-stack-sm {
+  display: grid;
+  gap: var(--cs-space-2);
+}
+
+@utility cs-stack-lg {
+  display: grid;
+  gap: var(--cs-space-6);
+}
+
+@utility cs-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cs-space-2);
+  align-items: center;
+}
+
+@utility cs-center {
+  display: grid;
+  place-items: center;
+}
+
+@utility cs-grid-fit {
+  display: grid;
+  gap: var(--cs-space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+}
+
+@utility cs-aspect {
+  aspect-ratio: var(--cs-aspect, 16 / 9);
+}
+
+@utility cs-bleed-x {
+  margin-inline: calc(var(--cs-page-pad) * -1);
+
+  @container (min-width: 960px) {
+    margin-inline: calc((var(--cs-page-pad) + var(--cs-space-3)) * -1);
+  }
+}
+
+@utility cs-safe-pad {
+  padding-inline: max(var(--cs-page-pad), env(safe-area-inset-left));
+  padding-inline-end: max(var(--cs-page-pad), env(safe-area-inset-right));
+  padding-block-end: max(var(--cs-space-4), env(safe-area-inset-bottom));
+}
+
+/* Layout positioning utilities */
+@utility cs-sticky {
+  position: sticky;
+  top: 0;
+}
+
+@utility cs-will-change-transform {
+  will-change: transform;
+}
+
+@utility cs-will-change-opacity {
+  will-change: opacity;
+}
+
+/* =========================================================
+   TYPOGRAPHY UTILITIES
+   Fluid typography with line height optimization
+   ========================================================= */
+
+@utility cs-text-xs {
+  font-size: var(--cs-fs-xs);
+  line-height: var(--cs-line);
+}
+
+@utility cs-text-sm {
+  font-size: var(--cs-fs-sm);
+  line-height: var(--cs-line);
+}
+
+@utility cs-text-md {
+  font-size: var(--cs-fs-md);
+  line-height: var(--cs-line);
+}
+
+@utility cs-text-lg {
+  font-size: var(--cs-fs-lg);
+  line-height: calc(var(--cs-line) + 0.05);
+}
+
+@utility cs-text-xl {
+  font-size: var(--cs-fs-xl);
+  line-height: calc(var(--cs-line) + 0.1);
+}
+
+@utility cs-text-2xl {
+  font-size: var(--cs-fs-2xl);
+  line-height: calc(var(--cs-line) + 0.12);
+}
+
+@utility cs-font-sans {
+  font-family: var(--cs-font-sans);
+}
+
+@utility cs-font-mono {
+  font-family: var(--cs-font-mono);
+}
+
+/* =========================================================
+   GRID UTILITIES
+   Advanced grid system with auto-fit patterns
+   ========================================================= */
+
+@utility cs-grid-auto-fit-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-auto-fit-md {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-auto-fit-lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--cs-space-4);
+}
+
+/* Fixed grid columns */
+@utility cs-grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-cols-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-cols-6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-cols-8 {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-cols-9 {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: var(--cs-space-4);
+}
+
+@utility cs-grid-cols-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--cs-space-4);
+}
+
+/* Column spanning utilities for use within cs-grid-12 */
+@utility cs-col-1 {
+  grid-column: span 1;
+}
+@utility cs-col-2 {
+  grid-column: span 2;
+}
+@utility cs-col-3 {
+  grid-column: span 3;
+}
+@utility cs-col-4 {
+  grid-column: span 4;
+}
+@utility cs-col-5 {
+  grid-column: span 5;
+}
+@utility cs-col-6 {
+  grid-column: span 6;
+}
+@utility cs-col-7 {
+  grid-column: span 7;
+}
+@utility cs-col-8 {
+  grid-column: span 8;
+}
+@utility cs-col-9 {
+  grid-column: span 9;
+}
+@utility cs-col-10 {
+  grid-column: span 10;
+}
+@utility cs-col-11 {
+  grid-column: span 11;
+}
+@utility cs-col-12 {
+  grid-column: span 12;
+}
+
+/* =========================================================
+   SPACING UTILITIES
+   Gap, padding, margin utilities using design tokens
+   ========================================================= */
+
+@utility cs-space-1 {
+  gap: var(--cs-space-1);
+}
+@utility cs-space-2 {
+  gap: var(--cs-space-2);
+}
+@utility cs-space-3 {
+  gap: var(--cs-space-3);
+}
+@utility cs-space-4 {
+  gap: var(--cs-space-4);
+}
+@utility cs-space-6 {
+  gap: var(--cs-space-6);
+}
+@utility cs-space-8 {
+  gap: var(--cs-space-8);
+}
+
+@utility cs-p-1 {
+  padding: var(--cs-space-1);
+}
+@utility cs-p-2 {
+  padding: var(--cs-space-2);
+}
+@utility cs-p-3 {
+  padding: var(--cs-space-3);
+}
+@utility cs-p-4 {
+  padding: var(--cs-space-4);
+}
+@utility cs-p-6 {
+  padding: var(--cs-space-6);
+}
+@utility cs-p-8 {
+  padding: var(--cs-space-8);
+}
+
+@utility cs-m-1 {
+  margin: var(--cs-space-1);
+}
+@utility cs-m-2 {
+  margin: var(--cs-space-2);
+}
+@utility cs-m-3 {
+  margin: var(--cs-space-3);
+}
+@utility cs-m-4 {
+  margin: var(--cs-space-4);
+}
+@utility cs-m-6 {
+  margin: var(--cs-space-6);
+}
+@utility cs-m-8 {
+  margin: var(--cs-space-8);
+}
+
+/* Directional spacing utilities */
+@utility cs-px-1 {
+  padding-inline: var(--cs-space-1);
+}
+@utility cs-px-2 {
+  padding-inline: var(--cs-space-2);
+}
+@utility cs-px-3 {
+  padding-inline: var(--cs-space-3);
+}
+@utility cs-px-4 {
+  padding-inline: var(--cs-space-4);
+}
+
+@utility cs-py-1 {
+  padding-block: var(--cs-space-1);
+}
+@utility cs-py-2 {
+  padding-block: var(--cs-space-2);
+}
+@utility cs-py-3 {
+  padding-block: var(--cs-space-3);
+}
+@utility cs-py-4 {
+  padding-block: var(--cs-space-4);
+}
+
+/* === TYPOGRAPHY UTILITIES === */
+
+@utility cs-text-balance {
+  text-wrap: var(--cs-text-balance);
+}
+
+@utility cs-text-gradient {
+  background: linear-gradient(135deg, var(--cs-brand), var(--cs-success));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@utility cs-prose {
+  max-width: 65ch;
+  line-height: var(--cs-leading-relaxed);
+
+  & h1,
+  & h2,
+  & h3 {
+    text-wrap: var(--cs-text-balance);
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+
+  & p {
+    margin-bottom: 1.25em;
+  }
+
+  & ul,
+  & ol {
+    padding-left: 2em;
+    margin-bottom: 1.25em;
+  }
+
+  & blockquote {
+    border-left: 4px solid var(--cs-border);
+    padding-left: 1em;
+    font-style: italic;
+    margin: 1.5em 0;
+  }
+}
+
+@utility cs-font-feature-numbers {
+  font-feature-settings: 'tnum';
+}
+
+/* =========================================================
+   REDUCED MOTION SUPPORT & ACCESSIBILITY
+   Full accessibility compliance for motion-sensitive users
+   ========================================================= */
+
+@utility cs-surface {
+  background: var(--cs-surface);
+  color: var(--cs-text);
+}
+
+@utility cs-surface-elevated {
+  background: var(--cs-elev1);
+  color: var(--cs-text);
+}
+
+@utility cs-surface-raised {
+  background: var(--cs-elev2);
+  color: var(--cs-text);
+}
+
+@utility cs-bg-brand {
+  background-color: var(--cs-brand, #4f7cff);
+  color: var(--cs-brand-ink, #0b0d12);
+}
+
+/* Radius utilities */
+@utility cs-radius-sm {
+  border-radius: var(--cs-radius-sm);
+}
+@utility cs-radius {
+  border-radius: var(--cs-radius);
+}
+@utility cs-radius-lg {
+  border-radius: var(--cs-radius-lg);
+}
+
+/* Shadow utilities */
+@utility cs-shadow {
+  box-shadow: var(--cs-shadow-1);
+}
+@utility cs-shadow-lg {
+  box-shadow: var(--cs-shadow-2);
+}
+
+/* =========================================================
+   CARD COMPONENTS
+   Complete card system with variants
+   ========================================================= */
+
+@utility cs-card {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+  padding: var(--cs-space-4);
+  box-shadow: var(--cs-shadow-1);
+}
+
+@utility cs-card-elevated {
+  background: var(--cs-elev1);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+  padding: var(--cs-space-4);
+  box-shadow: var(--cs-shadow-2);
+}
+
+/* =========================================================
+   BUTTON COMPONENTS
+   Complete button system with variants
+   ========================================================= */
+
+@utility cs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--cs-space-2) var(--cs-space-4);
+  border-radius: var(--cs-radius);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--cs-transition);
+  cursor: pointer;
+  border: 0;
+  min-height: 44px; /* Touch target compliance */
+  min-width: 44px;
+}
+
+@utility cs-btn-primary {
+  background: var(--cs-brand);
+  color: var(--cs-brand-contrast);
+
+  &:hover {
+    background: color-mix(in srgb, var(--cs-brand) 85%, black);
+  }
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px var(--cs-brand),
+      0 0 0 4px color-mix(in srgb, var(--cs-brand) 25%, transparent);
+  }
+}
+
+@utility cs-btn-secondary {
+  background: var(--cs-elev1);
+  color: var(--cs-text);
+  border: 1px solid var(--cs-border);
+
+  &:hover {
+    background: var(--cs-elev2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px var(--cs-border),
+      0 0 0 4px color-mix(in srgb, var(--cs-text) 15%, transparent);
+  }
+}
+
+@utility cs-btn-outline {
+  background: transparent;
+  color: var(--cs-brand);
+  border: 1px solid var(--cs-brand);
+
+  &:hover {
+    background: var(--cs-brand);
+    color: var(--cs-brand-contrast);
+  }
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px var(--cs-brand),
+      0 0 0 4px color-mix(in srgb, var(--cs-brand) 25%, transparent);
+  }
+}
+
+@utility cs-btn-ghost {
+  background: transparent;
+  color: var(--cs-text);
+  border: 1px solid transparent;
+
+  &:hover {
+    background: var(--cs-elev1);
+    border-color: var(--cs-border);
+  }
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px var(--cs-border),
+      0 0 0 4px color-mix(in srgb, var(--cs-text) 15%, transparent);
+  }
+}
+
+/* Button sizes */
+@utility cs-btn-sm {
+  padding: var(--cs-space-1) var(--cs-space-3);
+  font-size: var(--cs-fs-sm);
+  min-height: 36px;
+  min-width: 36px;
+}
+
+@utility cs-btn-lg {
+  padding: var(--cs-space-3) var(--cs-space-6);
+  font-size: var(--cs-fs-lg);
+  min-height: 52px;
+  min-width: 52px;
+}
+
+/* =========================================================
+   ALERT COMPONENTS
+   Semantic feedback alerts with state colors
+   ========================================================= */
+
+@utility cs-alert {
+  display: flex;
+  align-items: center;
+  gap: var(--cs-space-3);
+  padding: var(--cs-space-4);
+  border: 1px solid var(--cs-border);
+  border-radius: var(--cs-radius);
+  background: var(--cs-surface);
+}
+
+@utility cs-alert-info {
+  border-color: var(--cs-info, #0ea5e9);
+  background: color-mix(in srgb, var(--cs-info, #0ea5e9) 8%, var(--cs-surface));
+  color: var(--cs-info, #0ea5e9);
+}
+
+@utility cs-alert-success {
+  border-color: var(--cs-success, #22c55e);
+  background: color-mix(
+    in srgb,
+    var(--cs-success, #22c55e) 8%,
+    var(--cs-surface)
+  );
+  color: var(--cs-success, #22c55e);
+}
+
+@utility cs-alert-warning {
+  border-color: var(--cs-warning, #f59e0b);
+  background: color-mix(
+    in srgb,
+    var(--cs-warning, #f59e0b) 8%,
+    var(--cs-surface)
+  );
+  color: var(--cs-warning, #f59e0b);
+}
+
+@utility cs-alert-danger {
+  border-color: var(--cs-danger, #ef4444);
+  background: color-mix(
+    in srgb,
+    var(--cs-danger, #ef4444) 8%,
+    var(--cs-surface)
+  );
+  color: var(--cs-danger, #ef4444);
+}
+
+/* =========================================================
+   BADGE COMPONENTS
+   Status badges and tags with variants
+   ========================================================= */
+
+@utility cs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cs-space-1);
+  padding: var(--cs-space-1) var(--cs-space-2);
+  border-radius: var(--cs-radius-sm);
+  font-size: var(--cs-fs-xs);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@utility cs-badge-primary {
+  background: var(--cs-brand);
+  color: var(--cs-brand-ink);
+}
+
+@utility cs-badge-secondary {
+  background: var(--cs-text-muted);
+  color: var(--cs-bg);
+}
+
+@utility cs-badge-success {
+  background: var(--cs-success, #22c55e);
+  color: white;
+}
+
+@utility cs-badge-warning {
+  background: var(--cs-warning, #f59e0b);
+  color: white;
+}
+
+@utility cs-badge-danger {
+  background: var(--cs-danger, #ef4444);
+  color: white;
+}
+
+@utility cs-badge-outline {
+  background: transparent;
+  border: 1px solid currentColor;
+}
+
+/* =========================================================
+   ACRYLIC SURFACE COMPONENT
+   Modern glass effect with backdrop filtering
+   ========================================================= */
+
+@utility cs-acrylic {
+  background: var(--cs-acrylic-tint, rgba(20, 22, 26, 0.55));
+  border: 1px solid var(--cs-acrylic-border, rgba(255, 255, 255, 0.06));
+  border-radius: var(--cs-radius, 10px);
+  box-shadow: var(--cs-shadow-2);
+  -webkit-backdrop-filter: saturate(140%) blur(var(--cs-acrylic-blur, 14px));
+  backdrop-filter: saturate(140%) blur(var(--cs-acrylic-blur, 14px));
+  background-clip: padding-box;
+
+  @media (max-width: 480px) {
+    --cs-acrylic-blur: 8px;
+    box-shadow: var(--cs-shadow-1);
+  }
+}
+
+/* =========================================================
+   ANIMATION UTILITIES
+   Performance-optimized micro-interactions
+   ========================================================= */
+
+@utility cs-pulse {
+  animation: csPulse 1.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes csPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@utility cs-fade-delayed {
+  opacity: 0;
+  animation: csFadeIn var(--cs-anim-duration-lg, 420ms)
+    var(--cs-anim-ease-out, ease-out) forwards;
+  animation-delay: 0.4s;
+}
+
+@keyframes csFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@utility cs-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--cs-elev1),
+    var(--cs-elev2),
+    var(--cs-elev1)
+  );
+  background-size: 200% 100%;
+  animation: csShimmer 2s linear infinite;
+}
+
+@keyframes csShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@utility cs-spin {
+  animation: csSpin 1s linear infinite;
+}
+
+@keyframes csSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glow effect utility */
+@utility cs-glow {
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow 0.4s ease-out;
+
+  &.cs-glow-active {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--cs-brand, #4f7cff) 40%, transparent),
+      0 0 12px color-mix(in srgb, var(--cs-brand, #4f7cff) 65%, transparent);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE VISIBILITY UTILITIES
+   Container query based visibility controls
+   ========================================================= */
+
+@container (max-width: 640px) {
+  .cs-hide-mobile {
+    display: none !important;
+  }
+  .cs-show-mobile {
+    display: block !important;
+  }
+}
+
+@container (min-width: 641px) and (max-width: 1024px) {
+  .cs-hide-tablet {
+    display: none !important;
+  }
+  .cs-show-tablet {
+    display: block !important;
+  }
+}
+
+@container (min-width: 1025px) {
+  .cs-hide-desktop {
+    display: none !important;
+  }
+  .cs-show-desktop {
+    display: block !important;
+  }
+}
+
+/* =========================================================
+   PROGRESSIVE ENHANCEMENT
+   Modern CSS features with fallbacks
+   ========================================================= */
+
+/* Progressive enhancement for color-mix support */
+@supports not (color: color-mix(in srgb, red 50%, blue)) {
+  .cs-btn-primary:hover {
+    background: rgba(79, 124, 255, 0.85);
+  }
+
+  .cs-alert-info {
+    background: rgba(14, 165, 233, 0.08);
+  }
+
+  .cs-alert-success {
+    background: rgba(34, 197, 94, 0.08);
+  }
+
+  .cs-alert-warning {
+    background: rgba(245, 158, 11, 0.08);
+  }
+
+  .cs-alert-danger {
+    background: rgba(239, 68, 68, 0.08);
+  }
+}
+
+/* Fallback for backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .cs-acrylic {
+    background: color-mix(in srgb, var(--cs-acrylic-tint) 80%, var(--cs-elev1));
+  }
+}
+
+/* Progressive enhancement for oklch colors */
+@supports (color: oklch(60% 0.2 250)) {
+  .cs-theme {
+    --cs-brand-oklch: oklch(from var(--cs-brand) l c h);
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY OPTIMIZATIONS
+   Reduced motion and high contrast support
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-pulse,
+  .cs-shimmer,
+  .cs-fade-delayed,
+  .cs-spin {
+    animation: none !important;
+  }
+
+  .cs-btn:hover,
+  .cs-focus-ring:focus-visible,
+  .cs-focus-ring-within:focus-within {
+    transition: none !important;
+  }
+
+  .cs-glow {
+    transition: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .cs-theme {
+    --cs-border: currentColor;
+    --cs-text-muted: var(--cs-text);
+  }
+
+  .cs-btn {
+    border: 2px solid currentColor;
+  }
+
+  .cs-card,
+  .cs-card-elevated {
+    border: 2px solid var(--cs-border);
+  }
+}

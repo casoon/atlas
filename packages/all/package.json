@@ -1,0 +1,26 @@
+{
+  "name": "@casoon/all",
+  "version": "0.0.1",
+  "type": "module",
+  "files": ["dist"],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@casoon/styles": "workspace:*",
+    "@casoon/effects": "workspace:*",
+    "@casoon/components": "workspace:*"
+  },
+  "devDependencies": { 
+    "tsup": "^8.0.0", 
+    "typescript": "^5.6.3" 
+  }
+}

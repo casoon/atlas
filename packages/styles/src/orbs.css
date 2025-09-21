@@ -1,0 +1,1571 @@
+/*!
+ * tailwindcss-orbs - Tailwind v4 Package
+ * Version: 0.9.0
+ *
+ * For use with Tailwind CSS v4
+ * Usage: @import "@casoon/tailwindcss-orbs/index.css";
+ */
+
+/* Note: @import "tailwindcss"; should be added by the consumer */
+
+/*!
+ * Casoon Orbs - Tailwind v4 Directive Definitions
+ * Version: 0.8.5 — For processing by Tailwind in consumer projects
+ *
+ * Usage: @import "@casoon/tailwindcss-orbs/index.css";
+ */
+
+/* Note: @import "tailwindcss"; should be added by the consumer */
+
+/* =========================================================
+   Orbs Theme Tokens
+   ========================================================= */
+@theme {
+  /* Base palette colors */
+  --cs-text: #0f172a;
+  --cs-text-inverse: #ffffff;
+  --cs-bg: #ffffff;
+  --cs-surface: #ffffff;
+  --cs-surface-2: #f8fafc;
+  --cs-border: #e5e7eb;
+
+  /* Orb colors */
+  --cs-orb-blue: #3b82f6;
+  --cs-orb-blue-light: #93c5fd;
+  --cs-orb-blue-lighter: #dbeafe;
+
+  --cs-orb-purple: #9333ea;
+  --cs-orb-purple-light: #c4b5fd;
+  --cs-orb-purple-lighter: #ede9fe;
+
+  --cs-orb-pink: #ec4899;
+  --cs-orb-pink-light: #fbcfe8;
+  --cs-orb-pink-lighter: #fdf2f8;
+
+  --cs-orb-custom-primary: #667eea;
+  --cs-orb-custom-secondary: #764ba2;
+  --cs-orb-custom-accent: #f093fb;
+
+  /* Opacity tokens */
+  --cs-opacity-strong: 0.5;
+  --cs-opacity-medium: 0.3;
+  --cs-opacity-weak: 0.1;
+
+  /* Motion & transitions */
+  --cs-transition: 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cs-anim-ease-inout: cubic-bezier(0.4, 0, 0.2, 1);
+  --cs-anim-ease-emph: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cs-anim-duration-float: 6s;
+  --cs-anim-duration-pulse: 4s;
+  --cs-anim-duration-drift: 8s;
+
+  /* Elevation & z-index scale */
+  --cs-shadow-0: none;
+  --cs-shadow-1: 0 1px 2px rgba(2, 6, 23, 0.06), 0 1px 1px rgba(2, 6, 23, 0.04);
+  --cs-shadow-2: 0 2px 6px rgba(2, 6, 23, 0.08), 0 1px 2px rgba(2, 6, 23, 0.06);
+  --cs-shadow-3: 0 8px 24px rgba(2, 6, 23, 0.1), 0 2px 6px rgba(2, 6, 23, 0.06);
+  --cs-shadow-4:
+    0 16px 40px rgba(2, 6, 23, 0.12), 0 4px 10px rgba(2, 6, 23, 0.08);
+
+  --cs-z-tooltip: 60;
+  --cs-z-dropdown: 70;
+  --cs-z-toast: 80;
+  --cs-z-modal: 90;
+  --cs-z-orb: 10;
+
+  /* Density */
+  --cs-density: 1;
+
+  /* Fallback radial gradients (rgba-based, no color-mix) */
+  --cs-orb-fallback-blue: radial-gradient(
+    circle,
+    rgba(59, 130, 246, var(--cs-opacity-strong)) 0%,
+    rgba(147, 197, 253, var(--cs-opacity-medium)) 50%,
+    rgba(219, 234, 254, var(--cs-opacity-weak)) 100%
+  );
+
+  --cs-orb-fallback-purple: radial-gradient(
+    circle,
+    rgba(147, 51, 234, var(--cs-opacity-strong)) 0%,
+    rgba(196, 181, 253, var(--cs-opacity-medium)) 50%,
+    rgba(237, 233, 254, var(--cs-opacity-weak)) 100%
+  );
+
+  --cs-orb-fallback-pink: radial-gradient(
+    circle,
+    rgba(236, 72, 153, var(--cs-opacity-strong)) 0%,
+    rgba(251, 207, 232, var(--cs-opacity-medium)) 50%,
+    rgba(253, 242, 248, var(--cs-opacity-weak)) 100%
+  );
+
+  --cs-orb-fallback-custom: radial-gradient(
+    circle,
+    rgba(102, 126, 234, var(--cs-opacity-strong)) 0%,
+    rgba(118, 75, 162, var(--cs-opacity-medium)) 50%,
+    rgba(240, 147, 251, var(--cs-opacity-weak)) 100%
+  );
+
+  /* Progressive gradients with color-mix (upgrade path) */
+  --cs-orb-gradient-blue: radial-gradient(
+    circle,
+    color-mix(
+        in srgb,
+        var(--cs-orb-blue) calc(var(--cs-opacity-strong) * 100%),
+        transparent
+      )
+      0%,
+    color-mix(
+        in srgb,
+        var(--cs-orb-blue-light) calc(var(--cs-opacity-medium) * 100%),
+        transparent
+      )
+      50%,
+    color-mix(
+        in srgb,
+        var(--cs-orb-blue-lighter) calc(var(--cs-opacity-weak) * 100%),
+        transparent
+      )
+      100%
+  );
+
+  --cs-orb-gradient-purple: radial-gradient(
+    circle,
+    color-mix(
+        in srgb,
+        var(--cs-orb-purple) calc(var(--cs-opacity-strong) * 100%),
+        transparent
+      )
+      0%,
+    color-mix(
+        in srgb,
+        var(--cs-orb-purple-light) calc(var(--cs-opacity-medium) * 100%),
+        transparent
+      )
+      50%,
+    color-mix(
+        in srgb,
+        var(--cs-orb-purple-lighter) calc(var(--cs-opacity-weak) * 100%),
+        transparent
+      )
+      100%
+  );
+
+  --cs-orb-gradient-pink: radial-gradient(
+    circle,
+    color-mix(
+        in srgb,
+        var(--cs-orb-pink) calc(var(--cs-opacity-strong) * 100%),
+        transparent
+      )
+      0%,
+    color-mix(
+        in srgb,
+        var(--cs-orb-pink-light) calc(var(--cs-opacity-medium) * 100%),
+        transparent
+      )
+      50%,
+    color-mix(
+        in srgb,
+        var(--cs-orb-pink-lighter) calc(var(--cs-opacity-weak) * 100%),
+        transparent
+      )
+      100%
+  );
+
+  --cs-orb-gradient-custom: radial-gradient(
+    circle,
+    color-mix(
+        in srgb,
+        var(--cs-orb-custom-primary) calc(var(--cs-opacity-strong) * 100%),
+        transparent
+      )
+      0%,
+    color-mix(
+        in srgb,
+        var(--cs-orb-custom-secondary) calc(var(--cs-opacity-medium) * 100%),
+        transparent
+      )
+      50%,
+    color-mix(
+        in srgb,
+        var(--cs-orb-custom-accent) calc(var(--cs-opacity-weak) * 100%),
+        transparent
+      )
+      100%
+  );
+}
+
+/* =========================================================
+   Base Orb Utility
+   ========================================================= */
+@utility cs-orb {
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: 0.7;
+  pointer-events: none;
+  position: relative;
+  z-index: var(--cs-z-orb);
+
+  &[data-size~='responsive'] {
+    @container (min-width: 480px) {
+      width: 120px;
+      height: 120px;
+    }
+    @container (min-width: 768px) {
+      width: 180px;
+      height: 180px;
+    }
+    @container (min-width: 1024px) {
+      width: 240px;
+      height: 240px;
+    }
+  }
+}
+
+/* =========================================================
+   Orb Size Utilities
+   ========================================================= */
+@utility cs-orb-xs {
+  width: 50px;
+  height: 50px;
+}
+@utility cs-orb-sm {
+  width: 75px;
+  height: 75px;
+}
+@utility cs-orb-md {
+  width: 100px;
+  height: 100px;
+}
+@utility cs-orb-lg {
+  width: 150px;
+  height: 150px;
+}
+@utility cs-orb-xl {
+  width: 200px;
+  height: 200px;
+}
+@utility cs-orb-2xl {
+  width: 300px;
+  height: 300px;
+}
+@utility cs-orb-3xl {
+  width: 400px;
+  height: 400px;
+}
+@utility cs-orb-4xl {
+  width: 500px;
+  height: 500px;
+}
+@utility cs-orb-5xl {
+  width: 600px;
+  height: 600px;
+}
+@utility cs-orb-massive {
+  width: 800px;
+  height: 800px;
+}
+
+/* =========================================================
+   Blur Level Utilities
+   ========================================================= */
+@utility cs-orb-blur-none {
+  filter: blur(0);
+}
+@utility cs-orb-blur-sm {
+  filter: blur(2px);
+}
+@utility cs-orb-blur-md {
+  filter: blur(4px);
+}
+@utility cs-orb-blur-lg {
+  filter: blur(8px);
+}
+
+/* =========================================================
+   Positioning Utilities
+   ========================================================= */
+@utility cs-orb-absolute {
+  position: absolute;
+}
+@utility cs-orb-fixed {
+  position: fixed;
+}
+
+/* =========================================================
+   Color Gradient Utilities with Progressive Enhancement
+   ========================================================= */
+@utility cs-orb-gradient-blue {
+  background: var(--cs-orb-fallback-blue);
+
+  @supports (background: color-mix(in srgb, red 50%, transparent)) {
+    background: var(--cs-orb-gradient-blue);
+  }
+}
+
+@utility cs-orb-gradient-purple {
+  background: var(--cs-orb-fallback-purple);
+
+  @supports (background: color-mix(in srgb, red 50%, transparent)) {
+    background: var(--cs-orb-gradient-purple);
+  }
+}
+
+@utility cs-orb-gradient-pink {
+  background: var(--cs-orb-fallback-pink);
+
+  @supports (background: color-mix(in srgb, red 50%, transparent)) {
+    background: var(--cs-orb-gradient-pink);
+  }
+}
+
+@utility cs-orb-gradient-custom {
+  background: var(--cs-orb-fallback-custom);
+
+  @supports (background: color-mix(in srgb, red 50%, transparent)) {
+    background: var(--cs-orb-gradient-custom);
+  }
+}
+
+/* =========================================================
+   Container Query Utility
+   ========================================================= */
+@utility cs-cq {
+  container-type: inline-size;
+}
+
+/* =========================================================
+   ENHANCED ORB ANIMATIONS (v0.8.x)
+   ========================================================= */
+
+/* Float Animation */
+@utility cs-orb-float {
+  animation: cs-orb-float-kf var(--cs-anim-duration-float)
+    var(--cs-anim-ease-inout) infinite;
+}
+
+/* Pulse Animation */
+@utility cs-orb-pulse {
+  animation: cs-orb-pulse-kf var(--cs-anim-duration-pulse)
+    var(--cs-anim-ease-inout) infinite;
+}
+
+/* Drift Animation */
+@utility cs-orb-drift {
+  animation: cs-orb-drift-kf var(--cs-anim-duration-drift)
+    var(--cs-anim-ease-inout) infinite;
+}
+
+/* Morph Animation */
+@utility cs-orb-morph {
+  animation: cs-orb-morph 12s ease-in-out infinite;
+}
+
+/* Shimmer Animation */
+@utility cs-orb-shimmer {
+  background: linear-gradient(
+    270deg,
+    var(--cs-orb-blue),
+    var(--cs-orb-blue-light),
+    var(--cs-orb-blue)
+  );
+  background-size: 600% 600%;
+  animation: cs-orb-shimmer 10s infinite;
+}
+
+/* Bloom Animation (hover/focus triggered) */
+@utility cs-orb-bloom {
+  &:hover,
+  &:focus-visible {
+    transform-origin: 50%;
+    animation: cs-orb-bloom 2s ease-in-out infinite;
+  }
+}
+
+/* Zen Animation (combined float + morph) */
+@utility cs-orb-zen {
+  animation:
+    cs-orb-float-kf var(--cs-anim-duration-float) var(--cs-anim-ease-inout)
+      infinite,
+    cs-orb-morph 14s ease-in-out infinite;
+}
+
+/* Advanced Movement Animations */
+@utility cs-orb-orbit {
+  animation: cs-orb-orbit 20s linear infinite;
+}
+
+@utility cs-orb-orbit-reverse {
+  animation: cs-orb-orbit 20s linear infinite reverse;
+}
+
+@utility cs-orb-figure-8 {
+  animation: cs-orb-figure-8 16s ease-in-out infinite;
+}
+
+@utility cs-orb-wander {
+  animation: cs-orb-wander 25s ease-in-out infinite;
+}
+
+@utility cs-orb-swing {
+  animation: cs-orb-swing 8s ease-in-out infinite;
+}
+
+@utility cs-orb-bounce {
+  animation: cs-orb-bounce 3s ease-in-out infinite;
+}
+
+@utility cs-orb-magnetic {
+  animation: cs-orb-magnetic 12s ease-in-out infinite;
+}
+
+/* Color & Visual Effects */
+@utility cs-orb-hue-shift {
+  animation: cs-orb-hue-shift 10s linear infinite;
+}
+
+@utility cs-orb-rainbow {
+  background: linear-gradient(
+      45deg,
+      #ff6b6b,
+      #4ecdc4,
+      #45b7d1,
+      #f9ca24,
+      #f0932b,
+      #eb4d4b,
+      #6c5ce7
+    )
+    0 0/400% 400%;
+  animation: cs-orb-rainbow 8s infinite;
+}
+
+@utility cs-orb-color-pulse {
+  animation: cs-orb-color-pulse 4s ease-in-out infinite;
+}
+
+@utility cs-orb-color-breathe {
+  animation: cs-orb-color-breathe 6s ease-in-out infinite;
+}
+
+@utility cs-orb-glow {
+  animation: cs-orb-glow 3s ease-in-out infinite;
+}
+
+@utility cs-orb-flicker {
+  animation: cs-orb-flicker 2s ease-in-out infinite;
+}
+
+@utility cs-orb-scale-pulse {
+  animation: cs-orb-scale-pulse 4s ease-in-out infinite;
+}
+
+@utility cs-orb-elastic {
+  animation: cs-orb-elastic 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+/* Complex Combined Animations */
+@utility cs-orb-dream {
+  animation:
+    cs-orb-float-kf 12s ease-in-out infinite,
+    cs-orb-hue-shift 15s linear infinite,
+    cs-orb-scale-pulse 8s ease-in-out infinite;
+}
+
+@utility cs-orb-cosmic {
+  animation:
+    cs-orb-orbit 30s linear infinite,
+    cs-orb-rainbow 10s infinite,
+    cs-orb-glow 4s ease-in-out infinite;
+}
+
+@utility cs-orb-chaos {
+  animation:
+    cs-orb-wander 20s ease-in-out infinite,
+    cs-orb-flicker 1.5s ease-in-out infinite,
+    cs-orb-elastic 5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+/* =========================================================
+   ANIMATION SPEED CONTROLS
+   ========================================================= */
+@utility cs-orb-slow {
+  animation-duration: calc(var(--cs-orb-speed, 1) * 2);
+}
+
+@utility cs-orb-fast {
+  animation-duration: calc(var(--cs-orb-speed, 1) * 0.5);
+}
+
+/* =========================================================
+   INTERACTIVE ANIMATION CONTROLS
+   ========================================================= */
+@utility cs-orb-pause-hover {
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@utility cs-orb-reverse-hover {
+  &:hover {
+    animation-direction: reverse;
+  }
+}
+
+@utility cs-orb-trigger-hover {
+  animation-play-state: paused;
+
+  &:hover {
+    animation-play-state: running;
+  }
+}
+
+/* =========================================================
+   CORE UTILITY HELPER CLASSES
+   ========================================================= */
+@utility cs-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================================================
+   GLOW EFFECTS
+   ========================================================= */
+@utility cs-glow {
+  box-shadow: 0 0 transparent;
+}
+
+@utility cs-glow-blue {
+  box-shadow: 0 0 24px 8px var(--cs-orb-blue);
+
+  @supports (color: color-mix(in lab, red, red)) {
+    box-shadow: 0 0 24px 8px
+      color-mix(in srgb, var(--cs-orb-blue) 35%, transparent);
+  }
+
+  @supports not (color: color-mix(in srgb, red 50%, white)) {
+    box-shadow: 0 0 24px 8px rgba(59, 130, 246, 0.35);
+  }
+}
+
+@utility cs-glow-pink {
+  box-shadow: 0 0 24px 8px var(--cs-orb-pink);
+
+  @supports (color: color-mix(in lab, red, red)) {
+    box-shadow: 0 0 24px 8px
+      color-mix(in srgb, var(--cs-orb-pink) 35%, transparent);
+  }
+
+  @supports not (color: color-mix(in srgb, red 50%, white)) {
+    box-shadow: 0 0 24px 8px rgba(236, 72, 153, 0.35);
+  }
+}
+
+/* =========================================================
+   CORE POSITIONING UTILITIES
+   ========================================================= */
+@utility cs-will-transform {
+  will-change: transform;
+}
+
+/* =========================================================
+   CARD COMPONENTS
+   ========================================================= */
+@utility cs-card {
+  position: relative;
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: calc(12px * var(--cs-density));
+  box-shadow: var(--cs-shadow-2);
+  padding: calc(16px * var(--cs-density));
+  transition:
+    box-shadow var(--cs-transition),
+    transform var(--cs-transition);
+
+  &:hover {
+    box-shadow: var(--cs-shadow-3);
+    transform: translateY(-1px);
+  }
+}
+
+@utility cs-card-title {
+  color: var(--cs-text);
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+@utility cs-card-hover-orb {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -25%;
+    left: -25%;
+    width: 200%;
+    height: 200%;
+    background: var(--cs-orb-fallback-blue);
+    filter: blur(32px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.5s;
+  }
+
+  &:hover::before {
+    opacity: 0.6;
+  }
+}
+
+@utility cs-card-hover-orb-shimmer {
+  &::before {
+    background: linear-gradient(135deg, #3b82f6, #93c5fd, #3b82f6) 0 0/300% 300%;
+    animation: cs-orb-shimmer 6s linear infinite;
+  }
+}
+
+@utility cs-surface-pop {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  border-radius: 12px;
+  box-shadow: var(--cs-shadow-4);
+}
+
+/* =========================================================
+   ACRYLIC/GLASSMORPHISM EFFECT
+   ========================================================= */
+@utility cs-acrylic {
+  background: var(--cs-surface);
+  border: 1px solid var(--cs-border);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+
+  @supports (color: color-mix(in lab, red, red)) {
+    background: color-mix(in srgb, var(--cs-surface) 70%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cs-border) 70%, transparent);
+  }
+
+  @supports not (backdrop-filter: blur(10px)) {
+    background: rgba(255, 255, 255, 0.75);
+  }
+}
+
+/* =========================================================
+   BUTTON COMPONENTS
+   ========================================================= */
+@utility cs-btn {
+  --_pad-y: calc(8px * var(--cs-density));
+  --_pad-x: calc(14px * var(--cs-density));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--_pad-y) var(--_pad-x);
+  border: 1px solid var(--cs-border);
+  border-radius: calc(10px * var(--cs-density));
+  background: var(--cs-surface-2);
+  color: var(--cs-text);
+  font-weight: 600;
+  line-height: 1.2;
+  box-shadow: var(--cs-shadow-1);
+  transition:
+    background var(--cs-transition),
+    box-shadow var(--cs-transition),
+    transform var(--cs-transition);
+
+  &:hover {
+    box-shadow: var(--cs-shadow-2);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@utility cs-btn-primary {
+  background: var(--cs-orb-blue);
+  border-color: var(--cs-orb-blue);
+  color: var(--cs-text);
+
+  @supports (color: color-mix(in lab, red, red)) {
+    background: color-mix(in srgb, var(--cs-orb-blue) 12%, var(--cs-surface));
+    border-color: color-mix(in srgb, var(--cs-orb-blue) 35%, var(--cs-border));
+  }
+
+  @supports not (color: color-mix(in srgb, red 50%, white)) {
+    background: #eef5ff;
+    border-color: #b8d1ff;
+  }
+}
+
+@utility cs-btn-orb {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(
+      circle at center,
+      var(--cs-orb-blue-light),
+      transparent 70%
+    );
+    opacity: 0;
+    transform: scale(0.5);
+    transition:
+      opacity 0.4s,
+      transform 0.4s;
+    z-index: 0;
+  }
+
+  &:hover::after {
+    opacity: 0.4;
+    transform: scale(1.2);
+  }
+}
+
+/* =========================================================
+   LAYOUT COMPONENTS
+   ========================================================= */
+@utility cs-section-orb {
+  position: relative;
+  overflow: clip;
+
+  & > .cs-orb {
+    position: absolute;
+    inset: auto;
+  }
+}
+
+@utility cs-orb-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--cs-orb-fallback-purple);
+  filter: blur(60px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: var(--cs-z-modal);
+}
+
+/* =========================================================
+   KEYFRAME ANIMATIONS
+   ========================================================= */
+
+/* Basic Movement Animations */
+@keyframes cs-orb-float-kf {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes cs-orb-pulse-kf {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes cs-orb-drift-kf {
+  0% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(30px);
+  }
+  66% {
+    transform: translate(-20px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes cs-orb-morph {
+  0% {
+    border-radius: 50%;
+  }
+  25% {
+    border-radius: 55% 45% 60% 40% / 60% 40% 55% 45%;
+  }
+  50% {
+    border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%;
+  }
+  75% {
+    border-radius: 45% 55% 50% 50% / 50% 50% 45% 55%;
+  }
+  100% {
+    border-radius: 50%;
+  }
+}
+
+@keyframes cs-orb-bloom {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes cs-orb-shimmer {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
+
+/* Complex Movement Animations */
+@keyframes cs-orb-orbit {
+  0% {
+    transform: rotate(0deg) translate(100px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(100px) rotate(-360deg);
+  }
+}
+
+@keyframes cs-orb-figure-8 {
+  0% {
+    transform: translate(0);
+  }
+  12.5% {
+    transform: translate(30px, -15px);
+  }
+  25% {
+    transform: translate(40px);
+  }
+  37.5% {
+    transform: translate(30px, 15px);
+  }
+  50% {
+    transform: translate(0);
+  }
+  62.5% {
+    transform: translate(-30px, 15px);
+  }
+  75% {
+    transform: translate(-40px);
+  }
+  87.5% {
+    transform: translate(-30px, -15px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes cs-orb-wander {
+  0% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(25px, -30px);
+  }
+  20% {
+    transform: translate(-15px, -45px);
+  }
+  30% {
+    transform: translate(40px, -20px);
+  }
+  40% {
+    transform: translate(10px, 35px);
+  }
+  50% {
+    transform: translate(-35px, 15px);
+  }
+  60% {
+    transform: translate(-20px, -25px);
+  }
+  70% {
+    transform: translate(30px, 40px);
+  }
+  80% {
+    transform: translate(-40px, -10px);
+  }
+  90% {
+    transform: translate(20px, -35px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes cs-orb-swing {
+  0%,
+  100% {
+    transform: rotate(-15deg) translate(0);
+  }
+  50% {
+    transform: rotate(15deg) translate(0);
+  }
+}
+
+@keyframes cs-orb-bounce {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40%,
+  43% {
+    transform: translateY(-30px);
+  }
+  70% {
+    transform: translateY(-15px);
+  }
+  90% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes cs-orb-magnetic {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(50px, 20px) scale(1.1);
+  }
+  50% {
+    transform: translate(-30px, -40px) scale(0.9);
+  }
+  75% {
+    transform: translate(-50px, 30px) scale(1.05);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Color & Visual Effect Animations */
+@keyframes cs-orb-hue-shift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes cs-orb-rainbow {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes cs-orb-color-pulse {
+  0%,
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.3) saturate(1.5);
+  }
+}
+
+@keyframes cs-orb-color-breathe {
+  0%,
+  100% {
+    filter: brightness(0.8) contrast(1.1);
+    opacity: 0.7;
+  }
+  50% {
+    filter: brightness(1.2) contrast(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes cs-orb-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(79, 124, 255, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(79, 124, 255, 0.8),
+      0 0 80px rgba(79, 124, 255, 0.4);
+  }
+}
+
+@keyframes cs-orb-flicker {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  30% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 1;
+  }
+}
+
+@keyframes cs-orb-scale-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes cs-orb-elastic {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1, 0.9);
+  }
+  50% {
+    transform: scale(0.9, 1.1);
+  }
+  75% {
+    transform: scale(1.05, 0.95);
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY & RESPONSIVE DESIGN
+   ========================================================= */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cs-orb-float,
+  .cs-orb-pulse,
+  .cs-orb-drift,
+  .cs-orb-bloom,
+  .cs-orb-shimmer,
+  .cs-orb-morph,
+  .cs-orb-zen,
+  .cs-card-hover-orb::before,
+  .cs-btn-orb::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  .cs-orb {
+    filter: none;
+    opacity: 0.9;
+  }
+
+  .cs-card,
+  .cs-btn {
+    box-shadow: var(--cs-shadow-1);
+  }
+}
+
+/* Forced colors mode (Windows High Contrast) */
+@media (forced-colors: active) {
+  .cs-orb {
+    opacity: 0.15;
+    background: CanvasText;
+  }
+
+  .cs-btn {
+    border: 1px solid ButtonText;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .cs-orb:is(.cs-orb-blur-lg, .cs-orb-blur-md) {
+    filter: blur(2px);
+  }
+
+  .cs-orb-float {
+    animation-duration: calc(var(--cs-anim-duration-float) * 1.25);
+  }
+}
+
+/* Focus styles */
+.cs-focus-ring:focus-visible,
+.cs-btn:focus-visible,
+.cs-card:focus-visible {
+  outline: 2px solid var(--cs-orb-blue);
+  outline-offset: 2px;
+
+  @supports (color: color-mix(in lab, red, red)) {
+    outline: 2px solid color-mix(in srgb, var(--cs-orb-blue) 60%, transparent);
+  }
+
+  @supports not (color: color-mix(in srgb, red 50%, white)) {
+    outline: 2px solid #3b82f6;
+  }
+}
+
+/* Print styles */
+@media print {
+  .cs-orb {
+    filter: none !important;
+    opacity: 0.15 !important;
+  }
+
+  .cs-card,
+  .cs-btn,
+  .cs-surface-pop {
+    box-shadow: none !important;
+    border: 1px solid black !important;
+  }
+}
+
+/* =========================================================
+   ORB SCENE PRESETS - Complete Background Compositions
+   ========================================================= */
+
+/* Galaxy Scene - Multiple cosmic orbs */
+.cs-orb-scene-galaxy {
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-orb-scene-galaxy::before,
+.cs-orb-scene-galaxy::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--cs-z-orb);
+}
+
+/* Main galaxy orb */
+.cs-orb-scene-galaxy::before {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--cs-orb-purple) 40%, transparent) 0%,
+    color-mix(in srgb, var(--cs-orb-blue) 25%, transparent) 40%,
+    color-mix(in srgb, var(--cs-orb-pink) 15%, transparent) 70%,
+    transparent 100%
+  );
+  filter: blur(60px);
+  top: -150px;
+  right: -150px;
+  animation: cs-orb-float-kf 8s ease-in-out infinite;
+}
+
+/* Secondary galaxy orb */
+.cs-orb-scene-galaxy::after {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--cs-orb-blue) 35%, transparent) 0%,
+    color-mix(in srgb, var(--cs-orb-purple) 20%, transparent) 50%,
+    transparent 100%
+  );
+  filter: blur(40px);
+  bottom: -100px;
+  left: -100px;
+  animation: cs-orb-pulse-kf 6s ease-in-out infinite;
+}
+
+/* Underwater Scene - Blue/turquoise composition */
+.cs-orb-scene-underwater {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--cs-orb-blue) 8%, var(--cs-bg)) 0%,
+    color-mix(in srgb, var(--cs-orb-blue-light) 5%, var(--cs-bg)) 100%
+  );
+}
+
+.cs-orb-scene-underwater::before,
+.cs-orb-scene-underwater::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--cs-z-orb);
+}
+
+/* Large underwater orb */
+.cs-orb-scene-underwater::before {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #00bcd4 30%, transparent) 0%,
+    color-mix(in srgb, #4dd0e1 20%, transparent) 40%,
+    color-mix(in srgb, #80deea 10%, transparent) 70%,
+    transparent 100%
+  );
+  filter: blur(80px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: cs-orb-drift-kf 12s ease-in-out infinite;
+}
+
+/* Floating bubbles effect */
+.cs-orb-scene-underwater::after {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #b2ebf2 25%, transparent) 0%,
+    color-mix(in srgb, #e0f2f1 15%, transparent) 60%,
+    transparent 100%
+  );
+  filter: blur(20px);
+  top: 20%;
+  right: 20%;
+  animation: cs-orb-wander 15s ease-in-out infinite;
+}
+
+/* Aurora Scene - Northern lights effect */
+.cs-orb-scene-aurora {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    45deg,
+    color-mix(in srgb, #1a237e 15%, var(--cs-bg)) 0%,
+    color-mix(in srgb, #283593 10%, var(--cs-bg)) 50%,
+    color-mix(in srgb, #1a237e 15%, var(--cs-bg)) 100%
+  );
+}
+
+.cs-orb-scene-aurora::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #4fc3f7 20%, transparent) 0%,
+    color-mix(in srgb, #81c784 15%, transparent) 30%,
+    color-mix(in srgb, #ffb74d 10%, transparent) 60%,
+    transparent 100%
+  );
+  filter: blur(60px);
+  animation: cs-aurora-wave 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: var(--cs-z-orb);
+}
+
+@keyframes cs-aurora-wave {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translateY(0) scaleY(1);
+  }
+  25% {
+    opacity: 0.8;
+    transform: translateY(-20px) scaleY(1.1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) scaleY(0.9);
+  }
+  75% {
+    opacity: 0.9;
+    transform: translateY(-30px) scaleY(1.2);
+  }
+}
+
+/* Nebula Scene - Space dust and gas clouds */
+.cs-orb-scene-nebula {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--cs-orb-purple) 12%, var(--cs-bg)) 0%,
+    color-mix(in srgb, var(--cs-orb-pink) 8%, var(--cs-bg)) 40%,
+    var(--cs-bg) 100%
+  );
+}
+
+.cs-orb-scene-nebula::before,
+.cs-orb-scene-nebula::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: var(--cs-z-orb);
+}
+
+/* Main nebula cloud */
+.cs-orb-scene-nebula::before {
+  width: 500px;
+  height: 300px;
+  background: linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--cs-orb-purple) 25%, transparent) 0%,
+    color-mix(in srgb, var(--cs-orb-pink) 20%, transparent) 30%,
+    color-mix(in srgb, var(--cs-orb-custom-primary) 15%, transparent) 60%,
+    transparent 100%
+  );
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  filter: blur(100px);
+  top: 10%;
+  left: 20%;
+  animation:
+    cs-orb-morph 25s ease-in-out infinite,
+    cs-orb-drift-kf 30s ease-in-out infinite;
+}
+
+/* Secondary nebula dust */
+.cs-orb-scene-nebula::after {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in srgb, var(--cs-orb-blue) 20%, transparent) 0%,
+    color-mix(in srgb, var(--cs-orb-purple-light) 15%, transparent) 50%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  filter: blur(60px);
+  bottom: 20%;
+  right: 15%;
+  animation: cs-orb-shimmer 18s ease-in-out infinite;
+}
+
+/* Forest Scene - Natural, organic orbs */
+.cs-orb-scene-forest {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #2e7d32 8%, var(--cs-bg)) 0%,
+    color-mix(in srgb, #388e3c 6%, var(--cs-bg)) 50%,
+    color-mix(in srgb, #1b5e20 10%, var(--cs-bg)) 100%
+  );
+}
+
+.cs-orb-scene-forest::before,
+.cs-orb-scene-forest::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--cs-z-orb);
+}
+
+/* Sunlight filtering through trees */
+.cs-orb-scene-forest::before {
+  width: 200px;
+  height: 400px;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    color-mix(in srgb, #ffeb3b 15%, transparent) 20%,
+    color-mix(in srgb, #ffc107 20%, transparent) 50%,
+    color-mix(in srgb, #ff9800 10%, transparent) 80%,
+    transparent 100%
+  );
+  border-radius: 50% 50% 80% 20% / 60% 40% 60% 40%;
+  filter: blur(40px);
+  top: -100px;
+  right: 30%;
+  animation: cs-forest-light 15s ease-in-out infinite;
+  transform: rotate(15deg);
+}
+
+/* Forest fireflies/magic */
+.cs-orb-scene-forest::after {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #76ff03 30%, transparent) 0%,
+    color-mix(in srgb, #8bc34a 20%, transparent) 40%,
+    color-mix(in srgb, #4caf50 10%, transparent) 70%,
+    transparent 100%
+  );
+  filter: blur(20px);
+  bottom: 30%;
+  left: 25%;
+  animation:
+    cs-orb-flicker 3s ease-in-out infinite,
+    cs-orb-wander 20s ease-in-out infinite;
+}
+
+@keyframes cs-forest-light {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: rotate(15deg) translateY(0);
+  }
+  25% {
+    opacity: 0.6;
+    transform: rotate(12deg) translateY(-10px);
+  }
+  50% {
+    opacity: 0.4;
+    transform: rotate(18deg) translateY(-5px);
+  }
+  75% {
+    opacity: 0.7;
+    transform: rotate(10deg) translateY(-15px);
+  }
+}
+
+/* Sunset Scene - Warm, golden orbs */
+.cs-orb-scene-sunset {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    45deg,
+    color-mix(in srgb, #ff6f00 12%, var(--cs-bg)) 0%,
+    color-mix(in srgb, #ff8f00 8%, var(--cs-bg)) 30%,
+    color-mix(in srgb, #ffc107 6%, var(--cs-bg)) 70%,
+    var(--cs-bg) 100%
+  );
+}
+
+.cs-orb-scene-sunset::before,
+.cs-orb-scene-sunset::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--cs-z-orb);
+}
+
+/* Main sun orb */
+.cs-orb-scene-sunset::before {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #ffeb3b 35%, transparent) 0%,
+    color-mix(in srgb, #ff9800 25%, transparent) 30%,
+    color-mix(in srgb, #ff5722 15%, transparent) 60%,
+    transparent 100%
+  );
+  filter: blur(80px);
+  top: -175px;
+  left: 70%;
+  animation: cs-orb-color-breathe 8s ease-in-out infinite;
+}
+
+/* Warm atmospheric glow */
+.cs-orb-scene-sunset::after {
+  width: 250px;
+  height: 150px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, #ffab40 20%, transparent) 0%,
+    color-mix(in srgb, #ff7043 15%, transparent) 50%,
+    transparent 100%
+  );
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  filter: blur(60px);
+  bottom: 20%;
+  left: 10%;
+  animation: cs-orb-drift-kf 12s ease-in-out infinite;
+}
+
+/* Responsive adjustments for scenes */
+@container (max-width: 768px) {
+  .cs-orb-scene-galaxy::before {
+    width: 200px;
+    height: 200px;
+    filter: blur(40px);
+  }
+
+  .cs-orb-scene-galaxy::after {
+    width: 150px;
+    height: 150px;
+    filter: blur(30px);
+  }
+
+  .cs-orb-scene-underwater::before {
+    width: 250px;
+    height: 250px;
+    filter: blur(50px);
+  }
+
+  .cs-orb-scene-nebula::before {
+    width: 300px;
+    height: 200px;
+    filter: blur(60px);
+  }
+}
+
+/* Accessibility - respect reduced motion for scenes */
+@media (prefers-reduced-motion: reduce) {
+  .cs-orb-scene-galaxy::before,
+  .cs-orb-scene-galaxy::after,
+  .cs-orb-scene-underwater::before,
+  .cs-orb-scene-underwater::after,
+  .cs-orb-scene-aurora::before,
+  .cs-orb-scene-nebula::before,
+  .cs-orb-scene-nebula::after,
+  .cs-orb-scene-forest::before,
+  .cs-orb-scene-forest::after,
+  .cs-orb-scene-sunset::before,
+  .cs-orb-scene-sunset::after {
+    animation: none !important;
+  }
+}
