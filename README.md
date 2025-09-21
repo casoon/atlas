@@ -15,7 +15,7 @@ CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless com
 
 | Package | Description | Size | Features |
 |---------|-------------|------|---------|
-| **[@casoon/atlas-styles](#casoon-atlas-styles)** | Complete Tailwind v4 design system | ~200KB CSS | Glass effects, gradients, utilities |
+| **[@casoon/atlas-styles](#casoon-atlas-styles)** | Complete Tailwind v4 design system | Purged by Tailwind | Glass effects, gradients, utilities |
 | **[@casoon/atlas-effects](#casoon-atlas-effects)** | Interactive JavaScript effects | ~2.2KB JS | 13+ effects, SSR-safe, tree-shakeable |
 | **[@casoon/atlas-components](#casoon-atlas-components)** | Headless UI components | ~1.8KB JS | 10+ components, framework-agnostic |
 | **[@casoon/atlas](#casoon-atlas)** | Meta-package for convenience | ~4KB JS | All packages combined |
@@ -192,7 +192,14 @@ particles('#hero', { count: 30, interactive: true, connectLines: true });
 
 ## Tailwind Integration
 
-CASOON Atlas classes are designed to work with Tailwind's purge/content system. If you're using classes dynamically, add them to your safelist:
+CASOON Atlas classes are fully compatible with Tailwind's purge/content system. **The actual CSS bundle size depends entirely on which classes you use** - unused styles are automatically removed during build.
+
+### Bundle Size Optimization
+- Only classes actually used in your templates are included in the final build
+- Subpath imports allow importing only specific style modules (e.g., just glass effects)
+- The ~200KB source size becomes much smaller in production
+
+If you're using classes dynamically, add them to your safelist:
 
 ```js
 // tailwind.config.js
@@ -325,7 +332,7 @@ Optimized for minimal bundle size:
 
 | Package | Raw Size | Modules | Notes |
 |---------|----------|---------|----------|
-| @casoon/atlas-styles | ~200KB CSS | 6 CSS modules | Includes glass effects, orbs, animations |
+| @casoon/atlas-styles | Purged by Tailwind | 6 CSS modules | Only used classes included in build |
 | @casoon/atlas-effects | ~2.2KB JS | 13 effects | Tree-shakeable, minified bundles |
 | @casoon/atlas-components | ~1.8KB JS | 10 components | Headless components, minimal JS |
 | @casoon/atlas | ~4KB JS | Re-exports | Combined size of effects + components |
