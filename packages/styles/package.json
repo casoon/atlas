@@ -18,7 +18,7 @@
     "./utilities": "./dist/utilities.css"
   },
   "scripts": {
-    "build": "rimraf dist && mkdir -p dist && cp src/*.css dist/",
+    "build": "rimraf dist && node build.js",
     "clean": "rimraf dist"
   },
   "keywords": [
