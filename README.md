@@ -14,11 +14,11 @@ CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless com
 ## 📦 Packages Overview
 
 | Package | Description | Size | Features |
-|---------|-------------|------|----------|
-| **[@casoon/atlas-styles](#casoon-atlas-styles)** | Complete Tailwind v4 design system | ~50KB | Glass effects, gradients, utilities |
-| **[@casoon/atlas-effects](#casoon-atlas-effects)** | Interactive JavaScript effects | ~15KB | 13+ effects, SSR-safe, tree-shakeable |
-| **[@casoon/atlas-components](#casoon-atlas-components)** | Headless UI components | ~8KB | 10+ components, framework-agnostic |
-| **[@casoon/atlas](#casoon-atlas)** | Meta-package for convenience | ~25KB | All packages combined |
+|---------|-------------|------|---------|
+| **[@casoon/atlas-styles](#casoon-atlas-styles)** | Complete Tailwind v4 design system | ~200KB CSS | Glass effects, gradients, utilities |
+| **[@casoon/atlas-effects](#casoon-atlas-effects)** | Interactive JavaScript effects | ~2.2KB JS | 13+ effects, SSR-safe, tree-shakeable |
+| **[@casoon/atlas-components](#casoon-atlas-components)** | Headless UI components | ~1.8KB JS | 10+ components, framework-agnostic |
+| **[@casoon/atlas](#casoon-atlas)** | Meta-package for convenience | <1KB JS | All packages combined |
 
 ## 🚀 Quick Start
 
@@ -323,12 +323,12 @@ Optimized for minimal bundle size:
 
 ## 📊 Bundle Sizes
 
-| Package | Minified | Gzipped | Modules |
+| Package | Raw Size | Modules | Notes |
 |---------|----------|---------|----------|
-| @casoon/atlas-styles | 50KB | 8KB | 5 CSS modules |
-| @casoon/atlas-effects | 25KB | 6KB | 13 effects |
-| @casoon/atlas-components | 15KB | 4KB | 10 components |
-| **Total** | **90KB** | **18KB** | **28 modules** |
+| @casoon/atlas-styles | ~200KB CSS | 6 CSS modules | Includes glass effects, orbs, animations |
+| @casoon/atlas-effects | ~2.2KB JS | 13 effects | Tree-shakeable, minified bundles |
+| @casoon/atlas-components | ~1.8KB JS | 10 components | Headless components, minimal JS |
+| @casoon/atlas | <1KB JS | Re-exports | Meta-package, no additional overhead |
 
 ## 🌐 Browser Support
 
