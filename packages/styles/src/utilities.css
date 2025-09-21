@@ -8,8 +8,8 @@
  * Complete utility system with modern design tokens
  * Part of CASOON Atlas UI effects library
  *
- * Usage: @import "@casoon/styles/utilities";
- * Package: @casoon/styles
+ * Usage: @import "@casoon/atlas-styles/utilities";
+ * Package: @casoon/atlas-styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

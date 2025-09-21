@@ -6,10 +6,10 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 CASOON Atlas is a comprehensive, modern UI effects library built for Tailwind v4 consisting of three main packages:
 
-- **@casoon/styles** - Pure CSS design system with glass effects, gradients, and utilities
-- **@casoon/effects** - 13+ interactive JavaScript effects (SSR-safe, tree-shakeable)
-- **@casoon/components** - 10+ headless UI components (framework-agnostic)
-- **@casoon/all** - Meta-package that re-exports all TypeScript modules
+- **@casoon/atlas-styles** - Pure CSS design system with glass effects, gradients, and utilities
+- **@casoon/atlas-effects** - 13+ interactive JavaScript effects (SSR-safe, tree-shakeable)
+- **@casoon/atlas-components** - 10+ headless UI components (framework-agnostic)
+- **@casoon/atlas-all** - Meta-package that re-exports all TypeScript modules
 
 ## Development Commands
 
@@ -37,12 +37,12 @@ pnpm clean
 ### Package-Specific Commands
 ```bash
 # Build specific package
-pnpm --filter @casoon/effects build
-pnpm --filter @casoon/styles build
-pnpm --filter @casoon/components build
+pnpm --filter @casoon/atlas-effects build
+pnpm --filter @casoon/atlas-styles build
+pnpm --filter @casoon/atlas-components build
 
 # Clean specific package
-pnpm --filter @casoon/effects clean
+pnpm --filter @casoon/atlas-effects clean
 ```
 
 ### Linting and Code Quality
@@ -76,13 +76,13 @@ pnpm list --depth=0
 
 ### Package Architecture
 
-#### @casoon/styles
+#### @casoon/atlas-styles
 - **Pure CSS modules** with subpath exports for granular imports
 - **Tailwind v4 compatible** using `@theme` and `@utility` directives
 - **Design token system** with CSS custom properties for theming
-- **Modular imports**: `@casoon/styles/glass`, `@casoon/styles/orbs`, etc.
+- **Modular imports**: `@casoon/atlas-styles/glass`, `@casoon/atlas-styles/orbs`, etc.
 
-#### @casoon/effects
+#### @casoon/atlas-effects
 - **SSR-safe effects** - no DOM access at module level, function-based initialization only
 - **Cleanup functions** - all effects return disposal functions to prevent memory leaks
 - **13 individual effects** with dedicated subpath exports
@@ -96,7 +96,7 @@ Key effects include:
 - `orbs` - Floating animated orb particles with physics
 - `parallax`, `scrollReveal`, `glassEffects`, `magnetic`, `typewriter`, etc.
 
-#### @casoon/components
+#### @casoon/atlas-components
 - **Headless components** - framework-agnostic, minimal styling
 - **Accessibility-focused** with ARIA support and focus management
 - **Subpath exports** for individual component imports
@@ -135,16 +135,16 @@ export function effectName(target: Element | string, options: EffectOptions = {}
 ### Import Patterns
 ```typescript
 // Granular CSS imports
-import '@casoon/styles/glass';
-import '@casoon/styles/orbs';
+import '@casoon/atlas-styles/glass';
+import '@casoon/atlas-styles/orbs';
 
 // Individual effect imports
-import { ripple } from '@casoon/effects/ripple';
-import { tilt } from '@casoon/effects/tilt';
+import { ripple } from '@casoon/atlas-effects/ripple';
+import { tilt } from '@casoon/atlas-effects/tilt';
 
 // Bulk imports
-import { ripple, tilt, particles } from '@casoon/effects';
-import { createModal, createTabs } from '@casoon/components';
+import { ripple, tilt, particles } from '@casoon/atlas-effects';
+import { createModal, createTabs } from '@casoon/atlas-components';
 ```
 
 ## Development Tips

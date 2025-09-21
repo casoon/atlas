@@ -8,8 +8,8 @@
  * Core design system with tokens, utilities, and components
  * Part of CASOON Atlas UI effects library
  *
- * Usage: @import "@casoon/styles/core";
- * Package: @casoon/styles
+ * Usage: @import "@casoon/atlas-styles/core";
+ * Package: @casoon/atlas-styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

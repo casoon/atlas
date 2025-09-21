@@ -1,4 +1,4 @@
-# @casoon/effects
+# @casoon/atlas-effects
 
 **Modern, SSR-safe JavaScript effects for interactive UIs**
 
@@ -17,13 +17,13 @@ A collection of 13+ interactive JavaScript effects designed for modern web appli
 ## Installation
 
 ```bash
-npm install @casoon/effects
+npm install @casoon/atlas-effects
 ```
 
 ## Quick Start
 
 ```typescript
-import { ripple, tilt, particles } from '@casoon/effects';
+import { ripple, tilt, particles } from '@casoon/atlas-effects';
 
 // Add ripple effect to buttons
 const cleanup1 = ripple('.btn', { 
@@ -56,7 +56,7 @@ cleanup3();
 #### Ripple
 Interactive click/touch ripple animations
 ```typescript
-import { ripple } from '@casoon/effects/ripple';
+import { ripple } from '@casoon/atlas-effects/ripple';
 
 const dispose = ripple('#button', {
   strength: 0.5,        // Ripple size multiplier
@@ -68,7 +68,7 @@ const dispose = ripple('#button', {
 #### Orbs
 Floating animated orb particles with physics
 ```typescript
-import { orbs } from '@casoon/effects/orbs';
+import { orbs } from '@casoon/atlas-effects/orbs';
 
 const dispose = orbs('#container', {
   count: 5,             // Number of orbs
@@ -82,7 +82,7 @@ const dispose = orbs('#container', {
 #### Parallax
 Scroll-based parallax movement effects
 ```typescript
-import { parallax } from '@casoon/effects/parallax';
+import { parallax } from '@casoon/atlas-effects/parallax';
 
 const dispose = parallax('#element', {
   speed: 0.5,           // Parallax speed
@@ -96,7 +96,7 @@ const dispose = parallax('#element', {
 #### Glass Effects
 Interactive glassmorphism with dynamic blur
 ```typescript
-import { glassEffects } from '@casoon/effects/glass-effects';
+import { glassEffects } from '@casoon/atlas-effects/glass-effects';
 
 const dispose = glassEffects('#element', {
   intensity: 0.15,      // Background opacity
@@ -110,7 +110,7 @@ const dispose = glassEffects('#element', {
 #### Scroll Reveal
 Elements animate in as they enter viewport
 ```typescript
-import { scrollReveal } from '@casoon/effects/scroll-reveal';
+import { scrollReveal } from '@casoon/atlas-effects/scroll-reveal';
 
 const dispose = scrollReveal('#element', {
   distance: '20px',     // Animation distance
@@ -125,7 +125,7 @@ const dispose = scrollReveal('#element', {
 #### Particles
 Configurable particle systems with connections
 ```typescript
-import { particles } from '@casoon/effects/particles';
+import { particles } from '@casoon/atlas-effects/particles';
 
 const dispose = particles('#container', {
   count: 30,            // Number of particles
@@ -143,7 +143,7 @@ const dispose = particles('#container', {
 #### Cursor Follow
 Elements that follow mouse movement
 ```typescript
-import { cursorFollow } from '@casoon/effects/cursor-follow';
+import { cursorFollow } from '@casoon/atlas-effects/cursor-follow';
 
 const dispose = cursorFollow('#element', {
   speed: 0.1,           // Follow speed
@@ -156,7 +156,7 @@ const dispose = cursorFollow('#element', {
 #### Tilt
 3D tilt effect with realistic physics and glare
 ```typescript
-import { tilt } from '@casoon/effects/tilt';
+import { tilt } from '@casoon/atlas-effects/tilt';
 
 const dispose = tilt('#element', {
   intensity: 20,        // Tilt intensity
@@ -170,7 +170,7 @@ const dispose = tilt('#element', {
 #### Magnetic
 Elements attracted to cursor with magnetic fields
 ```typescript
-import { magnetic } from '@casoon/effects/magnetic';
+import { magnetic } from '@casoon/atlas-effects/magnetic';
 
 const dispose = magnetic('#element', {
   strength: 0.3,        // Magnetic force
@@ -184,7 +184,7 @@ const dispose = magnetic('#element', {
 #### Glow
 Dynamic glow and lighting effects
 ```typescript
-import { glow } from '@casoon/effects/glow';
+import { glow } from '@casoon/atlas-effects/glow';
 
 const dispose = glow('#element', {
   color: '#3b82f6',     // Glow color
@@ -198,7 +198,7 @@ const dispose = glow('#element', {
 #### Morphing
 Shape and border-radius morphing animations
 ```typescript
-import { morphing } from '@casoon/effects/morphing';
+import { morphing } from '@casoon/atlas-effects/morphing';
 
 const dispose = morphing('#element', {
   shapes: ['50%', '0%', '25%', '50%'], // Shape sequence
@@ -211,7 +211,7 @@ const dispose = morphing('#element', {
 #### Wave
 Sine wave movement animations
 ```typescript
-import { wave } from '@casoon/effects/wave';
+import { wave } from '@casoon/atlas-effects/wave';
 
 const dispose = wave('#element', {
   amplitude: 10,        // Wave amplitude
@@ -224,7 +224,7 @@ const dispose = wave('#element', {
 #### Typewriter
 Animated text typing with cursor
 ```typescript
-import { typewriter } from '@casoon/effects/typewriter';
+import { typewriter } from '@casoon/atlas-effects/typewriter';
 
 const dispose = typewriter('#element', {
   texts: ['Hello!', 'World!'], // Text array
@@ -242,7 +242,7 @@ const dispose = typewriter('#element', {
 ### React
 ```typescript
 import { useEffect, useRef } from 'react';
-import { ripple } from '@casoon/effects';
+import { ripple } from '@casoon/atlas-effects';
 
 function MyComponent() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -266,7 +266,7 @@ function MyComponent() {
 
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';
-import { ripple } from '@casoon/effects';
+import { ripple } from '@casoon/atlas-effects';
 
 const buttonRef = ref(null);
 let dispose;
@@ -287,7 +287,7 @@ onUnmounted(() => {
 ```svelte
 <script>
   import { onMount } from 'svelte';
-  import { ripple } from '@casoon/effects';
+  import { ripple } from '@casoon/atlas-effects';
   
   let buttonRef;
 
@@ -303,13 +303,13 @@ onUnmounted(() => {
 ### Astro
 ```astro
 ---
-import { ripple } from '@casoon/effects';
+import { ripple } from '@casoon/atlas-effects';
 ---
 
 <button id="my-button">Click me</button>
 
 <script>
-  import { ripple } from '@casoon/effects';
+  import { ripple } from '@casoon/atlas-effects';
   
   // Client-side only
   if (typeof window !== 'undefined') {
@@ -322,7 +322,7 @@ import { ripple } from '@casoon/effects';
 
 ### Effect Chaining
 ```typescript
-import { ripple, tilt, glow } from '@casoon/effects';
+import { ripple, tilt, glow } from '@casoon/atlas-effects';
 
 // Combine multiple effects
 const element = document.querySelector('#my-element');
@@ -338,7 +338,7 @@ const cleanupAll = () => cleanups.forEach(fn => fn());
 
 ### Conditional Effects
 ```typescript
-import { tilt } from '@casoon/effects';
+import { tilt } from '@casoon/atlas-effects';
 
 // Only add effects on non-touch devices
 const addTiltEffect = () => {
@@ -353,7 +353,7 @@ const dispose = addTiltEffect();
 
 ### Dynamic Configuration
 ```typescript
-import { particles } from '@casoon/effects';
+import { particles } from '@casoon/atlas-effects';
 
 const configs = {
   subtle: { count: 10, speed: [0.1, 0.2] },

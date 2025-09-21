@@ -8,8 +8,8 @@
  * Advanced animation system with 80+ animations and keyframes
  * Part of CASOON Atlas UI effects library
  *
- * Usage: @import "@casoon/styles/animations";
- * Package: @casoon/styles
+ * Usage: @import "@casoon/atlas-styles/animations";
+ * Package: @casoon/atlas-styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

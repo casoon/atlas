@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@casoon/styles": "workspace:*",
-    "@casoon/effects": "workspace:*",
-    "@casoon/components": "workspace:*"
+    "@casoon/atlas-styles": "workspace:*",
+    "@casoon/atlas-effects": "workspace:*",
+    "@casoon/atlas-components": "workspace:*"
   },
   "devDependencies": {
     "vite": "^5.0.0",

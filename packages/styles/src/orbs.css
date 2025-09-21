@@ -8,8 +8,8 @@
  * Floating animated orb particles with physics and visual effects
  * Part of CASOON Atlas UI effects library
  *
- * Usage: @import "@casoon/styles/orbs";
- * Package: @casoon/styles
+ * Usage: @import "@casoon/atlas-styles/orbs";
+ * Package: @casoon/atlas-styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

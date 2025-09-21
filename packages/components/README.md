@@ -1,4 +1,4 @@
-# @casoon/components
+# @casoon/atlas-components
 
 **Framework-agnostic headless UI components**
 
@@ -17,13 +17,13 @@ A collection of 10+ headless UI components designed for maximum flexibility and 
 ## Installation
 
 ```bash
-npm install @casoon/components
+npm install @casoon/atlas-components
 ```
 
 ## Quick Start
 
 ```typescript
-import { createModal, createTabs, createToastManager } from '@casoon/components';
+import { createModal, createTabs, createToastManager } from '@casoon/atlas-components';
 
 // Create a modal
 const modal = createModal({ 
@@ -46,7 +46,7 @@ toasts.show('Hello World!', { type: 'success' });
 #### Modal
 Accessible modal dialogs with focus management
 ```typescript
-import { createModal } from '@casoon/components/modal';
+import { createModal } from '@casoon/atlas-components/modal';
 
 const modal = createModal({
   backdrop: true,          // Show backdrop
@@ -68,7 +68,7 @@ console.log(modal.isOpen); // Check state
 #### Dropdown
 Flexible dropdown menus with positioning
 ```typescript
-import { createDropdown } from '@casoon/components/dropdown';
+import { createDropdown } from '@casoon/atlas-components/dropdown';
 
 const trigger = document.querySelector('#dropdown-trigger');
 const dropdown = createDropdown(trigger, {
@@ -86,7 +86,7 @@ dropdown.toggle();
 #### Tabs
 Accessible tab interfaces with ARIA support
 ```typescript
-import { createTabs } from '@casoon/components/tabs';
+import { createTabs } from '@casoon/atlas-components/tabs';
 
 const tabs = createTabs(['home', 'about', 'contact'], {
   defaultTab: 'home',         // Initial active tab
@@ -107,7 +107,7 @@ const panelProps = tabs.getPanelProps('home');
 #### Drawer
 Slide-in panels and sidebars
 ```typescript
-import { createDrawer } from '@casoon/components/drawer';
+import { createDrawer } from '@casoon/atlas-components/drawer';
 
 const drawer = createDrawer({
   side: 'right',            // 'left', 'right', 'top', 'bottom'
@@ -127,7 +127,7 @@ drawer.toggle();
 #### Accordion
 Collapsible content sections
 ```typescript
-import { createAccordion } from '@casoon/components/accordion';
+import { createAccordion } from '@casoon/atlas-components/accordion';
 
 const accordion = createAccordion(['panel1', 'panel2', 'panel3'], {
   collapsible: true,        // Allow all panels to be closed
@@ -149,7 +149,7 @@ const panelProps = accordion.getPanelProps('panel1');
 #### Card
 Flexible card components with variants
 ```typescript
-import { createCard } from '@casoon/components/card';
+import { createCard } from '@casoon/atlas-components/card';
 
 const card = createCard({
   variant: 'elevated',      // 'default', 'elevated', 'outlined', 'glass'
@@ -169,7 +169,7 @@ const footerProps = card.getFooterProps();
 #### Tooltip
 Contextual tooltips with smart positioning
 ```typescript
-import { createTooltip } from '@casoon/components/tooltip';
+import { createTooltip } from '@casoon/atlas-components/tooltip';
 
 const trigger = document.querySelector('#tooltip-trigger');
 const tooltip = createTooltip(trigger, {
@@ -188,7 +188,7 @@ console.log(tooltip.isVisible);
 #### Toast
 Non-blocking notification system
 ```typescript
-import { createToastManager } from '@casoon/components/toast';
+import { createToastManager } from '@casoon/atlas-components/toast';
 
 const toastManager = createToastManager();
 
@@ -212,7 +212,7 @@ toast1.dismiss();
 #### Form
 Form state management with validation
 ```typescript
-import { createForm } from '@casoon/components/form';
+import { createForm } from '@casoon/atlas-components/form';
 
 const form = createForm({
   initialValues: {
@@ -242,7 +242,7 @@ form.handleSubmit();
 #### Button
 Interactive button states and variants
 ```typescript
-import { createButton } from '@casoon/components/button';
+import { createButton } from '@casoon/atlas-components/button';
 
 const button = createButton({
   variant: 'primary',       // 'primary', 'secondary', 'danger', 'ghost'
@@ -264,7 +264,7 @@ const props = button.getButtonProps();
 ```typescript
 // hooks/useModal.ts
 import { useCallback, useState } from 'react';
-import { createModal, ModalOptions } from '@casoon/components';
+import { createModal, ModalOptions } from '@casoon/atlas-components';
 
 export function useModal(options?: ModalOptions) {
   const [modal] = useState(() => createModal(options));
@@ -297,7 +297,7 @@ function MyComponent() {
 ```vue
 <!-- composables/useModal.ts -->
 <script setup lang="ts">
-import { createModal, type ModalOptions } from '@casoon/components';
+import { createModal, type ModalOptions } from '@casoon/atlas-components';
 import { reactive } from 'vue';
 
 export function useModal(options?: ModalOptions) {
@@ -331,7 +331,7 @@ const modal = useModal();
 ```svelte
 <!-- lib/modal.js -->
 <script>
-  import { createModal } from '@casoon/components';
+  import { createModal } from '@casoon/atlas-components';
   import { writable } from 'svelte/store';
 
   export function createModalStore(options) {
@@ -371,7 +371,7 @@ const modal = useModal();
 ```astro
 ---
 // components/Modal.astro
-import { createModal } from '@casoon/components';
+import { createModal } from '@casoon/atlas-components';
 ---
 
 <button id="open-modal">Open Modal</button>
@@ -385,7 +385,7 @@ import { createModal } from '@casoon/components';
 </div>
 
 <script>
-  import { createModal } from '@casoon/components';
+  import { createModal } from '@casoon/atlas-components';
   
   const modal = createModal({
     onOpen: () => {
@@ -434,7 +434,7 @@ const settingsModal = modalSystem.create('settings');
 
 ```typescript
 // Redux/Zustand integration example
-import { createTabs } from '@casoon/components';
+import { createTabs } from '@casoon/atlas-components';
 
 const useTabsStore = create((set, get) => ({
   tabs: createTabs(['home', 'about', 'contact'], {
@@ -454,7 +454,7 @@ const useTabsStore = create((set, get) => ({
 
 ```typescript
 // useAccordion.ts - Reusable accordion logic
-import { createAccordion } from '@casoon/components';
+import { createAccordion } from '@casoon/atlas-components';
 import { useCallback, useState } from 'react';
 
 export function useAccordion(panels: string[], options = {}) {

@@ -1,5 +1,5 @@
 // Import all CASOON Atlas packages
-import '@casoon/styles';
+import '@casoon/atlas-styles';
 
 // Import effects
 import { 
@@ -11,7 +11,7 @@ import {
   glow,
   magnetic,
   typewriter
-} from '@casoon/effects';
+} from '@casoon/atlas-effects';
 
 // Import components
 import { 
@@ -20,7 +20,7 @@ import {
   createTabs,
   createAccordion,
   createToastManager
-} from '@casoon/components';
+} from '@casoon/atlas-components';
 
 // Demo sections
 const sections = {

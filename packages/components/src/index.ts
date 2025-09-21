@@ -1,4 +1,4 @@
-// @casoon/components - Headless UI components
+// @casoon/atlas-components - Headless UI components
 // Framework-agnostic component primitives
 
 // Layout & Navigation

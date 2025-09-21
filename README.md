@@ -4,7 +4,7 @@
 
 CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless components**, and **Tailwind v4-compatible styles** designed for maximum flexibility and performance across all JavaScript frameworks.
 
-[![npm version](https://img.shields.io/npm/v/@casoon/effects)](https://npmjs.com/package/@casoon/effects)
+[![npm version](https://img.shields.io/npm/v/@casoon/atlas-effects)](https://npmjs.com/package/@casoon/atlas-effects)
 [![GitHub](https://img.shields.io/badge/GitHub-casoon/atlas-181717?logo=github)](https://github.com/casoon/atlas)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6+-blue)](https://typescriptlang.org)
 [![Tailwind v4](https://img.shields.io/badge/Tailwind-v4-38bdf8)](https://tailwindcss.com)
@@ -15,10 +15,10 @@ CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless com
 
 | Package | Description | Size | Features |
 |---------|-------------|------|----------|
-| **[@casoon/styles](#casoon-styles)** | Complete Tailwind v4 design system | ~50KB | Glass effects, gradients, utilities |
-| **[@casoon/effects](#casoon-effects)** | Interactive JavaScript effects | ~15KB | 13+ effects, SSR-safe, tree-shakeable |
-| **[@casoon/components](#casoon-components)** | Headless UI components | ~8KB | 10+ components, framework-agnostic |
-| **[@casoon/all](#casoon-all)** | Meta-package for convenience | ~25KB | All packages combined |
+| **[@casoon/atlas-styles](#casoon-atlas-styles)** | Complete Tailwind v4 design system | ~50KB | Glass effects, gradients, utilities |
+| **[@casoon/atlas-effects](#casoon-atlas-effects)** | Interactive JavaScript effects | ~15KB | 13+ effects, SSR-safe, tree-shakeable |
+| **[@casoon/atlas-components](#casoon-atlas-components)** | Headless UI components | ~8KB | 10+ components, framework-agnostic |
+| **[@casoon/atlas-all](#casoon-atlas-all)** | Meta-package for convenience | ~25KB | All packages combined |
 
 ## 🚀 Quick Start
 
@@ -26,29 +26,29 @@ CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless com
 
 ```bash
 # Install individual packages
-npm install @casoon/styles @casoon/effects @casoon/components
+npm install @casoon/atlas-styles @casoon/atlas-effects @casoon/atlas-components
 
 # Or install everything at once
-npm install @casoon/all
+npm install @casoon/atlas-all
 
 # Using pnpm (recommended)
-pnpm add @casoon/styles @casoon/effects @casoon/components
+pnpm add @casoon/atlas-styles @casoon/atlas-effects @casoon/atlas-components
 ```
 
 ### Basic Usage
 
 ```typescript
 // Import styles (works with any CSS import method)
-import '@casoon/styles';
+import '@casoon/atlas-styles';
 // Or import specific modules
-import '@casoon/styles/glass';
-import '@casoon/styles/effects';
+import '@casoon/atlas-styles/glass';
+import '@casoon/atlas-styles/effects';
 
 // Import effects
-import { ripple, tilt, particles } from '@casoon/effects';
+import { ripple, tilt, particles } from '@casoon/atlas-effects';
 
 // Import components  
-import { createModal, createTabs } from '@casoon/components';
+import { createModal, createTabs } from '@casoon/atlas-components';
 
 // Initialize effects
 ripple('.btn', { strength: 0.8 });
@@ -65,8 +65,8 @@ const tabs = createTabs(['home', 'about', 'contact']);
 ---
 // Component script (runs on server)
 import { onMount } from 'astro:client';
-import { ripple } from '@casoon/effects/ripple';
-import '@casoon/styles/glass';
+import { ripple } from '@casoon/atlas-effects/ripple';
+import '@casoon/atlas-styles/glass';
 ---
 
 <button id="cta" class="glass">Click me!</button>
@@ -84,7 +84,7 @@ import '@casoon/styles/glass';
 ```svelte
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { ripple } from '@casoon/effects/ripple';
+  import { ripple } from '@casoon/atlas-effects/ripple';
   
   let button: HTMLButtonElement;
   
@@ -97,7 +97,7 @@ import '@casoon/styles/glass';
 <button bind:this={button} class="glass">Click me!</button>
 
 <style>
-  @import '@casoon/styles/glass';
+  @import '@casoon/atlas-styles/glass';
 </style>
 ```
 
@@ -105,10 +105,10 @@ import '@casoon/styles/glass';
 
 ### 📦 Packages
 
-- **@casoon/styles** - Pure CSS, importable via subpaths
-- **@casoon/effects** - TypeScript effects, SSR-safe 
-- **@casoon/components** - Framework-agnostic components (minimal for now)
-- **@casoon/all** - Meta-package that re-exports all TypeScript modules
+- **@casoon/atlas-styles** - Pure CSS, importable via subpaths
+- **@casoon/atlas-effects** - TypeScript effects, SSR-safe 
+- **@casoon/atlas-components** - Framework-agnostic components (minimal for now)
+- **@casoon/atlas-all** - Meta-package that re-exports all TypeScript modules
 
 ### 🎯 Design Principles
 
@@ -122,17 +122,17 @@ import '@casoon/styles/glass';
 
 ```typescript
 // CSS Styles
-import '@casoon/styles';           // All styles
-import '@casoon/styles/glass';     // Only glass effects
-import '@casoon/styles/orbs';      // Only orb effects
+import '@casoon/atlas-styles';           // All styles
+import '@casoon/atlas-styles/glass';     // Only glass effects
+import '@casoon/atlas-styles/orbs';      // Only orb effects
 
 // JavaScript Effects
-import { ripple } from '@casoon/effects/ripple';
-import { orbs } from '@casoon/effects/orbs';
-import { parallax } from '@casoon/effects/parallax';
+import { ripple } from '@casoon/atlas-effects/ripple';
+import { orbs } from '@casoon/atlas-effects/orbs';
+import { parallax } from '@casoon/atlas-effects/parallax';
 
 // Or import everything
-import { ripple, orbs, parallax } from '@casoon/effects';
+import { ripple, orbs, parallax } from '@casoon/atlas-effects';
 ```
 
 ## 🎭 Available Effects (13+)
@@ -160,7 +160,7 @@ import { ripple, orbs, parallax } from '@casoon/effects';
 
 ### Quick Example
 ```typescript
-import { ripple, tilt, particles } from '@casoon/effects';
+import { ripple, tilt, particles } from '@casoon/atlas-effects';
 
 // Add ripple effect to buttons
 ripple('.btn', { strength: 0.8, color: '#3b82f6' });
@@ -233,7 +233,7 @@ module.exports = {
 
 ### Quick Example
 ```typescript
-import { createModal, createTabs, createToastManager } from '@casoon/components';
+import { createModal, createTabs, createToastManager } from '@casoon/atlas-components';
 
 // Create modal with backdrop
 const modal = createModal({ closeOnBackdrop: true, trapFocus: true });
@@ -278,13 +278,13 @@ pnpm clean
 ```
 casoon-atlas/
 ├── packages/
-│   ├── styles/          # @casoon/styles
+│   ├── styles/          # @casoon/atlas-styles
 │   │   ├── src/
 │   │   │   ├── index.css
 │   │   │   ├── glass.css
 │   │   │   └── orbs.css
 │   │   └── package.json
-│   ├── effects/         # @casoon/effects
+│   ├── effects/         # @casoon/atlas-effects
 │   │   ├── src/
 │   │   │   ├── ripple/
 │   │   │   ├── orbs/
@@ -292,8 +292,8 @@ casoon-atlas/
 │   │   │   └── index.ts
 │   │   ├── tsup.config.ts
 │   │   └── package.json
-│   ├── components/      # @casoon/components
-│   └── all/            # @casoon/all
+│   ├── components/      # @casoon/atlas-components
+│   └── all/            # @casoon/atlas-all
 ├── pnpm-workspace.yaml
 └── package.json
 ```
@@ -325,9 +325,9 @@ Optimized for minimal bundle size:
 
 | Package | Minified | Gzipped | Modules |
 |---------|----------|---------|----------|
-| @casoon/styles | 50KB | 8KB | 5 CSS modules |
-| @casoon/effects | 25KB | 6KB | 13 effects |
-| @casoon/components | 15KB | 4KB | 10 components |
+| @casoon/atlas-styles | 50KB | 8KB | 5 CSS modules |
+| @casoon/atlas-effects | 25KB | 6KB | 13 effects |
+| @casoon/atlas-components | 15KB | 4KB | 10 components |
 | **Total** | **90KB** | **18KB** | **28 modules** |
 
 ## 🌐 Browser Support
@@ -374,7 +374,7 @@ if (window.matchMedia('(hover: hover)').matches) {
 ```css
 /* Your main CSS file */
 @import "tailwindcss";
-@import "@casoon/styles";
+@import "@casoon/atlas-styles";
 
 /* Override design tokens */
 @theme {
@@ -409,7 +409,7 @@ All styles use CSS custom properties for easy theming:
 pnpm test
 
 # Test specific package
-pnpm test --filter @casoon/effects
+pnpm test --filter @casoon/atlas-effects
 
 # Watch mode
 pnpm test --watch

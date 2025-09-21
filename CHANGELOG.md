@@ -4,10 +4,10 @@
 
 ### Initial Release
 
-- **@casoon/styles@0.0.1**: Pure CSS design system with glass effects, gradients, and utilities
-- **@casoon/effects@0.0.1**: 13+ interactive JavaScript effects (SSR-safe, tree-shakeable)
-- **@casoon/components@0.0.1**: Headless UI components (framework-agnostic)
-- **@casoon/all@0.0.1**: Meta-package that re-exports all TypeScript modules
+- **@casoon/atlas-styles@0.0.1**: Pure CSS design system with glass effects, gradients, and utilities
+- **@casoon/atlas-effects@0.0.1**: 13+ interactive JavaScript effects (SSR-safe, tree-shakeable)
+- **@casoon/atlas-components@0.0.1**: Headless UI components (framework-agnostic)
+- **@casoon/atlas-all@0.0.1**: Meta-package that re-exports all TypeScript modules
 
 #### Features
 
@@ -24,14 +24,14 @@
 
 #### Package Details
 
-##### @casoon/styles
+##### @casoon/atlas-styles
 - Glass effects with backdrop-filter support
 - Orb animations and utilities  
 - Core CSS utilities and animations
 - Tailwind v4 `@theme` and `@utility` directives
 - CSS custom properties for theming
 
-##### @casoon/effects
+##### @casoon/atlas-effects
 - `ripple` - Interactive click/touch ripple animations
 - `tilt` - 3D tilt effect with realistic physics and glare
 - `particles` - Configurable particle systems with connections
@@ -46,7 +46,7 @@
 - `wave` - Sine wave movement animations
 - `typewriter` - Animated text typing with cursor
 
-##### @casoon/components
+##### @casoon/atlas-components
 - Modal, Dropdown, Tabs, Accordion
 - Tooltip, Toast, Drawer, Card
 - Form, Button components

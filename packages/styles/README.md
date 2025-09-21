@@ -1,4 +1,4 @@
-# @casoon/styles
+# @casoon/atlas-styles
 
 **Complete Tailwind v4-compatible design system with modern UI effects**
 
@@ -17,62 +17,62 @@ A comprehensive CSS utility library featuring glassmorphism effects, gradient sy
 ## Installation
 
 ```bash
-npm install @casoon/styles
+npm install @casoon/atlas-styles
 ```
 
 ## Usage
 
 ### Full Import
 ```css
-@import "@casoon/styles";
+@import "@casoon/atlas-styles";
 ```
 
 ### Modular Imports
 ```css
 /* Import specific modules */
-@import "@casoon/styles/core";     /* Design tokens & base utilities */
-@import "@casoon/styles/glass";    /* Glass morphism effects */
-@import "@casoon/styles/orbs";     /* Orb animations */
-@import "@casoon/styles/animations"; /* Animation utilities */
-@import "@casoon/styles/utilities";  /* Additional utilities */
+@import "@casoon/atlas-styles/core";     /* Design tokens & base utilities */
+@import "@casoon/atlas-styles/glass";    /* Glass morphism effects */
+@import "@casoon/atlas-styles/orbs";     /* Orb animations */
+@import "@casoon/atlas-styles/animations"; /* Animation utilities */
+@import "@casoon/atlas-styles/utilities";  /* Additional utilities */
 ```
 
 ### With Tailwind v4
 ```css
 /* In your main CSS file */
 @import "tailwindcss";
-@import "@casoon/styles";
+@import "@casoon/atlas-styles";
 ```
 
 ## Available Modules
 
-### Core (`@casoon/styles/core`)
+### Core (`@casoon/atlas-styles/core`)
 Complete design system foundation with tokens, utilities, and components:
 - **Design Tokens**: Colors, spacing, typography, motion
 - **Component System**: Cards, forms, navigation, typography
 - **Layout Utilities**: Containers, z-index, focus management
 - **Gradient System**: 30+ gradient utilities with animations
 
-### Glass (`@casoon/styles/glass`)
+### Glass (`@casoon/atlas-styles/glass`)
 Modern glassmorphism effects:
 - **Glass Variants**: `cs-glass`, `cs-glass-dark`, `cs-glass-strong`
 - **Size Options**: `cs-glass-sm` to `cs-glass-5xl`
 - **Color Variants**: `cs-glass-blue`, `cs-glass-purple`, etc.
 - **Interactive States**: Hover and focus effects
 
-### Orbs (`@casoon/styles/orbs`)
+### Orbs (`@casoon/atlas-styles/orbs`)
 Floating orb animations and effects:
 - **Container**: `cs-orbs-container`
 - **Orb Elements**: `cs-orb`, `cs-orb-small`, `cs-orb-medium`, `cs-orb-large`
 - **Animations**: Built-in floating and movement effects
 
-### Animations (`@casoon/styles/animations`)
+### Animations (`@casoon/atlas-styles/animations`)
 Comprehensive animation utilities:
 - **Micro Interactions**: Hover lifts, scales, glows
 - **Loading States**: Spinners, skeletons, progress
 - **Scroll Effects**: Reveal animations, smooth scrolling
 
-### Utilities (`@casoon/styles/utilities`)
+### Utilities (`@casoon/atlas-styles/utilities`)
 Additional utility classes:
 - **Scrollbar Styling**: Custom scrollbar designs
 - **Focus Management**: Enhanced focus states

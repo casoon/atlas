@@ -8,8 +8,8 @@
  * Advanced glassmorphism effects with backdrop-filter support
  * Part of CASOON Atlas UI effects library
  *
- * Usage: @import "@casoon/styles/glass";
- * Package: @casoon/styles
+ * Usage: @import "@casoon/atlas-styles/glass";
+ * Package: @casoon/atlas-styles
  */
 
 /* Note: @import "tailwindcss"; should be added by the consumer */

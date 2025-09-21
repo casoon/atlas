@@ -8,9 +8,9 @@
  * A comprehensive, modern UI effects library built for Tailwind v4
  * SSR-safe, tree-shakeable, framework-agnostic
  *
- * Usage: @import "@casoon/styles";
- * Individual imports: @import "@casoon/styles/glass";
- * Package: @casoon/styles
+ * Usage: @import "@casoon/atlas-styles";
+ * Individual imports: @import "@casoon/atlas-styles/glass";
+ * Package: @casoon/atlas-styles
  */
 
 /* Core design system foundation */

@@ -1,5 +1,5 @@
 {
-  "name": "@casoon/all",
+  "name": "@casoon/atlas",
   "version": "0.0.1",
   "description": "Complete CASOON Atlas UI effects library - all packages combined",
   "type": "module",
@@ -39,9 +39,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@casoon/styles": "workspace:*",
-    "@casoon/effects": "workspace:*",
-    "@casoon/components": "workspace:*"
+    "@casoon/atlas-styles": "workspace:*",
+    "@casoon/atlas-effects": "workspace:*",
+    "@casoon/atlas-components": "workspace:*"
   },
   "devDependencies": { 
     "tsup": "^8.0.0", 
