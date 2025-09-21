@@ -7,7 +7,7 @@
 - **@casoon/atlas-styles@0.0.1**: Pure CSS design system with glass effects, gradients, and utilities
 - **@casoon/atlas-effects@0.0.1**: 13+ interactive JavaScript effects (SSR-safe, tree-shakeable)
 - **@casoon/atlas-components@0.0.1**: Headless UI components (framework-agnostic)
-- **@casoon/atlas-all@0.0.1**: Meta-package that re-exports all TypeScript modules
+- **@casoon/atlas@0.0.1**: Meta-package that re-exports all TypeScript modules
 
 #### Features
 

@@ -18,7 +18,7 @@ CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless com
 | **[@casoon/atlas-styles](#casoon-atlas-styles)** | Complete Tailwind v4 design system | ~50KB | Glass effects, gradients, utilities |
 | **[@casoon/atlas-effects](#casoon-atlas-effects)** | Interactive JavaScript effects | ~15KB | 13+ effects, SSR-safe, tree-shakeable |
 | **[@casoon/atlas-components](#casoon-atlas-components)** | Headless UI components | ~8KB | 10+ components, framework-agnostic |
-| **[@casoon/atlas-all](#casoon-atlas-all)** | Meta-package for convenience | ~25KB | All packages combined |
+| **[@casoon/atlas](#casoon-atlas)** | Meta-package for convenience | ~25KB | All packages combined |
 
 ## 🚀 Quick Start
 
@@ -29,7 +29,7 @@ CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless com
 npm install @casoon/atlas-styles @casoon/atlas-effects @casoon/atlas-components
 
 # Or install everything at once
-npm install @casoon/atlas-all
+npm install @casoon/atlas
 
 # Using pnpm (recommended)
 pnpm add @casoon/atlas-styles @casoon/atlas-effects @casoon/atlas-components
@@ -108,7 +108,7 @@ import '@casoon/atlas-styles/glass';
 - **@casoon/atlas-styles** - Pure CSS, importable via subpaths
 - **@casoon/atlas-effects** - TypeScript effects, SSR-safe 
 - **@casoon/atlas-components** - Framework-agnostic components (minimal for now)
-- **@casoon/atlas-all** - Meta-package that re-exports all TypeScript modules
+- **@casoon/atlas** - Meta-package that re-exports all TypeScript modules
 
 ### 🎯 Design Principles
 
@@ -293,7 +293,7 @@ casoon-atlas/
 │   │   ├── tsup.config.ts
 │   │   └── package.json
 │   ├── components/      # @casoon/atlas-components
-│   └── all/            # @casoon/atlas-all
+│   └── all/            # @casoon/atlas
 ├── pnpm-workspace.yaml
 └── package.json
 ```

@@ -75,14 +75,14 @@ pnpm release
 - `@casoon/atlas-styles@0.0.1` - CSS design system with glass effects
 - `@casoon/atlas-effects@0.0.1` - Interactive JavaScript effects  
 - `@casoon/atlas-components@0.0.1` - Headless UI components
-- `@casoon/atlas-all@0.0.1` - Meta-package with all modules
+- `@casoon/atlas@0.0.1` - Meta-package with all modules
 
 ### Installation
 ```bash
 # Individual packages
 npm install @casoon/atlas-styles @casoon/atlas-effects @casoon/atlas-components
 # OR install all at once:
-npm install @casoon/atlas-all
+npm install @casoon/atlas
 npm install @casoon/all
 ```
 

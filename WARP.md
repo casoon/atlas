@@ -9,7 +9,7 @@ CASOON Atlas is a comprehensive, modern UI effects library built for Tailwind v4
 - **@casoon/atlas-styles** - Pure CSS design system with glass effects, gradients, and utilities
 - **@casoon/atlas-effects** - 13+ interactive JavaScript effects (SSR-safe, tree-shakeable)
 - **@casoon/atlas-components** - 10+ headless UI components (framework-agnostic)
-- **@casoon/atlas-all** - Meta-package that re-exports all TypeScript modules
+- **@casoon/atlas** - Meta-package that re-exports all TypeScript modules
 
 ## Development Commands
 
