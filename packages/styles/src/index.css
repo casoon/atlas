@@ -14,16 +14,16 @@
  */
 
 /* Core design system foundation */
-@import "./core.css";
+@import "@casoon/atlas-styles/core";
 
 /* Glass morphism effects */
-@import "./glass.css";
+@import "@casoon/atlas-styles/glass";
 
 /* Orb & particle effects */
-@import "./orbs.css";
+@import "@casoon/atlas-styles/orbs";
 
 /* Animation utilities */
-@import "./animations.css";
+@import "@casoon/atlas-styles/animations";
 
 /* Additional utilities */
-@import "./utilities.css";
+@import "@casoon/atlas-styles/utilities";

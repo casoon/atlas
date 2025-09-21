@@ -198,6 +198,7 @@ CASOON Atlas classes are fully compatible with Tailwind's purge/content system. 
 - Only classes actually used in your templates are included in the final build
 - Subpath imports allow importing only specific style modules (e.g., just glass effects)
 - The ~200KB source size becomes much smaller in production
+- CSS imports use package references instead of relative paths for better build compatibility
 
 If you're using classes dynamically, add them to your safelist:
 
