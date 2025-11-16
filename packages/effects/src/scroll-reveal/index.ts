@@ -1,3 +1,7 @@
+import { resolveElement } from '../utils/element';
+import { createStyleManager } from '../utils/style';
+import { shouldReduceMotion } from '../utils/accessibility';
+
 export interface ScrollRevealOptions {
   distance?: string;
   duration?: number;
@@ -10,9 +14,37 @@ export interface ScrollRevealOptions {
   once?: boolean;
 }
 
-export function scrollReveal(target: Element | string, options: ScrollRevealOptions = {}) {
-  const element = typeof target === 'string' ? document.querySelector(target) : target;
-  if (!element) return () => {};
+/**
+ * Reveals an element with animation when it scrolls into view.
+ *
+ * @param target - A CSS selector string or an HTMLElement
+ * @param options - Configuration options for the scroll reveal effect
+ * @returns A cleanup function to remove the effect
+ *
+ * @example
+ * ```typescript
+ * const cleanup = scrollReveal('#element', {
+ *   distance: '20px',
+ *   duration: 800,
+ *   delay: 0,
+ *   easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+ *   origin: 'bottom',
+ *   scale: 0.95,
+ *   opacity: [0, 1],
+ *   threshold: 0.1,
+ *   once: true
+ * });
+ * ```
+ */
+export function scrollReveal(
+  target: Element | string,
+  options: ScrollRevealOptions = {}
+): () => void {
+  const element = resolveElement(target as string | HTMLElement);
+  if (!element) {
+    console.warn('[Atlas ScrollReveal] Element not found:', target);
+    return () => {};
+  }
 
   const {
     distance = '20px',
@@ -26,13 +58,22 @@ export function scrollReveal(target: Element | string, options: ScrollRevealOpti
     once = true
   } = options;
 
-  const htmlElement = element as HTMLElement;
+  // Check if user prefers reduced motion - if so, just show the element
+  const reduceMotion = shouldReduceMotion();
+  if (reduceMotion) {
+    element.setAttribute('style', `opacity: ${opacity[1]};`);
+    return () => {
+      element.removeAttribute('style');
+    };
+  }
+
+  const styleManager = createStyleManager();
   let hasAnimated = false;
 
   // Set initial state
   const setInitialState = () => {
     const transforms = [];
-    
+
     switch (origin) {
       case 'top':
         transforms.push(`translateY(-${distance})`);
@@ -47,25 +88,27 @@ export function scrollReveal(target: Element | string, options: ScrollRevealOpti
         transforms.push(`translateX(${distance})`);
         break;
     }
-    
+
     if (scale !== 1) {
       transforms.push(`scale(${scale})`);
     }
 
-    htmlElement.style.cssText += `
-      opacity: ${opacity[0]};
-      transform: ${transforms.join(' ')};
-      transition: all ${duration}ms ${easing} ${delay}ms;
-      will-change: transform, opacity;
-    `;
+    styleManager.setStyles(element, {
+      opacity: opacity[0].toString(),
+      transform: transforms.join(' '),
+      transition: `all ${duration}ms ${easing} ${delay}ms`,
+      'will-change': 'transform, opacity'
+    });
   };
 
   // Animate to visible state
   const reveal = () => {
     if (hasAnimated && once) return;
-    
-    htmlElement.style.opacity = opacity[1].toString();
-    htmlElement.style.transform = 'translateX(0) translateY(0) scale(1)';
+
+    styleManager.setStyles(element, {
+      opacity: opacity[1].toString(),
+      transform: 'translateX(0) translateY(0) scale(1)'
+    });
     hasAnimated = true;
   };
 
@@ -87,9 +130,9 @@ export function scrollReveal(target: Element | string, options: ScrollRevealOpti
         }
       });
     },
-    { 
+    {
       threshold,
-      rootMargin: '50px 0px -50px 0px' 
+      rootMargin: '50px 0px -50px 0px'
     }
   );
 
@@ -101,6 +144,6 @@ export function scrollReveal(target: Element | string, options: ScrollRevealOpti
   return () => {
     observer.unobserve(element);
     observer.disconnect();
-    htmlElement.style.willChange = 'auto';
+    styleManager.restore(element);
   };
 }
