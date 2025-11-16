@@ -1,28 +1,69 @@
 {
   "name": "@casoon/atlas-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Headless UI components with accessibility focus - framework-agnostic",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
-    "./modal": { "types": "./dist/modal.d.ts", "import": "./dist/modal.js" },
-    "./dropdown": { "types": "./dist/dropdown.d.ts", "import": "./dist/dropdown.js" },
-    "./tabs": { "types": "./dist/tabs.d.ts", "import": "./dist/tabs.js" },
-    "./accordion": { "types": "./dist/accordion.d.ts", "import": "./dist/accordion.js" },
-    "./tooltip": { "types": "./dist/tooltip.d.ts", "import": "./dist/tooltip.js" },
-    "./toast": { "types": "./dist/toast.d.ts", "import": "./dist/toast.js" },
-    "./drawer": { "types": "./dist/drawer.d.ts", "import": "./dist/drawer.js" },
-    "./card": { "types": "./dist/card.d.ts", "import": "./dist/card.js" },
-    "./form": { "types": "./dist/form.d.ts", "import": "./dist/form.js" },
-    "./button": { "types": "./dist/button.d.ts", "import": "./dist/button.js" }
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./modal": {
+      "types": "./dist/modal.d.ts",
+      "import": "./dist/modal.js"
+    },
+    "./dropdown": {
+      "types": "./dist/dropdown.d.ts",
+      "import": "./dist/dropdown.js"
+    },
+    "./tabs": {
+      "types": "./dist/tabs.d.ts",
+      "import": "./dist/tabs.js"
+    },
+    "./accordion": {
+      "types": "./dist/accordion.d.ts",
+      "import": "./dist/accordion.js"
+    },
+    "./tooltip": {
+      "types": "./dist/tooltip.d.ts",
+      "import": "./dist/tooltip.js"
+    },
+    "./toast": {
+      "types": "./dist/toast.d.ts",
+      "import": "./dist/toast.js"
+    },
+    "./drawer": {
+      "types": "./dist/drawer.d.ts",
+      "import": "./dist/drawer.js"
+    },
+    "./card": {
+      "types": "./dist/card.d.ts",
+      "import": "./dist/card.js"
+    },
+    "./form": {
+      "types": "./dist/form.d.ts",
+      "import": "./dist/form.js"
+    },
+    "./button": {
+      "types": "./dist/button.d.ts",
+      "import": "./dist/button.js"
+    }
   },
   "scripts": {
     "build": "tsup",
     "clean": "rimraf dist"
   },
-  "keywords": ["components", "headless", "ui", "accessibility", "framework-agnostic"],
+  "keywords": [
+    "components",
+    "headless",
+    "ui",
+    "accessibility",
+    "framework-agnostic"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/casoon/atlas.git",
@@ -45,8 +86,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": { 
-    "tsup": "^8.0.0", 
-    "typescript": "^5.6.3" 
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.6.3"
   }
 }

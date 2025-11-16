@@ -1,8 +1,8 @@
-# @casoon/atlas
+# @casoon/atlas-components
 
-## 0.1.0
+## 0.0.2
 
-### Minor Changes
+### Patch Changes
 
 - Add 8 new interactive effects and improve project configuration
 
@@ -17,31 +17,3 @@
   - Configure Volta to pin Node.js 24.11.0 and pnpm 9.15.4
   - Consolidate documentation from WARP.md to .claude file
   - Add comprehensive build commands and package details
-
-### Patch Changes
-
-- Updated dependencies
-  - @casoon/atlas-effects@0.1.0
-  - @casoon/atlas-styles@0.0.6
-  - @casoon/atlas-components@0.0.2
-
-## 0.0.4
-
-### Patch Changes
-
-- Updated dependencies
-  - @casoon/atlas-styles@0.0.4
-
-## 0.0.3
-
-### Patch Changes
-
-- Updated dependencies
-  - @casoon/atlas-styles@0.0.3
-
-## 0.0.2
-
-### Patch Changes
-
-- Updated dependencies
-  - @casoon/atlas-styles@0.0.2

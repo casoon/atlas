@@ -1,34 +1,82 @@
 {
   "name": "@casoon/atlas-effects",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "13+ interactive JavaScript effects - SSR-safe, tree-shakeable, framework-agnostic",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./ripple": { "types": "./dist/ripple.d.ts", "import": "./dist/ripple.js" },
-    "./orbs": { "types": "./dist/orbs.d.ts", "import": "./dist/orbs.js" },
-    "./parallax": { "types": "./dist/parallax.d.ts", "import": "./dist/parallax.js" },
-    "./glass-effects": { "types": "./dist/glass-effects.d.ts", "import": "./dist/glass-effects.js" },
-    "./scroll-reveal": { "types": "./dist/scroll-reveal.d.ts", "import": "./dist/scroll-reveal.js" },
-    "./particles": { "types": "./dist/particles.d.ts", "import": "./dist/particles.js" },
-    "./cursor-follow": { "types": "./dist/cursor-follow.d.ts", "import": "./dist/cursor-follow.js" },
-    "./tilt": { "types": "./dist/tilt.d.ts", "import": "./dist/tilt.js" },
-    "./glow": { "types": "./dist/glow.d.ts", "import": "./dist/glow.js" },
-    "./morphing": { "types": "./dist/morphing.d.ts", "import": "./dist/morphing.js" },
-    "./wave": { "types": "./dist/wave.d.ts", "import": "./dist/wave.js" },
-    "./magnetic": { "types": "./dist/magnetic.d.ts", "import": "./dist/magnetic.js" },
-    "./typewriter": { "types": "./dist/typewriter.d.ts", "import": "./dist/typewriter.js" }
+    "./ripple": {
+      "types": "./dist/ripple.d.ts",
+      "import": "./dist/ripple.js"
+    },
+    "./orbs": {
+      "types": "./dist/orbs.d.ts",
+      "import": "./dist/orbs.js"
+    },
+    "./parallax": {
+      "types": "./dist/parallax.d.ts",
+      "import": "./dist/parallax.js"
+    },
+    "./glass-effects": {
+      "types": "./dist/glass-effects.d.ts",
+      "import": "./dist/glass-effects.js"
+    },
+    "./scroll-reveal": {
+      "types": "./dist/scroll-reveal.d.ts",
+      "import": "./dist/scroll-reveal.js"
+    },
+    "./particles": {
+      "types": "./dist/particles.d.ts",
+      "import": "./dist/particles.js"
+    },
+    "./cursor-follow": {
+      "types": "./dist/cursor-follow.d.ts",
+      "import": "./dist/cursor-follow.js"
+    },
+    "./tilt": {
+      "types": "./dist/tilt.d.ts",
+      "import": "./dist/tilt.js"
+    },
+    "./glow": {
+      "types": "./dist/glow.d.ts",
+      "import": "./dist/glow.js"
+    },
+    "./morphing": {
+      "types": "./dist/morphing.d.ts",
+      "import": "./dist/morphing.js"
+    },
+    "./wave": {
+      "types": "./dist/wave.d.ts",
+      "import": "./dist/wave.js"
+    },
+    "./magnetic": {
+      "types": "./dist/magnetic.d.ts",
+      "import": "./dist/magnetic.js"
+    },
+    "./typewriter": {
+      "types": "./dist/typewriter.d.ts",
+      "import": "./dist/typewriter.js"
+    }
   },
   "scripts": {
     "build": "tsup",
     "clean": "rimraf dist"
   },
-  "keywords": ["effects", "animations", "javascript", "ssr", "tree-shaking", "ui"],
+  "keywords": [
+    "effects",
+    "animations",
+    "javascript",
+    "ssr",
+    "tree-shaking",
+    "ui"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/casoon/atlas.git",
@@ -51,8 +99,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": { 
-    "tsup": "^8.0.0", 
-    "typescript": "^5.6.3" 
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.6.3"
   }
 }
