@@ -1,0 +1,479 @@
+# CASOON Atlas Project
+
+## Overview
+CASOON Atlas is a modern, framework-agnostic UI library providing headless components and visual effects for web applications. Built as a pnpm monorepo with strict TypeScript and comprehensive accessibility support.
+
+## Architecture
+
+### Monorepo Structure
+```
+packages/
+├── styles/          # @casoon/atlas-styles - Pure CSS design system
+├── effects/         # @casoon/atlas-effects - 13+ interactive effects (SSR-safe)
+├── components/      # @casoon/atlas-components - 10+ headless UI components
+└── all/             # @casoon/atlas - Meta-package re-exporting all TypeScript modules
+```
+
+### Tech Stack
+- **Package Manager:** pnpm (workspaces)
+- **Build Tool:** tsup (TypeScript + esbuild)
+- **Testing:** Vitest with happy-dom
+- **Styling:** Tailwind CSS v4
+- **TypeScript:** Strict mode enabled
+- **Module System:** ESM-only (`"type": "module"`)
+- **Tree Shaking:** Enabled with `sideEffects: false` for JS packages
+
+### Package Details
+
+#### @casoon/atlas-styles
+- **Pure CSS modules** with subpath exports for granular imports
+- **Tailwind v4 compatible** using `@theme` and `@utility` directives
+- **Design token system** with CSS custom properties for theming
+- **Modular imports**: Individual CSS files for glass, orbs, gradients, etc.
+
+#### @casoon/atlas-effects
+- **SSR-safe effects** - No DOM access at module level, function-based initialization only
+- **Cleanup functions** - All effects return disposal functions to prevent memory leaks
+- **13 individual effects** with dedicated subpath exports
+- **TypeScript interfaces** for all effect options
+- **RAF-based animations** for 60fps performance
+
+Key effects:
+- `ripple` - Interactive click/touch ripple animations
+- `tilt` - 3D tilt effect with realistic physics and glare
+- `particles` - Configurable particle systems with connections
+- `orbs` - Floating animated orb particles with physics
+- `parallax`, `scrollReveal`, `glassEffects`, `magnetic`, `typewriter`, etc.
+
+#### @casoon/atlas-components
+- **Headless components** - Framework-agnostic, minimal styling
+- **Accessibility-focused** with ARIA support and focus management
+- **Subpath exports** for individual component imports
+- Components: Modal, Dropdown, Tabs, Accordion, Tooltip, Toast, etc.
+
+## Import Patterns
+
+### Recommended CSS Imports
+```typescript
+// All styles
+import '@casoon/atlas-styles';
+
+// Only specific modules
+import '@casoon/atlas-styles/glass.css';
+import '@casoon/atlas-styles/orbs.css';
+import '@casoon/atlas-styles/core.css';
+```
+
+### Recommended Effect Imports
+```typescript
+// Individual effect imports (recommended for tree-shaking)
+import { ripple } from '@casoon/atlas-effects/ripple';
+import { tilt } from '@casoon/atlas-effects/tilt';
+
+// Bulk imports
+import { ripple, tilt, particles } from '@casoon/atlas-effects';
+```
+
+### Component Imports
+```typescript
+import { createModal, createTabs } from '@casoon/atlas-components';
+```
+
+## Key Architectural Patterns
+
+### 1. Shared Utilities (Effects)
+All effects use centralized utilities in `packages/effects/src/utils/`:
+
+- **element.ts** - Safe element selection and validation
+  ```typescript
+  resolveElement(target) // string selector or HTMLElement
+  isValidElement(element)
+  getElementOrThrow(target)
+  ```
+
+- **animation.ts** - Memory-safe animation loops
+  ```typescript
+  createSimpleAnimationLoop(callback) // Returns cleanup function
+  createAnimationLoop(callback, options)
+  createControllableAnimationLoop(callback)
+  ```
+
+- **style.ts** - Style management with restoration
+  ```typescript
+  const styleManager = createStyleManager();
+  styleManager.setStyle(element, 'property', 'value');
+  styleManager.restore(element); // Restores original styles
+  ensurePositioned(element) // Ensures position: relative/absolute/fixed
+  ```
+
+- **performance.ts** - Performance optimizations
+  ```typescript
+  rafThrottle(handler) // Request animation frame throttling
+  throttle(func, delay)
+  debounce(func, delay)
+  ```
+
+- **accessibility.ts** - A11y features
+  ```typescript
+  shouldReduceMotion() // Check prefers-reduced-motion
+  onMotionPreferenceChange(callback)
+  announceToScreenReader(message)
+  detectKeyboardNavigation()
+  ```
+
+### 2. Effect Pattern
+Every effect follows this pattern:
+
+```typescript
+export function effectName(
+  target: Element | string,
+  options: EffectOptions = {}
+): () => void {
+  // 1. Resolve element
+  const element = resolveElement(target);
+  if (!element) {
+    console.warn('[Atlas EffectName] Element not found:', target);
+    return () => {};
+  }
+
+  // 2. Check reduced motion
+  if (shouldReduceMotion()) {
+    // Return static fallback or no-op
+  }
+
+  // 3. Setup effect with utilities
+  const styleManager = createStyleManager();
+  const throttledHandler = rafThrottle(handler);
+  const stopAnimation = createSimpleAnimationLoop(animate);
+
+  // 4. Return cleanup
+  return () => {
+    stopAnimation();
+    throttledHandler.cancel();
+    styleManager.restore(element);
+    // Clean up all event listeners, timers, etc.
+  };
+}
+```
+
+### 3. Component Pattern
+Components use subscription pattern for reactivity:
+
+```typescript
+export function createComponent(options) {
+  const subscribers = new Set<(state: State) => void>();
+
+  const notifySubscribers = () => {
+    subscribers.forEach(cb => cb(getState()));
+  };
+
+  return {
+    subscribe: (callback) => {
+      subscribers.add(callback);
+      callback(getState());
+      return () => subscribers.delete(callback);
+    },
+    destroy: () => {
+      subscribers.clear();
+      // cleanup
+    }
+  };
+}
+```
+
+## Coding Standards
+
+### TypeScript
+- ✅ **Strict mode enabled** - No `any` types allowed
+- ✅ **Generic types** - Use `<T extends Record<string, unknown>>` for forms/data
+- ✅ **Explicit return types** - All public functions must declare return type
+- ✅ **Interface over type** - Use `interface` for options, `type` for unions
+
+### Memory Management
+- ✅ **Always return cleanup functions** - Every effect/component must clean up
+- ✅ **Cancel animations** - Use `createSimpleAnimationLoop` or track RAF IDs
+- ✅ **Remove event listeners** - Track all listeners and remove in cleanup
+- ✅ **Clear timeouts/intervals** - Always clear timers
+- ✅ **Restore styles** - Use `StyleManager` to restore original styles
+
+### Performance
+- ✅ **RAF throttling** - Use `rafThrottle` for mouse/scroll handlers
+- ✅ **Debounce resize** - Use `debounce` for resize handlers
+- ✅ **Canvas optimization** - Limit FPS for canvas-based effects
+- ✅ **Lazy computation** - Compute expensive values only when needed
+
+### Accessibility
+- ✅ **Respect prefers-reduced-motion** - Use `shouldReduceMotion()` in all effects
+- ✅ **ARIA attributes** - Add proper ARIA labels/roles to components
+- ✅ **Keyboard navigation** - Support Tab, Enter, Escape, Arrow keys
+- ✅ **Screen reader support** - Use `announceToScreenReader` for dynamic changes
+- ✅ **Focus management** - Trap focus in modals, restore on close
+
+### Documentation
+- ✅ **JSDoc comments** - All exported functions must have JSDoc
+- ✅ **Usage examples** - Include @example in JSDoc
+- ✅ **Type exports** - Export all option interfaces
+
+## Build Commands
+
+### Core Development Workflow
+```bash
+# Install dependencies
+pnpm install
+
+# Build all packages (required before demo)
+pnpm build
+
+# Development mode (watch all packages for changes)
+pnpm dev
+
+# Start interactive demo server on localhost:3000
+pnpm demo
+
+# Build production demo
+pnpm demo:build
+
+# Clean all build artifacts
+pnpm clean
+```
+
+### Package-Specific Commands
+```bash
+# Build specific package
+pnpm --filter @casoon/atlas-effects build
+pnpm --filter @casoon/atlas-styles build
+pnpm --filter @casoon/atlas-components build
+
+# Clean specific package
+pnpm --filter @casoon/atlas-effects clean
+```
+
+### Testing
+```bash
+pnpm test          # Watch mode
+pnpm test:run      # Single run
+pnpm test:ui       # UI mode
+pnpm test:coverage # With coverage
+```
+
+### Type Checking
+```bash
+pnpm typecheck
+```
+
+### Versioning and Releases
+```bash
+# Create a changeset (describe changes and bump types)
+pnpm changeset
+
+# Apply version bumps from changesets
+pnpm version
+
+# Build and publish packages to npm
+pnpm release
+
+# View current versions
+pnpm list --depth=0
+```
+
+## Testing
+
+### Test Structure
+```typescript
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+
+describe('effectName', () => {
+  let element: HTMLElement;
+
+  beforeEach(() => {
+    element = document.createElement('div');
+    document.body.appendChild(element);
+
+    // Mock matchMedia for reduced motion tests
+    vi.spyOn(window, 'matchMedia').mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn()
+    }));
+  });
+
+  it('should apply effect to element', async () => {
+    const cleanup = effectName(element);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(element.style.getPropertyValue('some-prop')).toBeTruthy();
+    cleanup();
+  });
+});
+```
+
+### Test Coverage
+- Element selection (string, HTMLElement, null)
+- Options handling (defaults, overrides)
+- Cleanup (memory leaks, style restoration)
+- Reduced motion support
+- Event handling
+
+## Git Workflow
+
+### Commit Message Format
+```
+type(scope): subject
+
+body (optional)
+```
+
+**Types:**
+- `feat:` New feature
+- `fix:` Bug fix
+- `refactor:` Code refactoring
+- `test:` Adding/updating tests
+- `docs:` Documentation changes
+- `chore:` Build/config changes
+- `perf:` Performance improvements
+
+**Examples:**
+```
+feat: add confetti celebration effect
+fix: resolve memory leak in animation loop
+refactor: migrate effects to shared utilities
+test: add comprehensive tests for glow effect
+docs: update CONTRIBUTING.md with testing guide
+```
+
+### Branch Naming
+- `feat/feature-name` - New features
+- `fix/bug-description` - Bug fixes
+- `refactor/description` - Refactoring
+- `claude/*` - Claude Code automated branches
+
+## Common Patterns
+
+### Canvas-based Effects
+```typescript
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+
+const resizeCanvas = () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+};
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Cleanup
+return () => {
+  window.removeEventListener('resize', resizeCanvas);
+  canvas.remove();
+};
+```
+
+### FPS-Limited Animation
+```typescript
+let lastTime = 0;
+const fpsInterval = 1000 / fps;
+
+const animate = (currentTime: number) => {
+  const elapsed = currentTime - lastTime;
+  if (elapsed > fpsInterval) {
+    lastTime = currentTime - (elapsed % fpsInterval);
+    // Do animation work
+  }
+};
+
+const stop = createSimpleAnimationLoop(animate);
+```
+
+### Trigger-based Effects
+```typescript
+return {
+  trigger: () => {
+    // Trigger effect
+  },
+  cleanup: () => {
+    // Cleanup
+  }
+};
+```
+
+## Critical Memory Leak Fixes
+
+These were the main issues fixed during refactoring:
+
+1. **Animation loops never stopped** - Use `createSimpleAnimationLoop`
+2. **Event listeners not removed** - Track and remove all listeners
+3. **Styles not restored** - Use `StyleManager`
+4. **RAF IDs lost** - Return cleanup from animation utilities
+5. **Intervals/timeouts not cleared** - Always clear in cleanup
+
+## File Organization
+
+### Effects Package
+```
+packages/effects/src/
+├── utils/              # Shared utilities
+│   ├── element.ts
+│   ├── animation.ts
+│   ├── style.ts
+│   ├── performance.ts
+│   └── accessibility.ts
+├── effect-name/
+│   ├── index.ts        # Implementation
+│   └── __tests__/      # Tests
+│       └── effect-name.test.ts
+└── index.ts            # Package exports
+```
+
+### Export Pattern
+```typescript
+// Targeted re-exports - no export * for tree-shaking
+export { effectName, type EffectOptions } from './effect-name/index';
+```
+
+## Important Notes
+
+- **Never use `any` type** - Use proper generics or unknowns
+- **Always test cleanup** - Ensure no memory leaks
+- **Mobile-first** - Effects should work on touch devices
+- **Framework-agnostic** - No React/Vue/etc. dependencies
+- **SSR-safe** - Check `typeof window !== 'undefined'`
+- **Tree-shakeable** - Use targeted exports, avoid barrel files with `export *`
+
+## Framework Integration
+
+Effects work seamlessly across frameworks:
+- **React**: Call effects in `useEffect` hooks
+- **Vue**: Use in `onMounted` composables
+- **Svelte**: Use in `onMount` lifecycle
+- **Astro**: Use with client directives and `onMount`
+
+## Browser Support
+
+- **Core Effects**: Chrome 88+, Firefox 94+, Safari 14+, Edge 88+
+- **Backdrop Filters**: Chrome 76+, Firefox 103+, Safari 14+, Edge 79+
+- **Modern CSS Features**: All packages use modern CSS Grid, Flexbox, Custom Properties
+
+## Performance Considerations
+
+- Always call cleanup functions returned by effects
+- Use conditional loading for interactive effects: `window.matchMedia('(hover: hover)').matches`
+- Effects use `requestAnimationFrame` and `IntersectionObserver` for optimal performance
+- Respect user's motion preferences automatically
+
+## Resources
+
+- Contributing Guide: `/CONTRIBUTING.md`
+- Test Config: `/vitest.config.ts`
+- Build Config: `packages/*/tsup.config.ts`
+- Example Tests: `packages/effects/src/glow/__tests__/glow.test.ts`
+
+---
+
+**Last Updated:** 2025-11-16
+**Maintainer:** CASOON
+**License:** Check package.json

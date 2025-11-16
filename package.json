@@ -3,7 +3,15 @@
   "version": "0.0.1",
   "description": "CASOON Atlas - A comprehensive, modern UI effects library built for Tailwind v4",
   "private": true,
-  "packageManager": "pnpm@9",
+  "packageManager": "pnpm@9.15.4",
+  "volta": {
+    "node": "24.11.0",
+    "pnpm": "9.15.4"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/casoon/atlas.git"
