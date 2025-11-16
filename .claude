@@ -8,10 +8,10 @@ CASOON Atlas is a modern, framework-agnostic UI library providing headless compo
 ### Monorepo Structure
 ```
 packages/
-├── styles/          # Tailwind CSS utilities and themes
-├── effects/         # Visual effects (glow, particles, confetti, etc.)
-├── components/      # Headless UI components (modal, dropdown, etc.)
-└── all/             # Convenience package re-exporting everything
+├── styles/          # @casoon/atlas-styles - Pure CSS design system
+├── effects/         # @casoon/atlas-effects - 13+ interactive effects (SSR-safe)
+├── components/      # @casoon/atlas-components - 10+ headless UI components
+└── all/             # @casoon/atlas - Meta-package re-exporting all TypeScript modules
 ```
 
 ### Tech Stack
@@ -20,6 +20,64 @@ packages/
 - **Testing:** Vitest with happy-dom
 - **Styling:** Tailwind CSS v4
 - **TypeScript:** Strict mode enabled
+- **Module System:** ESM-only (`"type": "module"`)
+- **Tree Shaking:** Enabled with `sideEffects: false` for JS packages
+
+### Package Details
+
+#### @casoon/atlas-styles
+- **Pure CSS modules** with subpath exports for granular imports
+- **Tailwind v4 compatible** using `@theme` and `@utility` directives
+- **Design token system** with CSS custom properties for theming
+- **Modular imports**: Individual CSS files for glass, orbs, gradients, etc.
+
+#### @casoon/atlas-effects
+- **SSR-safe effects** - No DOM access at module level, function-based initialization only
+- **Cleanup functions** - All effects return disposal functions to prevent memory leaks
+- **13 individual effects** with dedicated subpath exports
+- **TypeScript interfaces** for all effect options
+- **RAF-based animations** for 60fps performance
+
+Key effects:
+- `ripple` - Interactive click/touch ripple animations
+- `tilt` - 3D tilt effect with realistic physics and glare
+- `particles` - Configurable particle systems with connections
+- `orbs` - Floating animated orb particles with physics
+- `parallax`, `scrollReveal`, `glassEffects`, `magnetic`, `typewriter`, etc.
+
+#### @casoon/atlas-components
+- **Headless components** - Framework-agnostic, minimal styling
+- **Accessibility-focused** with ARIA support and focus management
+- **Subpath exports** for individual component imports
+- Components: Modal, Dropdown, Tabs, Accordion, Tooltip, Toast, etc.
+
+## Import Patterns
+
+### Recommended CSS Imports
+```typescript
+// All styles
+import '@casoon/atlas-styles';
+
+// Only specific modules
+import '@casoon/atlas-styles/glass.css';
+import '@casoon/atlas-styles/orbs.css';
+import '@casoon/atlas-styles/core.css';
+```
+
+### Recommended Effect Imports
+```typescript
+// Individual effect imports (recommended for tree-shaking)
+import { ripple } from '@casoon/atlas-effects/ripple';
+import { tilt } from '@casoon/atlas-effects/tilt';
+
+// Bulk imports
+import { ripple, tilt, particles } from '@casoon/atlas-effects';
+```
+
+### Component Imports
+```typescript
+import { createModal, createTabs } from '@casoon/atlas-components';
+```
 
 ## Key Architectural Patterns
 
@@ -158,25 +216,64 @@ export function createComponent(options) {
 
 ## Build Commands
 
+### Core Development Workflow
 ```bash
 # Install dependencies
 pnpm install
 
-# Build all packages
+# Build all packages (required before demo)
 pnpm build
 
-# Run tests
+# Development mode (watch all packages for changes)
+pnpm dev
+
+# Start interactive demo server on localhost:3000
+pnpm demo
+
+# Build production demo
+pnpm demo:build
+
+# Clean all build artifacts
+pnpm clean
+```
+
+### Package-Specific Commands
+```bash
+# Build specific package
+pnpm --filter @casoon/atlas-effects build
+pnpm --filter @casoon/atlas-styles build
+pnpm --filter @casoon/atlas-components build
+
+# Clean specific package
+pnpm --filter @casoon/atlas-effects clean
+```
+
+### Testing
+```bash
 pnpm test          # Watch mode
 pnpm test:run      # Single run
 pnpm test:ui       # UI mode
 pnpm test:coverage # With coverage
+```
 
-# Type checking
+### Type Checking
+```bash
 pnpm typecheck
+```
 
-# Build demo
-pnpm demo:build
-pnpm demo:dev
+### Versioning and Releases
+```bash
+# Create a changeset (describe changes and bump types)
+pnpm changeset
+
+# Apply version bumps from changesets
+pnpm version
+
+# Build and publish packages to npm
+pnpm release
+
+# View current versions
+pnpm list --depth=0
 ```
 
 ## Testing
@@ -346,6 +443,27 @@ export { effectName, type EffectOptions } from './effect-name/index';
 - **Framework-agnostic** - No React/Vue/etc. dependencies
 - **SSR-safe** - Check `typeof window !== 'undefined'`
 - **Tree-shakeable** - Use targeted exports, avoid barrel files with `export *`
+
+## Framework Integration
+
+Effects work seamlessly across frameworks:
+- **React**: Call effects in `useEffect` hooks
+- **Vue**: Use in `onMounted` composables
+- **Svelte**: Use in `onMount` lifecycle
+- **Astro**: Use with client directives and `onMount`
+
+## Browser Support
+
+- **Core Effects**: Chrome 88+, Firefox 94+, Safari 14+, Edge 88+
+- **Backdrop Filters**: Chrome 76+, Firefox 103+, Safari 14+, Edge 79+
+- **Modern CSS Features**: All packages use modern CSS Grid, Flexbox, Custom Properties
+
+## Performance Considerations
+
+- Always call cleanup functions returned by effects
+- Use conditional loading for interactive effects: `window.matchMedia('(hover: hover)').matches`
+- Effects use `requestAnimationFrame` and `IntersectionObserver` for optimal performance
+- Respect user's motion preferences automatically
 
 ## Resources
 
