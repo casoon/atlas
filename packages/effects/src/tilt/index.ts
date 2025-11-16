@@ -1,3 +1,8 @@
+import { resolveElement } from '../utils/element';
+import { createStyleManager } from '../utils/style';
+import { rafThrottle } from '../utils/performance';
+import { shouldReduceMotion } from '../utils/accessibility';
+
 export interface TiltOptions {
   intensity?: number;
   scale?: number;
@@ -6,55 +11,109 @@ export interface TiltOptions {
   glareEffect?: boolean;
 }
 
-export function tilt(target: Element | string, options: TiltOptions = {}) {
-  const element = typeof target === 'string' ? document.querySelector(target) : target;
-  if (!element) return () => {};
-
-  const { intensity = 20, scale = 1.05, perspective = 1000, speed = 300, glareEffect = true } = options;
-  const htmlElement = element as HTMLElement;
-  let glareElement: HTMLElement | null = null;
-
-  if (glareEffect) {
-    glareElement = document.createElement('div');
-    glareElement.style.cssText = `
-      position: absolute; inset: 0; border-radius: inherit;
-      background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 100%);
-      opacity: 0; pointer-events: none; transition: opacity ${speed}ms ease;
-    `;
-    htmlElement.appendChild(glareElement);
+/**
+ * Creates a 3D tilt effect that responds to mouse movement.
+ *
+ * @param target - A CSS selector string or an HTMLElement
+ * @param options - Configuration options for the tilt effect
+ * @returns A cleanup function to remove the effect
+ *
+ * @example
+ * ```typescript
+ * const cleanup = tilt('#my-card', {
+ *   intensity: 20,
+ *   scale: 1.05,
+ *   perspective: 1000,
+ *   speed: 300,
+ *   glareEffect: true
+ * });
+ * ```
+ */
+export function tilt(target: Element | string, options: TiltOptions = {}): () => void {
+  const element = resolveElement(target as string | HTMLElement);
+  if (!element) {
+    console.warn('[Atlas Tilt] Element not found:', target);
+    return () => {};
   }
 
-  htmlElement.style.transformStyle = 'preserve-3d';
-  htmlElement.style.transition = `transform ${speed}ms ease`;
+  // Skip effect if user prefers reduced motion
+  if (shouldReduceMotion()) {
+    console.info('[Atlas Tilt] Effect disabled due to prefers-reduced-motion');
+    return () => {};
+  }
 
-  const handleMouseMove = (e: Event) => {
-    const mouseEvent = e as MouseEvent;
-    const rect = htmlElement.getBoundingClientRect();
-    const x = ((mouseEvent.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((mouseEvent.clientY - rect.top) / rect.height - 0.5) * 2;
-    
+  const {
+    intensity = 20,
+    scale = 1.05,
+    perspective = 1000,
+    speed = 300,
+    glareEffect = true
+  } = options;
+
+  const styleManager = createStyleManager();
+  let glareElement: HTMLElement | null = null;
+
+  // Create glare element if enabled
+  if (glareEffect) {
+    glareElement = document.createElement('div');
+    glareElement.className = 'atlas-tilt-glare';
+    glareElement.style.cssText = `
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity ${speed}ms ease;
+    `;
+    element.appendChild(glareElement);
+  }
+
+  // Set initial styles
+  styleManager.setStyles(element, {
+    'transform-style': 'preserve-3d',
+    transition: `transform ${speed}ms ease`
+  });
+
+  const handleMouseMove = rafThrottle((e: MouseEvent) => {
+    const rect = element.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
     const rotateX = -y * intensity;
     const rotateY = x * intensity;
-    
-    htmlElement.style.transform = `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
-    
+
+    const transformValue = `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+    styleManager.setStyle(element, 'transform', transformValue);
+
     if (glareElement) {
       glareElement.style.opacity = '1';
-      glareElement.style.background = `linear-gradient(${Math.atan2(y, x) * 180 / Math.PI + 90}deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%)`;
+      const angle = (Math.atan2(y, x) * 180) / Math.PI + 90;
+      glareElement.style.background = `linear-gradient(${angle}deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%)`;
     }
-  };
+  });
 
   const handleMouseLeave = () => {
-    htmlElement.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-    if (glareElement) glareElement.style.opacity = '0';
+    const transformValue = `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale(1)`;
+    styleManager.setStyle(element, 'transform', transformValue);
+
+    if (glareElement) {
+      glareElement.style.opacity = '0';
+    }
   };
 
   element.addEventListener('mousemove', handleMouseMove);
   element.addEventListener('mouseleave', handleMouseLeave);
 
   return () => {
+    handleMouseMove.cancel();
     element.removeEventListener('mousemove', handleMouseMove);
     element.removeEventListener('mouseleave', handleMouseLeave);
-    if (glareElement && glareElement.parentNode) glareElement.parentNode.removeChild(glareElement);
+
+    if (glareElement && glareElement.parentNode) {
+      glareElement.parentNode.removeChild(glareElement);
+    }
+
+    styleManager.restore(element);
   };
 }

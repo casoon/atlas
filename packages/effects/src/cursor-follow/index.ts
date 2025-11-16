@@ -1,3 +1,9 @@
+import { resolveElement } from '../utils/element';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { createStyleManager } from '../utils/style';
+import { rafThrottle } from '../utils/performance';
+import { shouldReduceMotion } from '../utils/accessibility';
+
 export interface CursorFollowOptions {
   speed?: number;
   offset?: { x: number; y: number };
@@ -5,25 +11,64 @@ export interface CursorFollowOptions {
   magneticThreshold?: number;
 }
 
-export function cursorFollow(target: Element | string, options: CursorFollowOptions = {}) {
-  const element = typeof target === 'string' ? document.querySelector(target) : target;
-  if (!element) return () => {};
+/**
+ * Makes an element follow the cursor position smoothly.
+ *
+ * @param target - A CSS selector string or an HTMLElement
+ * @param options - Configuration options for the cursor follow effect
+ * @returns A cleanup function to remove the effect
+ *
+ * @example
+ * ```typescript
+ * const cleanup = cursorFollow('#cursor', {
+ *   speed: 0.1,
+ *   offset: { x: 10, y: 10 },
+ *   magnetic: false,
+ *   magneticThreshold: 100
+ * });
+ * ```
+ */
+export function cursorFollow(
+  target: Element | string,
+  options: CursorFollowOptions = {}
+): () => void {
+  const element = resolveElement(target as string | HTMLElement);
+  if (!element) {
+    console.warn('[Atlas CursorFollow] Element not found:', target);
+    return () => {};
+  }
 
-  const { speed = 0.1, offset = { x: 0, y: 0 }, magnetic = false, magneticThreshold = 100 } = options;
-  
-  const htmlElement = element as HTMLElement;
-  let currentX = 0, currentY = 0, targetX = 0, targetY = 0;
-  let animationId: number;
+  // Skip effect if user prefers reduced motion
+  if (shouldReduceMotion()) {
+    console.info('[Atlas CursorFollow] Effect disabled due to prefers-reduced-motion');
+    return () => {};
+  }
+
+  const {
+    speed = 0.1,
+    offset = { x: 0, y: 0 },
+    magnetic = false,
+    magneticThreshold = 100
+  } = options;
+
+  const styleManager = createStyleManager();
+
+  let currentX = 0;
+  let currentY = 0;
+  let targetX = 0;
+  let targetY = 0;
 
   const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = rafThrottle((e: MouseEvent) => {
     if (magnetic) {
-      const rect = htmlElement.getBoundingClientRect();
+      const rect = element.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      const distance = Math.sqrt((e.clientX - centerX) ** 2 + (e.clientY - centerY) ** 2);
-      
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
       if (distance < magneticThreshold) {
         targetX = e.clientX + offset.x;
         targetY = e.clientY + offset.y;
@@ -32,20 +77,22 @@ export function cursorFollow(target: Element | string, options: CursorFollowOpti
       targetX = e.clientX + offset.x;
       targetY = e.clientY + offset.y;
     }
-  };
+  });
 
-  const animate = () => {
+  const stopAnimation = createSimpleAnimationLoop(() => {
     currentX = lerp(currentX, targetX, speed);
     currentY = lerp(currentY, targetY, speed);
-    htmlElement.style.transform = `translate(${currentX}px, ${currentY}px)`;
-    animationId = requestAnimationFrame(animate);
-  };
+
+    const transformValue = `translate(${currentX}px, ${currentY}px)`;
+    styleManager.setStyle(element, 'transform', transformValue);
+  });
 
   document.addEventListener('mousemove', handleMouseMove);
-  animate();
 
   return () => {
+    handleMouseMove.cancel();
     document.removeEventListener('mousemove', handleMouseMove);
-    cancelAnimationFrame(animationId);
+    stopAnimation();
+    styleManager.restore(element);
   };
 }
