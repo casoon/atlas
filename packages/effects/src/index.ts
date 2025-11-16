@@ -22,3 +22,15 @@ export { wave, type WaveOptions } from './wave/index';
 
 // Text effects
 export { typewriter, type TypewriterOptions } from './typewriter/index';
+export { textScramble, type TextScrambleOptions } from './text-scramble/index';
+
+// Special effects
+export { spotlight, type SpotlightOptions } from './spotlight/index';
+export { glitch, type GlitchOptions } from './glitch/index';
+export { shimmer, type ShimmerOptions } from './shimmer/index';
+export { noise, type NoiseOptions } from './noise/index';
+export { confetti, type ConfettiOptions } from './confetti/index';
+
+// Loading & Progress
+export { skeleton, type SkeletonOptions } from './skeleton/index';
+export { progressRing, type ProgressRingOptions } from './progress-ring/index';
