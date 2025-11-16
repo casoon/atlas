@@ -1,0 +1,361 @@
+# CASOON Atlas Project
+
+## Overview
+CASOON Atlas is a modern, framework-agnostic UI library providing headless components and visual effects for web applications. Built as a pnpm monorepo with strict TypeScript and comprehensive accessibility support.
+
+## Architecture
+
+### Monorepo Structure
+```
+packages/
+├── styles/          # Tailwind CSS utilities and themes
+├── effects/         # Visual effects (glow, particles, confetti, etc.)
+├── components/      # Headless UI components (modal, dropdown, etc.)
+└── all/             # Convenience package re-exporting everything
+```
+
+### Tech Stack
+- **Package Manager:** pnpm (workspaces)
+- **Build Tool:** tsup (TypeScript + esbuild)
+- **Testing:** Vitest with happy-dom
+- **Styling:** Tailwind CSS v4
+- **TypeScript:** Strict mode enabled
+
+## Key Architectural Patterns
+
+### 1. Shared Utilities (Effects)
+All effects use centralized utilities in `packages/effects/src/utils/`:
+
+- **element.ts** - Safe element selection and validation
+  ```typescript
+  resolveElement(target) // string selector or HTMLElement
+  isValidElement(element)
+  getElementOrThrow(target)
+  ```
+
+- **animation.ts** - Memory-safe animation loops
+  ```typescript
+  createSimpleAnimationLoop(callback) // Returns cleanup function
+  createAnimationLoop(callback, options)
+  createControllableAnimationLoop(callback)
+  ```
+
+- **style.ts** - Style management with restoration
+  ```typescript
+  const styleManager = createStyleManager();
+  styleManager.setStyle(element, 'property', 'value');
+  styleManager.restore(element); // Restores original styles
+  ensurePositioned(element) // Ensures position: relative/absolute/fixed
+  ```
+
+- **performance.ts** - Performance optimizations
+  ```typescript
+  rafThrottle(handler) // Request animation frame throttling
+  throttle(func, delay)
+  debounce(func, delay)
+  ```
+
+- **accessibility.ts** - A11y features
+  ```typescript
+  shouldReduceMotion() // Check prefers-reduced-motion
+  onMotionPreferenceChange(callback)
+  announceToScreenReader(message)
+  detectKeyboardNavigation()
+  ```
+
+### 2. Effect Pattern
+Every effect follows this pattern:
+
+```typescript
+export function effectName(
+  target: Element | string,
+  options: EffectOptions = {}
+): () => void {
+  // 1. Resolve element
+  const element = resolveElement(target);
+  if (!element) {
+    console.warn('[Atlas EffectName] Element not found:', target);
+    return () => {};
+  }
+
+  // 2. Check reduced motion
+  if (shouldReduceMotion()) {
+    // Return static fallback or no-op
+  }
+
+  // 3. Setup effect with utilities
+  const styleManager = createStyleManager();
+  const throttledHandler = rafThrottle(handler);
+  const stopAnimation = createSimpleAnimationLoop(animate);
+
+  // 4. Return cleanup
+  return () => {
+    stopAnimation();
+    throttledHandler.cancel();
+    styleManager.restore(element);
+    // Clean up all event listeners, timers, etc.
+  };
+}
+```
+
+### 3. Component Pattern
+Components use subscription pattern for reactivity:
+
+```typescript
+export function createComponent(options) {
+  const subscribers = new Set<(state: State) => void>();
+
+  const notifySubscribers = () => {
+    subscribers.forEach(cb => cb(getState()));
+  };
+
+  return {
+    subscribe: (callback) => {
+      subscribers.add(callback);
+      callback(getState());
+      return () => subscribers.delete(callback);
+    },
+    destroy: () => {
+      subscribers.clear();
+      // cleanup
+    }
+  };
+}
+```
+
+## Coding Standards
+
+### TypeScript
+- ✅ **Strict mode enabled** - No `any` types allowed
+- ✅ **Generic types** - Use `<T extends Record<string, unknown>>` for forms/data
+- ✅ **Explicit return types** - All public functions must declare return type
+- ✅ **Interface over type** - Use `interface` for options, `type` for unions
+
+### Memory Management
+- ✅ **Always return cleanup functions** - Every effect/component must clean up
+- ✅ **Cancel animations** - Use `createSimpleAnimationLoop` or track RAF IDs
+- ✅ **Remove event listeners** - Track all listeners and remove in cleanup
+- ✅ **Clear timeouts/intervals** - Always clear timers
+- ✅ **Restore styles** - Use `StyleManager` to restore original styles
+
+### Performance
+- ✅ **RAF throttling** - Use `rafThrottle` for mouse/scroll handlers
+- ✅ **Debounce resize** - Use `debounce` for resize handlers
+- ✅ **Canvas optimization** - Limit FPS for canvas-based effects
+- ✅ **Lazy computation** - Compute expensive values only when needed
+
+### Accessibility
+- ✅ **Respect prefers-reduced-motion** - Use `shouldReduceMotion()` in all effects
+- ✅ **ARIA attributes** - Add proper ARIA labels/roles to components
+- ✅ **Keyboard navigation** - Support Tab, Enter, Escape, Arrow keys
+- ✅ **Screen reader support** - Use `announceToScreenReader` for dynamic changes
+- ✅ **Focus management** - Trap focus in modals, restore on close
+
+### Documentation
+- ✅ **JSDoc comments** - All exported functions must have JSDoc
+- ✅ **Usage examples** - Include @example in JSDoc
+- ✅ **Type exports** - Export all option interfaces
+
+## Build Commands
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build all packages
+pnpm build
+
+# Run tests
+pnpm test          # Watch mode
+pnpm test:run      # Single run
+pnpm test:ui       # UI mode
+pnpm test:coverage # With coverage
+
+# Type checking
+pnpm typecheck
+
+# Build demo
+pnpm demo:build
+pnpm demo:dev
+```
+
+## Testing
+
+### Test Structure
+```typescript
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+
+describe('effectName', () => {
+  let element: HTMLElement;
+
+  beforeEach(() => {
+    element = document.createElement('div');
+    document.body.appendChild(element);
+
+    // Mock matchMedia for reduced motion tests
+    vi.spyOn(window, 'matchMedia').mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn()
+    }));
+  });
+
+  it('should apply effect to element', async () => {
+    const cleanup = effectName(element);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(element.style.getPropertyValue('some-prop')).toBeTruthy();
+    cleanup();
+  });
+});
+```
+
+### Test Coverage
+- Element selection (string, HTMLElement, null)
+- Options handling (defaults, overrides)
+- Cleanup (memory leaks, style restoration)
+- Reduced motion support
+- Event handling
+
+## Git Workflow
+
+### Commit Message Format
+```
+type(scope): subject
+
+body (optional)
+```
+
+**Types:**
+- `feat:` New feature
+- `fix:` Bug fix
+- `refactor:` Code refactoring
+- `test:` Adding/updating tests
+- `docs:` Documentation changes
+- `chore:` Build/config changes
+- `perf:` Performance improvements
+
+**Examples:**
+```
+feat: add confetti celebration effect
+fix: resolve memory leak in animation loop
+refactor: migrate effects to shared utilities
+test: add comprehensive tests for glow effect
+docs: update CONTRIBUTING.md with testing guide
+```
+
+### Branch Naming
+- `feat/feature-name` - New features
+- `fix/bug-description` - Bug fixes
+- `refactor/description` - Refactoring
+- `claude/*` - Claude Code automated branches
+
+## Common Patterns
+
+### Canvas-based Effects
+```typescript
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+
+const resizeCanvas = () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+};
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+// Cleanup
+return () => {
+  window.removeEventListener('resize', resizeCanvas);
+  canvas.remove();
+};
+```
+
+### FPS-Limited Animation
+```typescript
+let lastTime = 0;
+const fpsInterval = 1000 / fps;
+
+const animate = (currentTime: number) => {
+  const elapsed = currentTime - lastTime;
+  if (elapsed > fpsInterval) {
+    lastTime = currentTime - (elapsed % fpsInterval);
+    // Do animation work
+  }
+};
+
+const stop = createSimpleAnimationLoop(animate);
+```
+
+### Trigger-based Effects
+```typescript
+return {
+  trigger: () => {
+    // Trigger effect
+  },
+  cleanup: () => {
+    // Cleanup
+  }
+};
+```
+
+## Critical Memory Leak Fixes
+
+These were the main issues fixed during refactoring:
+
+1. **Animation loops never stopped** - Use `createSimpleAnimationLoop`
+2. **Event listeners not removed** - Track and remove all listeners
+3. **Styles not restored** - Use `StyleManager`
+4. **RAF IDs lost** - Return cleanup from animation utilities
+5. **Intervals/timeouts not cleared** - Always clear in cleanup
+
+## File Organization
+
+### Effects Package
+```
+packages/effects/src/
+├── utils/              # Shared utilities
+│   ├── element.ts
+│   ├── animation.ts
+│   ├── style.ts
+│   ├── performance.ts
+│   └── accessibility.ts
+├── effect-name/
+│   ├── index.ts        # Implementation
+│   └── __tests__/      # Tests
+│       └── effect-name.test.ts
+└── index.ts            # Package exports
+```
+
+### Export Pattern
+```typescript
+// Targeted re-exports - no export * for tree-shaking
+export { effectName, type EffectOptions } from './effect-name/index';
+```
+
+## Important Notes
+
+- **Never use `any` type** - Use proper generics or unknowns
+- **Always test cleanup** - Ensure no memory leaks
+- **Mobile-first** - Effects should work on touch devices
+- **Framework-agnostic** - No React/Vue/etc. dependencies
+- **SSR-safe** - Check `typeof window !== 'undefined'`
+- **Tree-shakeable** - Use targeted exports, avoid barrel files with `export *`
+
+## Resources
+
+- Contributing Guide: `/CONTRIBUTING.md`
+- Test Config: `/vitest.config.ts`
+- Build Config: `packages/*/tsup.config.ts`
+- Example Tests: `packages/effects/src/glow/__tests__/glow.test.ts`
+
+---
+
+**Last Updated:** 2025-11-16
+**Maintainer:** CASOON
+**License:** Check package.json
