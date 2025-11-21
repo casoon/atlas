@@ -366,7 +366,19 @@
 
 @utility cs-spinner {
   animation: cs-rotate 1s linear infinite;
-  will-change: transform;
+  /* Performance: will-change removed - use cs-spinner-optimized or add dynamically via JS */
+}
+
+/* Optimized spinner with will-change only when active */
+@utility cs-spinner-optimized {
+  animation: cs-rotate 1s linear infinite;
+  animation-play-state: paused;
+
+  &.is-active,
+  &[data-active='true'] {
+    animation-play-state: running;
+    will-change: transform; /* Performance: Only set when actively spinning */
+  }
 }
 
 @utility cs-skeleton {
@@ -490,7 +502,8 @@
   padding: var(--cs-space-6);
   transition: all var(--cs-transition);
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
+  contain: layout paint; /* Performance: Isolate paint and layout */
 
   &:hover {
     transform: translateY(-2px);
@@ -506,7 +519,8 @@
   padding: var(--cs-space-8);
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
+  contain: layout paint; /* Performance: Isolate paint and layout */
 
   &::before {
     content: '';
@@ -533,6 +547,7 @@
   align-items: center;
   gap: var(--cs-space-3);
   transition: all var(--cs-transition);
+  contain: layout paint; /* Performance: Isolate paint and layout */
 
   &:hover {
     background: var(--cs-elev2);
@@ -548,6 +563,7 @@
   max-width: none;
   background-color: var(--cs-surface, #14161a);
   color: var(--cs-text, #eef1f6);
+  contain: layout style; /* Performance: Isolate layout calculations */
 
   @container (min-width: 768px) {
     padding-left: calc(var(--cs-page-pad) + var(--cs-space-2));
@@ -621,12 +637,30 @@
   top: 0;
 }
 
+/* Performance: Use these utilities to dynamically add will-change via JS
+ * Example: element.classList.add('is-animating')
+ * Or toggle 'is-active' class when animation starts/ends
+ */
 @utility cs-will-change-transform {
-  will-change: transform;
+  /* Static will-change removed for performance */
+
+  &.is-active,
+  &.is-animating,
+  &:hover,
+  &:focus-visible {
+    will-change: transform; /* Performance: Only set when needed */
+  }
 }
 
 @utility cs-will-change-opacity {
-  will-change: opacity;
+  /* Static will-change removed for performance */
+
+  &.is-active,
+  &.is-animating,
+  &:hover,
+  &:focus-visible {
+    will-change: opacity; /* Performance: Only set when needed */
+  }
 }
 
 /* =========================================================
@@ -974,6 +1008,7 @@
   border-radius: var(--cs-radius);
   padding: var(--cs-space-4);
   box-shadow: var(--cs-shadow-1);
+  contain: layout paint; /* Performance: Isolate paint and layout */
 }
 
 @utility cs-card-elevated {
@@ -982,6 +1017,7 @@
   border-radius: var(--cs-radius);
   padding: var(--cs-space-4);
   box-shadow: var(--cs-shadow-2);
+  contain: layout paint; /* Performance: Isolate paint and layout */
 }
 
 /* =========================================================
@@ -1217,7 +1253,14 @@
 
 @utility cs-pulse {
   animation: csPulse 1.2s ease-in-out infinite;
-  will-change: transform, opacity;
+  animation-play-state: paused;
+  /* Performance: will-change removed - use cs-pulse-optimized or add .is-active class */
+
+  &.is-active,
+  &[data-active='true'] {
+    animation-play-state: running;
+    will-change: transform, opacity; /* Performance: Only set when actively pulsing */
+  }
 }
 
 @keyframes csPulse {

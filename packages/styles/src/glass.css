@@ -631,8 +631,18 @@
   position: sticky;
   top: 0;
 }
+/* Performance: will-change should be toggled dynamically
+ * Use .is-active, .is-animating classes for optimal performance
+ */
 @utility cs-glass-will-change {
-  will-change: transform, backdrop-filter;
+  /* Static will-change removed for performance */
+
+  &.is-active,
+  &.is-animating,
+  &:hover,
+  &:focus-visible {
+    will-change: transform, backdrop-filter; /* Performance: Only set when needed */
+  }
 }
 
 /* Isolation utility for Canvas/Background-Layering issues */

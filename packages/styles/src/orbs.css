@@ -577,8 +577,18 @@
 /* =========================================================
    CORE POSITIONING UTILITIES
    ========================================================= */
+/* Performance: will-change should be toggled dynamically
+ * Use .is-active, .is-animating classes for optimal performance
+ */
 @utility cs-will-transform {
-  will-change: transform;
+  /* Static will-change removed for performance */
+
+  &.is-active,
+  &.is-animating,
+  &:hover,
+  &:focus-visible {
+    will-change: transform; /* Performance: Only set when needed */
+  }
 }
 
 /* =========================================================
@@ -594,6 +604,7 @@
   transition:
     box-shadow var(--cs-transition),
     transform var(--cs-transition);
+  contain: layout paint; /* Performance: Isolate paint and layout */
 
   &:hover {
     box-shadow: var(--cs-shadow-3);
@@ -609,7 +620,7 @@
 
 @utility cs-card-hover-orb {
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
 
   &::before {
     content: '';
@@ -716,7 +727,7 @@
 
 @utility cs-btn-orb {
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
   z-index: 1;
 
   &::after {
@@ -747,7 +758,8 @@
    ========================================================= */
 @utility cs-section-orb {
   position: relative;
-  overflow: clip;
+  overflow: clip; /* Performance: Already using clip - good! */
+  contain: layout style; /* Performance: Isolate layout calculations */
 
   & > .cs-orb {
     position: absolute;
@@ -1189,7 +1201,8 @@
 /* Galaxy Scene - Multiple cosmic orbs */
 .cs-orb-scene-galaxy {
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
+  contain: layout style; /* Performance: Isolate layout calculations */
 }
 
 .cs-orb-scene-galaxy::before,
@@ -1237,7 +1250,8 @@
 /* Underwater Scene - Blue/turquoise composition */
 .cs-orb-scene-underwater {
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
+  contain: layout style; /* Performance: Isolate layout calculations */
   background: linear-gradient(
     135deg,
     color-mix(in srgb, var(--cs-orb-blue) 8%, var(--cs-bg)) 0%,
@@ -1291,7 +1305,8 @@
 /* Aurora Scene - Northern lights effect */
 .cs-orb-scene-aurora {
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
+  contain: layout style; /* Performance: Isolate layout calculations */
   background: linear-gradient(
     45deg,
     color-mix(in srgb, #1a237e 15%, var(--cs-bg)) 0%,
@@ -1343,7 +1358,8 @@
 /* Nebula Scene - Space dust and gas clouds */
 .cs-orb-scene-nebula {
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
+  contain: layout style; /* Performance: Isolate layout calculations */
   background: radial-gradient(
     ellipse at center,
     color-mix(in srgb, var(--cs-orb-purple) 12%, var(--cs-bg)) 0%,
@@ -1400,7 +1416,8 @@
 /* Forest Scene - Natural, organic orbs */
 .cs-orb-scene-forest {
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
+  contain: layout style; /* Performance: Isolate layout calculations */
   background: linear-gradient(
     135deg,
     color-mix(in srgb, #2e7d32 8%, var(--cs-bg)) 0%,
@@ -1480,7 +1497,8 @@
 /* Sunset Scene - Warm, golden orbs */
 .cs-orb-scene-sunset {
   position: relative;
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
+  contain: layout style; /* Performance: Isolate layout calculations */
   background: linear-gradient(
     45deg,
     color-mix(in srgb, #ff6f00 12%, var(--cs-bg)) 0%,

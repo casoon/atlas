@@ -1773,20 +1773,51 @@
    Optimization hints for better animation performance
    ========================================================= */
 
+/* Performance: will-change should be toggled dynamically, not set statically
+ * Use .is-active, .is-animating classes, or add via JS before animations
+ * Example: element.classList.add('is-animating') before animation starts
+ */
+
 @utility cs-will-transform {
-  will-change: transform;
+  /* Static will-change removed for performance */
+
+  &.is-active,
+  &.is-animating,
+  &:hover,
+  &:focus-visible {
+    will-change: transform; /* Performance: Only set when needed */
+  }
 }
 @utility cs-will-opacity {
-  will-change: opacity;
+  /* Static will-change removed for performance */
+
+  &.is-active,
+  &.is-animating,
+  &:hover,
+  &:focus-visible {
+    will-change: opacity; /* Performance: Only set when needed */
+  }
 }
 @utility cs-will-filter {
-  will-change: filter;
+  /* Static will-change removed for performance */
+
+  &.is-active,
+  &.is-animating,
+  &:hover,
+  &:focus-visible {
+    will-change: filter; /* Performance: Only set when needed */
+  }
 }
 @utility cs-will-scroll {
-  will-change: scroll-position;
+  /* Static will-change removed for performance */
+
+  &.is-active,
+  &.is-animating {
+    will-change: scroll-position; /* Performance: Only set when needed */
+  }
 }
 @utility cs-will-auto {
-  will-change: auto;
+  will-change: auto; /* This is fine - resets will-change */
 }
 
 /* Transform origin utilities */
@@ -1829,16 +1860,11 @@
   transform-origin: bottom;
 }
 
-/* v0.8.0-kompatible will-change Aliase */
-@utility cs-will-transform {
-  will-change: transform;
-}
-@utility cs-will-opacity {
-  will-change: opacity;
-}
-@utility cs-will-filter {
-  will-change: filter;
-}
+/* v0.8.0-kompatible will-change Aliase
+ * NOTE: These aliases now use the refactored version above
+ * which only applies will-change when .is-active or :hover
+ * For backward compatibility, add .is-active class dynamically
+ */
 
 /* v0.8.0-kompatible 3D Aliase */
 @utility cs-t-preserve-3d {

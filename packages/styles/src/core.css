@@ -403,6 +403,7 @@
   max-width: none;
   background-color: var(--cs-surface, #14161a);
   color: var(--cs-text, #eef1f6);
+  contain: layout style; /* Performance: Isolate layout calculations */
 
   @media (min-width: 768px) {
     padding-left: calc(var(--cs-page-pad) + var(--cs-space-2));
@@ -660,6 +661,7 @@
   padding: var(--cs-card-space-xl, 2rem);
   text-align: center;
   position: relative;
+  contain: layout paint; /* Performance: Isolate paint and layout */
   transition: var(--cs-card-transition, all 0.2s ease);
 
   &:hover {
@@ -674,11 +676,12 @@
   border-radius: var(--cs-card-radius, 12px);
   box-shadow: var(--cs-card-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
   transition: var(--cs-card-transition, all 0.2s ease);
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
   max-width: 20rem;
   display: flex;
   flex-direction: column;
   position: relative;
+  contain: layout paint; /* Performance: Isolate paint and layout */
 
   &:hover {
     transform: translateY(var(--cs-card-hover-lift, -2px));
@@ -698,6 +701,7 @@
   text-align: center;
   position: relative;
   transition: var(--cs-card-transition, all 0.2s ease);
+  contain: layout paint; /* Performance: Isolate paint and layout */
 
   &:hover {
     transform: translateY(var(--cs-card-hover-lift, -4px));
@@ -711,11 +715,12 @@
   border-radius: var(--cs-card-radius, 12px);
   box-shadow: var(--cs-card-shadow, 0 1px 3px rgba(0, 0, 0, 0.1));
   transition: var(--cs-card-transition, all 0.2s ease);
-  overflow: hidden;
+  overflow: clip; /* Performance: Use clip instead of hidden */
   padding: var(--cs-card-padding, 1.5rem);
   max-width: 24rem;
   text-align: center;
   position: relative;
+  contain: layout paint; /* Performance: Isolate paint and layout */
 
   &:hover {
     box-shadow: var(--cs-card-shadow-hover, 0 4px 6px rgba(0, 0, 0, 0.1));
