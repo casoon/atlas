@@ -674,7 +674,7 @@
 @utility cs-glass-card {
   background: var(--cs-glass-bg-light);
   border: 1px solid var(--cs-glass-border-medium);
-  border-radius: 20px;
+  border-radius: var(--cs-radius-xl);
   padding: 2rem;
   box-shadow: var(--cs-glass-shadow-def);
   transition: all var(--cs-glass-transition) ease;
@@ -698,7 +698,7 @@
 @utility cs-glass-card-light {
   background: var(--cs-glass-bg-medium);
   border: 1px solid var(--cs-glass-border-strong);
-  border-radius: 20px;
+  border-radius: var(--cs-radius-xl);
   padding: 2rem;
   box-shadow: var(--cs-glass-shadow-def);
   transition: all var(--cs-glass-transition) ease;
@@ -726,7 +726,7 @@
   display: grid;
   grid-template-rows: auto auto 1fr;
   gap: 1.5rem;
-  border-radius: 20px;
+  border-radius: var(--cs-radius-xl);
   box-shadow: var(--cs-glass-shadow-def);
   padding: 2rem;
   text-align: center;
@@ -746,7 +746,7 @@
   border: 1px solid var(--cs-glass-border-medium);
   backdrop-filter: saturate(140%) blur(12px);
   -webkit-backdrop-filter: saturate(140%) blur(12px);
-  border-radius: 20px;
+  border-radius: var(--cs-radius-xl);
   box-shadow: var(--cs-glass-shadow-def);
   overflow: hidden;
   transition: all var(--cs-glass-transition) ease;
@@ -770,7 +770,7 @@
   -webkit-backdrop-filter: saturate(140%) blur(12px);
   display: grid;
   grid-template-rows: auto 1fr auto;
-  border-radius: 20px;
+  border-radius: var(--cs-radius-xl);
   box-shadow: var(--cs-glass-shadow-def);
   padding: 2rem;
   text-align: center;
@@ -794,7 +794,7 @@
 @utility cs-glass-nav {
   background: var(--cs-glass-bg-light);
   border: 1px solid var(--cs-glass-border-medium);
-  border-radius: 12px;
+  border-radius: var(--cs-card-radius);
   box-shadow: var(--cs-glass-shadow-def);
   transition: all var(--cs-glass-transition) ease;
   backdrop-filter: var(--cs-glass-blur);
@@ -804,7 +804,7 @@
 @utility cs-glass-nav-light {
   background: var(--cs-glass-bg-medium);
   border: 1px solid var(--cs-glass-border-strong);
-  border-radius: 12px;
+  border-radius: var(--cs-card-radius);
   box-shadow: var(--cs-glass-shadow-def);
   transition: all var(--cs-glass-transition) ease;
   backdrop-filter: var(--cs-glass-blur);
@@ -815,7 +815,7 @@
 @utility cs-glass-button {
   background: var(--cs-glass-bg-light);
   border: 1px solid var(--cs-glass-border-medium);
-  border-radius: 12px;
+  border-radius: var(--cs-card-radius);
   padding: 0.75rem 1.5rem;
   transition: all var(--cs-glass-transition) ease;
   cursor: pointer;
@@ -893,7 +893,7 @@
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   background: var(--cs-glass-bg-light);
   border: 1px solid var(--cs-glass-border-medium);
-  border-radius: 1rem;
+  border-radius: var(--cs-radius-lg);
   padding: 2rem;
 }
 

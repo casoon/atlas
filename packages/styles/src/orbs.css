@@ -652,7 +652,7 @@
 @utility cs-surface-pop {
   background: var(--cs-surface);
   border: 1px solid var(--cs-border);
-  border-radius: 12px;
+  border-radius: var(--cs-card-radius);
   box-shadow: var(--cs-shadow-4);
 }
 

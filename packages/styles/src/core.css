@@ -825,7 +825,7 @@
   );
   color: var(--cs-brand-ink, #ffffff);
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: var(--cs-btn-padding-y) var(--cs-btn-padding-x);
   border-radius: calc(var(--cs-radius, 10px) / 2);
   font-weight: 600;
   cursor: pointer;
@@ -931,7 +931,7 @@
   );
   color: var(--cs-brand-ink, #ffffff);
   border: none;
-  padding: 0.875rem 1.5rem;
+  padding: var(--cs-btn-padding-y-lg) var(--cs-btn-padding-x);
   border-radius: var(--cs-form-radius, 8px);
   font-weight: 600;
   cursor: pointer;
@@ -1168,7 +1168,7 @@
 
 .cs-prose pre {
   background: var(--cs-elev1);
-  padding: 1.25rem;
+  padding: var(--cs-card-padding);
   border-radius: var(--cs-radius);
   overflow-x: auto;
   margin: 1.5rem 0;
@@ -1923,7 +1923,7 @@
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
     pointer-events: none;
-    border-radius: 9999px;
+    border-radius: var(--cs-radius-full);
     animation: none;
     z-index: 1;
   }
@@ -2217,7 +2217,7 @@
 
   &::-webkit-scrollbar-thumb {
     background: color-mix(in srgb, currentColor 20%, transparent);
-    border-radius: 4px;
+    border-radius: var(--cs-radius-sm);
 
     &:hover {
       background: color-mix(in srgb, currentColor 35%, transparent);
@@ -2241,12 +2241,12 @@
 
   &::-webkit-scrollbar-track {
     background: color-mix(in srgb, var(--cs-brand) 5%, transparent);
-    border-radius: 6px;
+    border-radius: var(--cs-radius-sm);
   }
 
   &::-webkit-scrollbar-thumb {
     background: var(--cs-brand);
-    border-radius: 6px;
+    border-radius: var(--cs-radius-sm);
     border: 2px solid color-mix(in srgb, var(--cs-brand) 5%, transparent);
 
     &:hover {

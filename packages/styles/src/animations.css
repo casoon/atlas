@@ -1515,7 +1515,7 @@
     width: var(--cs-underline-w, 0%);
     height: var(--cs-underline-h, 2px);
     background: currentColor;
-    border-radius: 999px;
+    border-radius: var(--cs-radius-full);
     transform: translateX(-50%);
     transition: width var(--cs-anim-duration-sm) var(--cs-anim-ease-decelerate);
   }
