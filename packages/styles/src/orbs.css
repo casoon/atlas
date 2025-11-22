@@ -233,44 +233,44 @@
    Orb Size Utilities
    ========================================================= */
 @utility cs-orb-xs {
-  width: 50px;
-  height: 50px;
+  width: min(50px, 13vw);
+  height: min(50px, 13vw);
 }
 @utility cs-orb-sm {
-  width: 75px;
-  height: 75px;
+  width: min(75px, 20vw);
+  height: min(75px, 20vw);
 }
 @utility cs-orb-md {
-  width: 100px;
-  height: 100px;
+  width: min(100px, 26vw);
+  height: min(100px, 26vw);
 }
 @utility cs-orb-lg {
-  width: 150px;
-  height: 150px;
+  width: min(150px, 40vw);
+  height: min(150px, 40vw);
 }
 @utility cs-orb-xl {
-  width: 200px;
-  height: 200px;
+  width: min(200px, 53vw);
+  height: min(200px, 53vw);
 }
 @utility cs-orb-2xl {
-  width: 300px;
-  height: 300px;
+  width: min(300px, 80vw);
+  height: min(300px, 80vw);
 }
 @utility cs-orb-3xl {
-  width: 400px;
-  height: 400px;
+  width: min(400px, 90vw);
+  height: min(400px, 90vw);
 }
 @utility cs-orb-4xl {
-  width: 500px;
-  height: 500px;
+  width: clamp(300px, 80vw, 500px);
+  height: clamp(300px, 80vw, 500px);
 }
 @utility cs-orb-5xl {
-  width: 600px;
-  height: 600px;
+  width: clamp(300px, 85vw, 600px);
+  height: clamp(300px, 85vw, 600px);
 }
 @utility cs-orb-massive {
-  width: 800px;
-  height: 800px;
+  width: clamp(300px, 90vw, 800px);
+  height: clamp(300px, 90vw, 800px);
 }
 
 /* =========================================================
@@ -1216,8 +1216,8 @@
 
 /* Main galaxy orb */
 .cs-orb-scene-galaxy::before {
-  width: 300px;
-  height: 300px;
+  width: min(300px, 80vw);
+  height: min(300px, 80vw);
   background: radial-gradient(
     circle,
     color-mix(in srgb, var(--cs-orb-purple) 40%, transparent) 0%,
@@ -1233,8 +1233,8 @@
 
 /* Secondary galaxy orb */
 .cs-orb-scene-galaxy::after {
-  width: 200px;
-  height: 200px;
+  width: min(200px, 53vw);
+  height: min(200px, 53vw);
   background: radial-gradient(
     circle,
     color-mix(in srgb, var(--cs-orb-blue) 35%, transparent) 0%,
@@ -1270,8 +1270,8 @@
 
 /* Large underwater orb */
 .cs-orb-scene-underwater::before {
-  width: 400px;
-  height: 400px;
+  width: min(400px, 90vw);
+  height: min(400px, 90vw);
   background: radial-gradient(
     circle,
     color-mix(in srgb, #00bcd4 30%, transparent) 0%,
@@ -1288,8 +1288,8 @@
 
 /* Floating bubbles effect */
 .cs-orb-scene-underwater::after {
-  width: 150px;
-  height: 150px;
+  width: min(150px, 40vw);
+  height: min(150px, 40vw);
   background: radial-gradient(
     circle,
     color-mix(in srgb, #b2ebf2 25%, transparent) 0%,
@@ -1378,8 +1378,8 @@
 
 /* Main nebula cloud */
 .cs-orb-scene-nebula::before {
-  width: 500px;
-  height: 300px;
+  width: min(500px, 95vw);
+  height: min(300px, 60vw);
   background: linear-gradient(
     45deg,
     color-mix(in srgb, var(--cs-orb-purple) 25%, transparent) 0%,
@@ -1398,8 +1398,8 @@
 
 /* Secondary nebula dust */
 .cs-orb-scene-nebula::after {
-  width: 250px;
-  height: 250px;
+  width: min(250px, 66vw);
+  height: min(250px, 66vw);
   background: radial-gradient(
     ellipse,
     color-mix(in srgb, var(--cs-orb-blue) 20%, transparent) 0%,
@@ -1437,8 +1437,8 @@
 
 /* Sunlight filtering through trees */
 .cs-orb-scene-forest::before {
-  width: 200px;
-  height: 400px;
+  width: min(200px, 53vw);
+  height: min(400px, 90vw);
   background: linear-gradient(
     0deg,
     transparent 0%,
@@ -1457,8 +1457,8 @@
 
 /* Forest fireflies/magic */
 .cs-orb-scene-forest::after {
-  width: 100px;
-  height: 100px;
+  width: min(100px, 26vw);
+  height: min(100px, 26vw);
   background: radial-gradient(
     circle,
     color-mix(in srgb, #76ff03 30%, transparent) 0%,
@@ -1519,8 +1519,8 @@
 
 /* Main sun orb */
 .cs-orb-scene-sunset::before {
-  width: 350px;
-  height: 350px;
+  width: min(350px, 85vw);
+  height: min(350px, 85vw);
   background: radial-gradient(
     circle,
     color-mix(in srgb, #ffeb3b 35%, transparent) 0%,
@@ -1536,8 +1536,8 @@
 
 /* Warm atmospheric glow */
 .cs-orb-scene-sunset::after {
-  width: 250px;
-  height: 150px;
+  width: min(250px, 66vw);
+  height: min(150px, 40vw);
   background: linear-gradient(
     135deg,
     color-mix(in srgb, #ffab40 20%, transparent) 0%,
@@ -1551,29 +1551,21 @@
   animation: cs-orb-drift-kf 12s ease-in-out infinite;
 }
 
-/* Responsive adjustments for scenes */
+/* Responsive adjustments for scenes - Reduce blur on smaller screens */
 @container (max-width: 768px) {
   .cs-orb-scene-galaxy::before {
-    width: 200px;
-    height: 200px;
     filter: blur(40px);
   }
 
   .cs-orb-scene-galaxy::after {
-    width: 150px;
-    height: 150px;
     filter: blur(30px);
   }
 
   .cs-orb-scene-underwater::before {
-    width: 250px;
-    height: 250px;
     filter: blur(50px);
   }
 
   .cs-orb-scene-nebula::before {
-    width: 300px;
-    height: 200px;
     filter: blur(60px);
   }
 }
