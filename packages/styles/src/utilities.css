@@ -655,6 +655,51 @@
   aspect-ratio: var(--cs-aspect, 16 / 9);
 }
 
+/* Common aspect ratio presets */
+@utility cs-aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+@utility cs-aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+@utility cs-aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+@utility cs-aspect-landscape {
+  aspect-ratio: 4 / 3;
+}
+
+@utility cs-aspect-photo {
+  aspect-ratio: 4 / 3;
+}
+
+@utility cs-aspect-ultrawide {
+  aspect-ratio: 21 / 9;
+}
+
+@utility cs-aspect-cinema {
+  aspect-ratio: 2.39 / 1;
+}
+
+/* Aspect ratio container with object-fit for images/videos */
+@utility cs-aspect-container {
+  position: relative;
+  overflow: hidden;
+
+  & > img,
+  & > video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 @utility cs-bleed-x {
   margin-inline: calc(var(--cs-page-pad) * -1);
 
