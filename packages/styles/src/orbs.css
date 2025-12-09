@@ -203,6 +203,49 @@
 }
 
 /* =========================================================
+   CSS CUSTOM PROPERTIES FOR INLINE STYLES
+   Duplicates @theme tokens as :root variables for use with var()
+   ========================================================= */
+:root {
+  /* Base palette colors */
+  --cs-text: #0f172a;
+  --cs-text-inverse: #ffffff;
+  --cs-bg: #ffffff;
+  --cs-surface: #ffffff;
+  --cs-surface-2: #f8fafc;
+  --cs-border: #e5e7eb;
+
+  /* Orb colors */
+  --cs-orb-blue: #3b82f6;
+  --cs-orb-blue-light: #93c5fd;
+  --cs-orb-blue-lighter: #dbeafe;
+  --cs-orb-purple: #9333ea;
+  --cs-orb-purple-light: #c4b5fd;
+  --cs-orb-purple-lighter: #ede9fe;
+  --cs-orb-pink: #ec4899;
+  --cs-orb-pink-light: #fbcfe8;
+  --cs-orb-pink-lighter: #fdf2f8;
+  --cs-orb-custom-primary: #667eea;
+  --cs-orb-custom-secondary: #764ba2;
+  --cs-orb-custom-accent: #f093fb;
+  --cs-orb-green: #22c55e;
+  --cs-orb-amber: #f59e0b;
+
+  /* Opacity tokens */
+  --cs-opacity-strong: 0.5;
+  --cs-opacity-medium: 0.3;
+  --cs-opacity-weak: 0.1;
+
+  /* Motion & transitions */
+  --cs-transition: 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cs-anim-ease-inout: cubic-bezier(0.4, 0, 0.2, 1);
+  --cs-anim-ease-emph: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cs-anim-duration-float: 6s;
+  --cs-anim-duration-pulse: 4s;
+  --cs-anim-duration-drift: 8s;
+}
+
+/* =========================================================
    Base Orb Utility
    ========================================================= */
 @utility cs-orb {
