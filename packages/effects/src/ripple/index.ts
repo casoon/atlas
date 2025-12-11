@@ -1,6 +1,6 @@
+import { shouldReduceMotion } from '../utils/accessibility';
 import { resolveElement } from '../utils/element';
 import { ensurePositioned } from '../utils/style';
-import { shouldReduceMotion } from '../utils/accessibility';
 
 export interface RippleOptions {
   strength?: number;

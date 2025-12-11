@@ -1,7 +1,7 @@
-import { resolveElement } from '../utils/element';
-import { createSimpleAnimationLoop } from '../utils/animation';
-import { createStyleManager } from '../utils/style';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { resolveElement } from '../utils/element';
+import { createStyleManager } from '../utils/style';
 
 export interface GlowOptions {
   color?: string;
@@ -44,7 +44,7 @@ export function glow(target: Element | string, options: GlowOptions = {}): () =>
     intensity = 0.5,
     size = 20,
     animated = true,
-    interactive = true
+    interactive = true,
   } = options;
 
   const styleManager = createStyleManager();
@@ -88,7 +88,7 @@ export function glow(target: Element | string, options: GlowOptions = {}): () =>
 
   // Return a cleanup function that calls all cleanup functions
   return () => {
-    cleanupFunctions.forEach(cleanup => cleanup());
+    cleanupFunctions.forEach((cleanup) => cleanup());
     styleManager.restore(element);
   };
 }

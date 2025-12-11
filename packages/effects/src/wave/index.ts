@@ -1,7 +1,7 @@
-import { resolveElement } from '../utils/element';
-import { createSimpleAnimationLoop } from '../utils/animation';
-import { createStyleManager } from '../utils/style';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { resolveElement } from '../utils/element';
+import { createStyleManager } from '../utils/style';
 
 export interface WaveOptions {
   amplitude?: number;
@@ -46,7 +46,7 @@ export function wave(target: Element | string, options: WaveOptions = {}): () =>
   let time = 0;
 
   const stopAnimation = createSimpleAnimationLoop(() => {
-    const offset = Math.sin(time) * amplitude;
+    const offset = Math.sin(time * frequency * 100) * amplitude;
     const transformValue =
       direction === 'horizontal' ? `translateY(${offset}px)` : `translateX(${offset}px)`;
 

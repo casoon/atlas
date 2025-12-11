@@ -1,6 +1,6 @@
+import { shouldReduceMotion } from '../utils/accessibility';
 import { resolveElement } from '../utils/element';
 import { createStyleManager } from '../utils/style';
-import { shouldReduceMotion } from '../utils/accessibility';
 
 export interface ShimmerOptions {
   angle?: number;
@@ -38,7 +38,7 @@ export function shimmer(
 
   const noop = {
     cleanup: () => {},
-    trigger: () => {}
+    trigger: () => {},
   };
 
   if (!element) {
@@ -57,7 +57,7 @@ export function shimmer(
     color = 'rgba(255, 255, 255, 0.3)',
     width = 100,
     loop = false,
-    interval = 5000
+    interval = 5000,
   } = options;
 
   const styleManager = createStyleManager();
@@ -102,14 +102,14 @@ export function shimmer(
     // Ensure element has position and overflow
     styleManager.setStyles(element, {
       position: element.style.position || 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
     });
 
     element.appendChild(animationElement);
 
     // Remove after animation
     setTimeout(() => {
-      if (animationElement && animationElement.parentNode) {
+      if (animationElement?.parentNode) {
         animationElement.parentNode.removeChild(animationElement);
         animationElement = null;
       }
@@ -134,7 +134,7 @@ export function shimmer(
         clearInterval(intervalId);
         intervalId = null;
       }
-      if (animationElement && animationElement.parentNode) {
+      if (animationElement?.parentNode) {
         animationElement.parentNode.removeChild(animationElement);
         animationElement = null;
       }
@@ -144,6 +144,6 @@ export function shimmer(
       if (keyframes) {
         keyframes.remove();
       }
-    }
+    },
   };
 }

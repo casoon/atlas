@@ -1,0 +1,18 @@
+{
+  "project": "casoon-atlas",
+  "description": "Modern UI library - CSS styles, JS effects, headless components",
+  "permissions": {
+    "allow": [
+      "Bash(pnpm:*)",
+      "Bash(npm:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Read",
+      "Write",
+      "Edit"
+    ]
+  }
+}

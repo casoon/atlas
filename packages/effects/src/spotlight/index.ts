@@ -1,7 +1,7 @@
-import { resolveElement } from '../utils/element';
-import { ensurePositioned } from '../utils/style';
-import { rafThrottle } from '../utils/performance';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { resolveElement } from '../utils/element';
+import { rafThrottle } from '../utils/performance';
+import { ensurePositioned } from '../utils/style';
 
 export interface SpotlightOptions {
   color?: string;
@@ -27,10 +27,7 @@ export interface SpotlightOptions {
  * });
  * ```
  */
-export function spotlight(
-  target: Element | string,
-  options: SpotlightOptions = {}
-): () => void {
+export function spotlight(target: Element | string, options: SpotlightOptions = {}): () => void {
   const element = resolveElement(target as string | HTMLElement);
   if (!element) {
     console.warn('[Atlas Spotlight] Element not found:', target);
@@ -43,12 +40,7 @@ export function spotlight(
     return () => {};
   }
 
-  const {
-    color = 'rgba(255, 255, 255, 0.1)',
-    size = 300,
-    blur = 100,
-    intensity = 0.8
-  } = options;
+  const { color = 'rgba(255, 255, 255, 0.1)', size = 300, blur = 100, intensity = 0.8 } = options;
 
   // Ensure element is positioned
   const restorePosition = ensurePositioned(element);

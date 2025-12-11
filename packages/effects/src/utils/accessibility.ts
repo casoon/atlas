@@ -40,9 +40,7 @@ export function shouldReduceMotion(): boolean {
  * cleanup();
  * ```
  */
-export function onMotionPreferenceChange(
-  callback: (prefersReduced: boolean) => void
-): () => void {
+export function onMotionPreferenceChange(callback: (prefersReduced: boolean) => void): () => void {
   if (typeof window === 'undefined') {
     return () => {}; // No-op for SSR
   }
@@ -107,8 +105,11 @@ export function announceToScreenReader(
   liveRegion.textContent = '';
 
   // Set new message after a brief delay to ensure screen readers pick it up
+  const region = liveRegion;
   setTimeout(() => {
-    liveRegion!.textContent = message;
+    if (region) {
+      region.textContent = message;
+    }
   }, 100);
 }
 

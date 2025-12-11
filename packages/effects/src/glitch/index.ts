@@ -1,6 +1,6 @@
+import { shouldReduceMotion } from '../utils/accessibility';
 import { resolveElement } from '../utils/element';
 import { createStyleManager } from '../utils/style';
-import { shouldReduceMotion } from '../utils/accessibility';
 
 export interface GlitchOptions {
   intensity?: number;
@@ -43,7 +43,7 @@ export function glitch(
 
   const noop = {
     cleanup: () => {},
-    trigger: () => {}
+    trigger: () => {},
   };
 
   if (!element) {
@@ -62,7 +62,7 @@ export function glitch(
     rgbShift = true,
     scanlines = true,
     trigger: triggerMode = 'auto',
-    interval = 3000
+    interval = 3000,
   } = options;
 
   const styleManager = createStyleManager();
@@ -82,14 +82,14 @@ export function glitch(
           ${shift}px 0 rgba(255, 0, 0, ${intensity}),
           ${-shift}px 0 rgba(0, 255, 255, ${intensity})
         `,
-        filter: `contrast(${1 + intensity}) brightness(${1 + intensity * 0.2})`
+        filter: `contrast(${1 + intensity}) brightness(${1 + intensity * 0.2})`,
       });
     } else {
       styleManager.setStyles(element, {
         transform: `translate(${Math.random() * shift - shift / 2}px, ${
           Math.random() * shift - shift / 2
         }px)`,
-        filter: `contrast(${1 + intensity})`
+        filter: `contrast(${1 + intensity})`,
       });
     }
 
@@ -148,6 +148,6 @@ export function glitch(
       // Remove any remaining scanlines
       const scanlines = element.querySelectorAll('.atlas-glitch-scanlines');
       scanlines.forEach((line) => line.remove());
-    }
+    },
   };
 }

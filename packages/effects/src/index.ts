@@ -1,36 +1,30 @@
 // Targeted re-exports - no export * for optimal tree-shaking
 
-// Core effects
-export { ripple, type RippleOptions } from './ripple/index';
-export { orbs, type OrbsOptions } from './orbs/index';
-export { parallax, type ParallaxOptions } from './parallax/index';
-
-// Advanced effects
-export { glassEffects, type GlassEffectsOptions } from './glass-effects/index';
-export { scrollReveal, type ScrollRevealOptions } from './scroll-reveal/index';
-export { particles, type ParticlesOptions } from './particles/index';
-
+export { type ConfettiOptions, confetti } from './confetti/index';
 // Interactive effects
-export { cursorFollow, type CursorFollowOptions } from './cursor-follow/index';
-export { tilt, type TiltOptions } from './tilt/index';
-export { magnetic, type MagneticOptions } from './magnetic/index';
-
+export { type CursorFollowOptions, cursorFollow } from './cursor-follow/index';
+// Advanced effects
+export { type GlassEffectsOptions, glassEffects } from './glass-effects/index';
+export { type GlitchOptions, glitch } from './glitch/index';
 // Visual effects
-export { glow, type GlowOptions } from './glow/index';
-export { morphing, type MorphingOptions } from './morphing/index';
-export { wave, type WaveOptions } from './wave/index';
-
-// Text effects
-export { typewriter, type TypewriterOptions } from './typewriter/index';
-export { textScramble, type TextScrambleOptions } from './text-scramble/index';
-
-// Special effects
-export { spotlight, type SpotlightOptions } from './spotlight/index';
-export { glitch, type GlitchOptions } from './glitch/index';
-export { shimmer, type ShimmerOptions } from './shimmer/index';
-export { noise, type NoiseOptions } from './noise/index';
-export { confetti, type ConfettiOptions } from './confetti/index';
-
+export { type GlowOptions, glow } from './glow/index';
+export { type MagneticOptions, magnetic } from './magnetic/index';
+export { type MorphingOptions, morphing } from './morphing/index';
+export { type NoiseOptions, noise } from './noise/index';
+export { type OrbsOptions, orbs } from './orbs/index';
+export { type ParallaxOptions, parallax } from './parallax/index';
+export { type ParticlesOptions, particles } from './particles/index';
+export { type ProgressRingOptions, progressRing } from './progress-ring/index';
+// Core effects
+export { type RippleOptions, ripple } from './ripple/index';
+export { type ScrollRevealOptions, scrollReveal } from './scroll-reveal/index';
+export { type ShimmerOptions, shimmer } from './shimmer/index';
 // Loading & Progress
-export { skeleton, type SkeletonOptions } from './skeleton/index';
-export { progressRing, type ProgressRingOptions } from './progress-ring/index';
+export { type SkeletonEffectOptions, skeletonEffect } from './skeleton/index';
+// Special effects
+export { type SpotlightOptions, spotlight } from './spotlight/index';
+export { type TextScrambleOptions, textScramble } from './text-scramble/index';
+export { type TiltOptions, tilt } from './tilt/index';
+// Text effects
+export { type TypewriterOptions, typewriter } from './typewriter/index';
+export { type WaveOptions, wave } from './wave/index';

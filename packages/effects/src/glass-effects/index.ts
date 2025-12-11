@@ -1,8 +1,8 @@
-import { resolveElement } from '../utils/element';
-import { createSimpleAnimationLoop } from '../utils/animation';
-import { createStyleManager } from '../utils/style';
-import { rafThrottle } from '../utils/performance';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { resolveElement } from '../utils/element';
+import { rafThrottle } from '../utils/performance';
+import { createStyleManager } from '../utils/style';
 
 export interface GlassEffectsOptions {
   intensity?: number;
@@ -45,7 +45,7 @@ export function glassEffects(
     blurAmount = 16,
     animated = true,
     interactiveBlur = true,
-    color = 'rgba(255, 255, 255, 0.1)'
+    color = 'rgba(255, 255, 255, 0.1)',
   } = options;
 
   const styleManager = createStyleManager();
@@ -58,7 +58,7 @@ export function glassEffects(
       'backdrop-filter': `blur(${blur}px) saturate(1.2)`,
       '-webkit-backdrop-filter': `blur(${blur}px) saturate(1.2)`,
       border: `1px solid color-mix(in srgb, ${color} ${Math.round(opacity * 200)}%, transparent)`,
-      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     });
   };
 
@@ -70,7 +70,7 @@ export function glassEffects(
       const y = (e.clientY - rect.top) / rect.height;
 
       // Calculate distance from center
-      const distanceFromCenter = Math.sqrt(Math.pow(x - 0.5, 2) + Math.pow(y - 0.5, 2));
+      const distanceFromCenter = Math.sqrt((x - 0.5) ** 2 + (y - 0.5) ** 2);
       const dynamicBlur = blurAmount * (0.7 + distanceFromCenter * 0.6);
       const dynamicOpacity = intensity * (1.2 - distanceFromCenter * 0.4);
 

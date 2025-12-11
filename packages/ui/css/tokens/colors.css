@@ -1,0 +1,92 @@
+/**
+ * Atlas UI - Color Tokens
+ *
+ * Design tokens for colors as CSS Custom Properties.
+ * Override these in your project to customize the theme.
+ */
+
+:root {
+  /* Primary Brand Color */
+  --atlas-primary: #3b82f6;
+  --atlas-primary-hover: #2563eb;
+  --atlas-primary-active: #1d4ed8;
+  --atlas-primary-rgb: 59, 130, 246;
+
+  /* Secondary */
+  --atlas-secondary: #64748b;
+  --atlas-secondary-hover: #475569;
+  --atlas-secondary-active: #334155;
+
+  /* Semantic Colors */
+  --atlas-success: #22c55e;
+  --atlas-success-hover: #16a34a;
+  --atlas-warning: #f59e0b;
+  --atlas-warning-hover: #d97706;
+  --atlas-error: #ef4444;
+  --atlas-error-hover: #dc2626;
+  --atlas-info: #0ea5e9;
+  --atlas-info-hover: #0284c7;
+
+  /* Neutral Scale */
+  --atlas-white: #ffffff;
+  --atlas-black: #000000;
+
+  --atlas-gray-50: #f9fafb;
+  --atlas-gray-100: #f3f4f6;
+  --atlas-gray-200: #e5e7eb;
+  --atlas-gray-300: #d1d5db;
+  --atlas-gray-400: #9ca3af;
+  --atlas-gray-500: #6b7280;
+  --atlas-gray-600: #4b5563;
+  --atlas-gray-700: #374151;
+  --atlas-gray-800: #1f2937;
+  --atlas-gray-900: #111827;
+  --atlas-gray-950: #030712;
+
+  /* Surface Colors */
+  --atlas-surface: var(--atlas-white);
+  --atlas-surface-hover: var(--atlas-gray-50);
+  --atlas-surface-active: var(--atlas-gray-100);
+
+  /* Text Colors */
+  --atlas-text: var(--atlas-gray-900);
+  --atlas-text-muted: var(--atlas-gray-500);
+  --atlas-text-inverse: var(--atlas-white);
+
+  /* Border Colors */
+  --atlas-border: var(--atlas-gray-200);
+  --atlas-border-hover: var(--atlas-gray-300);
+  --atlas-border-focus: var(--atlas-primary);
+
+  /* Overlay */
+  --atlas-overlay: rgba(0, 0, 0, 0.5);
+  --atlas-overlay-light: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --atlas-surface: var(--atlas-gray-900);
+    --atlas-surface-hover: var(--atlas-gray-800);
+    --atlas-surface-active: var(--atlas-gray-700);
+
+    --atlas-text: var(--atlas-gray-100);
+    --atlas-text-muted: var(--atlas-gray-400);
+
+    --atlas-border: var(--atlas-gray-700);
+    --atlas-border-hover: var(--atlas-gray-600);
+  }
+}
+
+/* Manual Dark Mode Class */
+.dark {
+  --atlas-surface: var(--atlas-gray-900);
+  --atlas-surface-hover: var(--atlas-gray-800);
+  --atlas-surface-active: var(--atlas-gray-700);
+
+  --atlas-text: var(--atlas-gray-100);
+  --atlas-text-muted: var(--atlas-gray-400);
+
+  --atlas-border: var(--atlas-gray-700);
+  --atlas-border-hover: var(--atlas-gray-600);
+}

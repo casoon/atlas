@@ -1,6 +1,6 @@
+import { shouldReduceMotion } from '../utils/accessibility';
 import { resolveElement } from '../utils/element';
 import { createStyleManager } from '../utils/style';
-import { shouldReduceMotion } from '../utils/accessibility';
 
 export interface MorphingOptions {
   shapes?: string[];
@@ -43,7 +43,7 @@ export function morphing(target: Element | string, options: MorphingOptions = {}
     shapes = ['50%', '0%', '25%', '50%'],
     duration = 2000,
     autoPlay = true,
-    loop = true
+    loop = true,
   } = options;
 
   const styleManager = createStyleManager();
@@ -53,7 +53,7 @@ export function morphing(target: Element | string, options: MorphingOptions = {}
   const morph = (shapeIndex: number) => {
     styleManager.setStyles(element, {
       'border-radius': shapes[shapeIndex],
-      transition: `border-radius ${duration}ms cubic-bezier(0.68, -0.55, 0.265, 1.55)`
+      transition: `border-radius ${duration}ms cubic-bezier(0.68, -0.55, 0.265, 1.55)`,
     });
   };
 

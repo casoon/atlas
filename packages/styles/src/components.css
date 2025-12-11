@@ -1,0 +1,848 @@
+/**
+ * Atlas Components - Micro-Interactions CSS
+ *
+ * Premium animations and transitions for Atlas UI components.
+ * These are the "tiny moments that make a product feel alive."
+ */
+
+/* ==========================================================================
+   CSS Custom Properties
+   ========================================================================== */
+
+:root {
+  /* Animation Durations */
+  --atlas-duration-instant: 0ms;
+  --atlas-duration-fast: 150ms;
+  --atlas-duration-normal: 250ms;
+  --atlas-duration-slow: 400ms;
+
+  /* Easing Functions */
+  --atlas-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --atlas-ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+  --atlas-ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --atlas-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --atlas-ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Colors (can be overridden) */
+  --atlas-primary: #3b82f6;
+  --atlas-primary-rgb: 59, 130, 246;
+  --atlas-success: #22c55e;
+  --atlas-error: #ef4444;
+  --atlas-gray-100: #f3f4f6;
+  --atlas-gray-200: #e5e7eb;
+  --atlas-gray-400: #9ca3af;
+}
+
+/* ==========================================================================
+   Keyframe Animations
+   ========================================================================== */
+
+/* Button Ripple Effect */
+@keyframes atlas-ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Button Spinner */
+@keyframes atlas-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button Checkmark Draw Animation */
+@keyframes atlas-checkmark-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Button X Draw Animation (Error state) */
+@keyframes atlas-x-draw {
+  from {
+    stroke-dashoffset: 17;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Skeleton Shimmer */
+@keyframes atlas-skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Skeleton Pulse */
+@keyframes atlas-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Skeleton Wave */
+@keyframes atlas-skeleton-wave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* General Shimmer (for progress bars, etc.) */
+@keyframes atlas-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Progress Indeterminate */
+@keyframes atlas-progress-indeterminate {
+  0% {
+    left: -30%;
+    right: 100%;
+  }
+  50% {
+    left: 100%;
+    right: -30%;
+  }
+  100% {
+    left: 100%;
+    right: -30%;
+  }
+}
+
+/* Toast Progress Bar */
+@keyframes atlas-toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* Modal/Drawer Backdrop Fade */
+@keyframes atlas-backdrop-in {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+}
+
+@keyframes atlas-backdrop-out {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+/* Modal Scale In/Out */
+@keyframes atlas-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes atlas-modal-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Drawer Slide Variants */
+@keyframes atlas-drawer-left-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes atlas-drawer-right-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes atlas-drawer-top-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes atlas-drawer-bottom-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes atlas-drawer-left-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes atlas-drawer-right-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes atlas-drawer-top-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes atlas-drawer-bottom-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Dropdown Scale In/Out */
+@keyframes atlas-dropdown-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes atlas-dropdown-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Toast Slide In/Out */
+@keyframes atlas-toast-in-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes atlas-toast-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes atlas-toast-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Gentle Pulse (for focus indicators, breathing effect) */
+@keyframes atlas-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0);
+  }
+}
+
+/* Breathing animation (subtle scale pulse) */
+@keyframes atlas-breathing {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.02);
+    filter: brightness(1.05);
+  }
+}
+
+/* Shake (for error states) */
+@keyframes atlas-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+/* Bounce (for success states) */
+@keyframes atlas-bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Fade In/Out */
+@keyframes atlas-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes atlas-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Slide animations for stagger */
+@keyframes atlas-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes atlas-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes atlas-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes atlas-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale animations for stagger */
+@keyframes atlas-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes atlas-scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Flip animation */
+@keyframes atlas-flip-in {
+  from {
+    opacity: 0;
+    transform: perspective(400px) rotateX(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(400px) rotateX(0);
+  }
+}
+
+/* Zoom animation */
+@keyframes atlas-zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   Component Base Styles
+   ========================================================================== */
+
+/* Button States */
+.atlas-button {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--atlas-duration-fast) var(--atlas-ease-bounce),
+    filter var(--atlas-duration-fast) var(--atlas-ease-standard),
+    box-shadow var(--atlas-duration-fast) var(--atlas-ease-standard);
+  transform-origin: center center;
+}
+
+.atlas-button:active:not(:disabled) {
+  transform: scale(0.97);
+  filter: brightness(0.95);
+}
+
+.atlas-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.atlas-button-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.2;
+  transform: scale(0);
+  pointer-events: none;
+  animation: atlas-ripple var(--atlas-duration-normal) var(--atlas-ease-decelerate) forwards;
+}
+
+.atlas-button-spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: atlas-spin 600ms linear infinite;
+}
+
+/* Card */
+.atlas-card {
+  transition:
+    transform var(--atlas-duration-normal) var(--atlas-ease-spring),
+    box-shadow var(--atlas-duration-normal) var(--atlas-ease-standard);
+  transform-style: preserve-3d;
+}
+
+.atlas-card-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 55%,
+    transparent 60%
+  );
+  background-size: 200% 200%;
+  background-position: 100% 0%;
+  opacity: 0;
+  transition: opacity var(--atlas-duration-fast) var(--atlas-ease-standard);
+  border-radius: inherit;
+}
+
+.atlas-card:hover .atlas-card-shine {
+  opacity: 1;
+}
+
+/* Modal */
+.atlas-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.atlas-modal {
+  animation: atlas-modal-in var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-modal-closing {
+  animation: atlas-modal-out var(--atlas-duration-fast) var(--atlas-ease-accelerate) forwards;
+}
+
+/* Drawer */
+.atlas-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.atlas-drawer[data-side='left'] {
+  animation: atlas-drawer-left-in var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-drawer[data-side='right'] {
+  animation: atlas-drawer-right-in var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-drawer[data-side='top'] {
+  animation: atlas-drawer-top-in var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-drawer[data-side='bottom'] {
+  animation: atlas-drawer-bottom-in var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+/* Dropdown */
+.atlas-dropdown-menu {
+  animation: atlas-dropdown-in var(--atlas-duration-fast) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-dropdown-item {
+  transition: background-color var(--atlas-duration-fast) var(--atlas-ease-standard);
+}
+
+.atlas-dropdown-item:hover,
+.atlas-dropdown-focused {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.atlas-dropdown-item:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Toast */
+.atlas-toast-container {
+  position: fixed;
+  z-index: 500;
+  display: flex;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.atlas-toast {
+  pointer-events: auto;
+  animation: atlas-toast-in-bottom var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-toast-container[data-position^='top'] .atlas-toast {
+  animation-name: atlas-toast-in-top;
+}
+
+.atlas-toast-icon svg {
+  display: block;
+}
+
+.atlas-toast-checkmark {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: atlas-checkmark-draw 300ms var(--atlas-ease-decelerate) 100ms forwards;
+}
+
+.atlas-toast-progress {
+  transform-origin: left;
+}
+
+.atlas-toast-action:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.atlas-toast-dismiss:hover {
+  opacity: 1;
+}
+
+/* Progress */
+.atlas-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.atlas-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transition: width var(--atlas-duration-normal) var(--atlas-ease-decelerate);
+}
+
+.atlas-progress-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: atlas-shimmer 1.5s infinite;
+}
+
+.atlas-progress-indeterminate .atlas-progress-bar {
+  animation: atlas-progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+/* Step Progress */
+.atlas-step-circle {
+  transition: all var(--atlas-duration-normal) var(--atlas-ease-spring);
+}
+
+.atlas-step-connector {
+  transition: background var(--atlas-duration-normal) var(--atlas-ease-standard);
+}
+
+/* Skeleton */
+.atlas-skeleton {
+  background-color: var(--atlas-gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.atlas-skeleton-animation {
+  position: absolute;
+  inset: 0;
+}
+
+.atlas-skeleton[data-animation='shimmer'] .atlas-skeleton-animation {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: atlas-skeleton-shimmer 1.5s var(--atlas-ease-standard) infinite;
+}
+
+.atlas-skeleton[data-animation='pulse'] .atlas-skeleton-animation {
+  animation: atlas-skeleton-pulse 1.5s var(--atlas-ease-standard) infinite;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.atlas-skeleton[data-animation='wave'] {
+  background: linear-gradient(
+    90deg,
+    var(--atlas-gray-200) 25%,
+    var(--atlas-gray-100) 50%,
+    var(--atlas-gray-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: atlas-skeleton-wave 1.5s var(--atlas-ease-standard) infinite;
+}
+
+/* ==========================================================================
+   Hover States (Desktop)
+   ========================================================================== */
+
+@media (hover: hover) {
+  /* Gentle lift on hover */
+  .atlas-hover-lift {
+    transition:
+      transform var(--atlas-duration-fast) var(--atlas-ease-standard),
+      box-shadow var(--atlas-duration-fast) var(--atlas-ease-standard);
+  }
+
+  .atlas-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Subtle glow on hover */
+  .atlas-hover-glow {
+    transition:
+      box-shadow var(--atlas-duration-normal) var(--atlas-ease-standard),
+      filter var(--atlas-duration-normal) var(--atlas-ease-standard);
+  }
+
+  .atlas-hover-glow:hover {
+    box-shadow: 0 0 20px rgba(var(--atlas-primary-rgb), 0.4);
+    filter: brightness(1.05);
+  }
+
+  /* Scale on hover */
+  .atlas-hover-scale {
+    transition: transform var(--atlas-duration-fast) var(--atlas-ease-spring);
+  }
+
+  .atlas-hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  /* Breathing animation on hover */
+  .atlas-hover-breathing:hover {
+    animation: atlas-breathing 2s ease-in-out infinite;
+  }
+}
+
+/* ==========================================================================
+   Focus States (Accessibility)
+   ========================================================================== */
+
+/* Only show focus ring for keyboard navigation */
+.atlas-focus-visible:focus-visible {
+  outline: 2px solid var(--atlas-primary);
+  outline-offset: 2px;
+}
+
+/* Animated focus ring */
+.atlas-focus-pulse:focus-visible {
+  animation: atlas-pulse 1.5s var(--atlas-ease-standard) infinite;
+}
+
+/* ==========================================================================
+   Stagger Animation Utilities
+   ========================================================================== */
+
+.atlas-stagger-item {
+  opacity: 0;
+}
+
+.atlas-stagger-fade-up {
+  animation: atlas-slide-up var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-stagger-fade-down {
+  animation: atlas-slide-down var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-stagger-fade-left {
+  animation: atlas-slide-left var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-stagger-fade-right {
+  animation: atlas-slide-right var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-stagger-scale {
+  animation: atlas-scale-in var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-stagger-flip {
+  animation: atlas-flip-in var(--atlas-duration-normal) var(--atlas-ease-spring) forwards;
+}
+
+.atlas-stagger-zoom {
+  animation: atlas-zoom-in var(--atlas-duration-normal) var(--atlas-ease-bounce) forwards;
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

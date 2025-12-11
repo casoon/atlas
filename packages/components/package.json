@@ -1,6 +1,6 @@
 {
   "name": "@casoon/atlas-components",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Headless UI components with accessibility focus - framework-agnostic",
   "type": "module",
   "files": [
@@ -55,7 +55,8 @@
   },
   "scripts": {
     "build": "tsup",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "components",

@@ -15,8 +15,8 @@ export class StyleManager {
       this.originalStyles.set(element, new Map());
     }
 
-    const elementStyles = this.originalStyles.get(element)!;
-    if (!elementStyles.has(property)) {
+    const elementStyles = this.originalStyles.get(element);
+    if (elementStyles && !elementStyles.has(property)) {
       const computedValue = element.style.getPropertyValue(property);
       elementStyles.set(property, computedValue);
     }

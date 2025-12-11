@@ -15,7 +15,7 @@ export default defineConfig({
     morphing: 'src/morphing/index.ts',
     wave: 'src/wave/index.ts',
     magnetic: 'src/magnetic/index.ts',
-    typewriter: 'src/typewriter/index.ts'
+    typewriter: 'src/typewriter/index.ts',
   },
   dts: true,
   format: ['esm'],
@@ -23,5 +23,5 @@ export default defineConfig({
   sourcemap: true,
   treeshake: true,
   splitting: true,
-  clean: true
+  clean: true,
 });

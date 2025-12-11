@@ -79,7 +79,7 @@ export function createForm<TValues extends Record<string, unknown>>(
       fields.set(typedKey, {
         value: initVals[typedKey],
         touched: false,
-        dirty: false
+        dirty: false,
       });
     }
   }
@@ -94,7 +94,7 @@ export function createForm<TValues extends Record<string, unknown>>(
     const field = fields.get(name) || {
       value: undefined,
       touched: false,
-      dirty: false
+      dirty: false,
     };
     fields.set(name, { ...field, value, dirty: true });
     notifySubscribers();
@@ -152,7 +152,7 @@ export function createForm<TValues extends Record<string, unknown>>(
         fields.set(typedKey, {
           value: initVals[typedKey],
           touched: false,
-          dirty: false
+          dirty: false,
         });
       }
     }
@@ -187,6 +187,6 @@ export function createForm<TValues extends Record<string, unknown>>(
     handleSubmit,
     reset,
     subscribe,
-    destroy
+    destroy,
   };
 }

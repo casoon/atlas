@@ -1,8 +1,8 @@
-import { resolveElement } from '../utils/element';
-import { createSimpleAnimationLoop } from '../utils/animation';
-import { ensurePositioned } from '../utils/style';
-import { rafThrottle } from '../utils/performance';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { resolveElement } from '../utils/element';
+import { rafThrottle } from '../utils/performance';
+import { ensurePositioned } from '../utils/style';
 
 export interface ParticlesOptions {
   count?: number;
@@ -65,7 +65,7 @@ export function particles(target: Element | string, options: ParticlesOptions = 
     opacity = [0.3, 0.8],
     interactive = true,
     connectLines = false,
-    maxDistance = 100
+    maxDistance = 100,
   } = options;
 
   const particles: Particle[] = [];
@@ -114,7 +114,7 @@ export function particles(target: Element | string, options: ParticlesOptions = 
       vy: (Math.random() - 0.5) * particleSpeed,
       size: particleSize,
       opacity: opacity[0] + Math.random() * (opacity[1] - opacity[0]),
-      element: document.createElement('div')
+      element: document.createElement('div'),
     };
 
     const particleColor = colors[Math.floor(Math.random() * colors.length)];
@@ -241,7 +241,7 @@ export function particles(target: Element | string, options: ParticlesOptions = 
       }
     });
 
-    if (canvas && canvas.parentNode) {
+    if (canvas?.parentNode) {
       canvas.parentNode.removeChild(canvas);
     }
   };

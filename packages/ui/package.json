@@ -1,0 +1,64 @@
+{
+  "name": "@casoon/atlas-ui",
+  "version": "0.1.1",
+  "description": "CSS-first UI components with optional JS enhancements. SSR-safe, Tailwind-compatible, AHA stack ready.",
+  "type": "module",
+  "main": "./elements/index.js",
+  "module": "./elements/index.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./elements/index.js",
+      "require": "./elements/index.js"
+    },
+    "./css": "./css/index.css",
+    "./css/tokens": "./css/tokens/index.css",
+    "./css/components/*": "./css/components/*.css",
+    "./elements": "./elements/index.js",
+    "./elements/*": "./elements/*.js",
+    "./enhancers": "./enhancers/index.js",
+    "./enhancers/*": "./enhancers/*.js",
+    "./astro/*": "./astro/*.astro",
+    "./tailwind-preset": "./tailwind-preset.js"
+  },
+  "files": [
+    "css",
+    "elements",
+    "enhancers",
+    "astro",
+    "tailwind-preset.js",
+    "types"
+  ],
+  "sideEffects": [
+    "*.css",
+    "./elements/*.js",
+    "./enhancers/*.js"
+  ],
+  "keywords": [
+    "ui",
+    "components",
+    "css",
+    "web-components",
+    "tailwind",
+    "astro",
+    "htmx",
+    "alpine",
+    "ssr",
+    "design-system"
+  ],
+  "author": "CASOON",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/casoon/atlas.git",
+    "directory": "packages/ui"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}

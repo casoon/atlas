@@ -1,38 +1,36 @@
 // Import all CASOON Atlas packages
 import '@casoon/atlas-styles';
 
+// Import components
+import {
+  createAccordion,
+  createModal,
+  createTabs,
+  createToastManager,
+} from '@casoon/atlas-components';
 // Import effects
-import { 
-  ripple, 
+import {
   glassEffects,
-  scrollReveal,
-  particles,
-  tilt,
   glow,
   magnetic,
-  typewriter
+  particles,
+  ripple,
+  scrollReveal,
+  tilt,
+  typewriter,
 } from '@casoon/atlas-effects';
-
-// Import components
-import { 
-  createModal,
-  createDropdown,
-  createTabs,
-  createAccordion,
-  createToastManager
-} from '@casoon/atlas-components';
 
 // Demo sections
 const sections = {
   effects: () => createEffectsDemo(),
   components: () => createComponentsDemo(),
-  styles: () => createStylesDemo()
+  styles: () => createStylesDemo(),
 };
 
 let currentCleanup: (() => void)[] = [];
 
 function cleanup() {
-  currentCleanup.forEach(fn => fn());
+  currentCleanup.forEach((fn) => fn());
   currentCleanup = [];
 }
 
@@ -44,39 +42,39 @@ function createEffectsDemo() {
         <h3>Ripple Effect</h3>
         <div id="ripple-demo" class="demo-target cs-glass">Click me!</div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Glass Effects</h3>
         <div id="glass-demo" class="demo-target">Hover for interactive glass</div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Tilt Effect</h3>
         <div id="tilt-demo" class="demo-target cs-glass">Hover to tilt</div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Glow Effect</h3>
         <div id="glow-demo" class="demo-target">Animated glow</div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Magnetic Effect</h3>
         <div id="magnetic-demo" class="demo-target cs-glass">Magnetic attraction</div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Typewriter</h3>
         <div id="typewriter-demo" class="demo-target"></div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Particles</h3>
         <div id="particles-demo" class="demo-target" style="height: 200px; position: relative;">
           Particle system
         </div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Scroll Reveal</h3>
         <div id="scroll-demo" class="demo-target">Scroll to reveal</div>
@@ -92,14 +90,14 @@ function createEffectsDemo() {
       tilt('#tilt-demo', { intensity: 15 }),
       glow('#glow-demo', { color: '#3b82f6', animated: true }),
       magnetic('#magnetic-demo', { strength: 0.4 }),
-      typewriter('#typewriter-demo', { 
-        texts: ['Hello World!', 'CASOON Atlas', 'Modern UI Effects'], 
-        speed: 100 
+      typewriter('#typewriter-demo', {
+        texts: ['Hello World!', 'CASOON Atlas', 'Modern UI Effects'],
+        speed: 100,
       }),
-      particles('#particles-demo', { 
-        count: 20, 
+      particles('#particles-demo', {
+        count: 20,
         interactive: true,
-        connectLines: true 
+        connectLines: true,
       }),
       scrollReveal('#scroll-demo', { origin: 'bottom', distance: '30px' })
     );
@@ -130,7 +128,7 @@ function createComponentsDemo() {
           </div>
         </div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Tabs</h3>
         <div class="tabs">
@@ -144,13 +142,13 @@ function createComponentsDemo() {
           <div id="panel3" class="tab-panel">Content 3</div>
         </div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Toast Notifications</h3>
         <button id="show-toast" class="demo-button">Show Toast</button>
         <div id="toast-container"></div>
       </div>
-      
+
       <div class="demo-card">
         <h3>Accordion</h3>
         <div class="accordion">
@@ -172,31 +170,31 @@ function createComponentsDemo() {
     const openModalBtn = container.querySelector('#open-modal') as HTMLButtonElement;
     const closeModalBtn = container.querySelector('#close-modal') as HTMLButtonElement;
     const modalContent = container.querySelector('#modal-content') as HTMLElement;
-    
+
     openModalBtn.addEventListener('click', () => {
       modalContent.style.display = 'block';
       modal.open();
     });
-    
+
     closeModalBtn.addEventListener('click', modal.close);
 
     // Tabs
-    ['tab1', 'tab2', 'tab3'].forEach(tabId => {
+    ['tab1', 'tab2', 'tab3'].forEach((tabId) => {
       const btn = container.querySelector(`#${tabId}`) as HTMLButtonElement;
       const panel = container.querySelector(`#panel${tabId.slice(-1)}`) as HTMLElement;
-      
+
       btn.addEventListener('click', () => tabs.setActiveTab(tabId));
-      
+
       // Update UI based on tabs state
       const updateTab = () => {
         const props = tabs.getTabProps(tabId);
         const panelProps = tabs.getPanelProps(tabId);
-        
+
         btn.setAttribute('aria-selected', props['aria-selected'].toString());
         btn.className = `tab-button ${props['aria-selected'] ? 'active' : ''}`;
         panel.hidden = panelProps.hidden;
       };
-      
+
       updateTab();
       btn.addEventListener('click', updateTab);
     });
@@ -210,28 +208,28 @@ function createComponentsDemo() {
     // Accordion
     const accBtn1 = container.querySelector('#acc-btn-1') as HTMLButtonElement;
     const accBtn2 = container.querySelector('#acc-btn-2') as HTMLButtonElement;
-    
+
     accBtn1.addEventListener('click', () => {
       accordion.toggle('panel1');
       updateAccordion();
     });
-    
+
     accBtn2.addEventListener('click', () => {
-      accordion.toggle('panel2'); 
+      accordion.toggle('panel2');
       updateAccordion();
     });
-    
+
     const updateAccordion = () => {
       const content1 = container.querySelector('#panel1-content') as HTMLElement;
       const content2 = container.querySelector('#panel2-content') as HTMLElement;
-      
+
       content1.hidden = !accordion.isOpen('panel1');
       content2.hidden = !accordion.isOpen('panel2');
-      
+
       accBtn1.setAttribute('aria-expanded', accordion.isOpen('panel1').toString());
       accBtn2.setAttribute('aria-expanded', accordion.isOpen('panel2').toString());
     };
-    
+
     updateAccordion();
   }, 100);
 
@@ -246,17 +244,17 @@ function createStylesDemo() {
         <h3>Glass Morphism</h3>
         <p>Backdrop filter effects with various opacities and blur amounts.</p>
       </div>
-      
+
       <div class="demo-card cs-glass-dark">
         <h3>Dark Glass</h3>
         <p>Dark variant of glass morphism effect.</p>
       </div>
-      
+
       <div class="demo-card" style="background: var(--cs-gradient-ocean);">
         <h3>Ocean Gradient</h3>
         <p>Beautiful gradient backgrounds from the gradient system.</p>
       </div>
-      
+
       <div class="demo-card cs-card-feature">
         <h3>Feature Card</h3>
         <p>Pre-styled feature card component with hover effects.</p>
@@ -268,22 +266,24 @@ function createStylesDemo() {
 
 // Navigation
 function initNavigation() {
-  const nav = document.getElementById('nav')!;
-  const main = document.getElementById('main')!;
+  const nav = document.getElementById('nav');
+  const main = document.getElementById('main');
+
+  if (!nav || !main) return;
 
   nav.addEventListener('click', (e) => {
     const target = e.target as HTMLButtonElement;
     const section = target.dataset.section;
-    
+
     if (section && sections[section as keyof typeof sections]) {
       cleanup();
       main.innerHTML = '';
-      
+
       // Update active state
-      nav.querySelectorAll('button').forEach(btn => 
-        btn.classList.toggle('active', btn === target)
-      );
-      
+      nav
+        .querySelectorAll('button')
+        .forEach((btn) => btn.classList.toggle('active', btn === target));
+
       // Load section
       const content = sections[section as keyof typeof sections]();
       main.appendChild(content);
@@ -302,100 +302,100 @@ function initStyles() {
     header { text-align: center; margin-bottom: 2rem; }
     header h1 { margin: 0; font-size: 2.5rem; }
     header p { margin: 0.5rem 0 0; opacity: 0.8; }
-    
+
     #nav { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; }
-    #nav button { 
-      padding: 0.75rem 1.5rem; 
-      border: none; 
+    #nav button {
+      padding: 0.75rem 1.5rem;
+      border: none;
       border-radius: 0.5rem;
-      background: rgba(255,255,255,0.1); 
-      color: #e2e8f0; 
+      background: rgba(255,255,255,0.1);
+      color: #e2e8f0;
       cursor: pointer;
       transition: all 0.2s;
     }
-    #nav button:hover, #nav button.active { 
-      background: rgba(79,124,255,0.2); 
+    #nav button:hover, #nav button.active {
+      background: rgba(79,124,255,0.2);
       transform: translateY(-2px);
     }
-    
-    .demo-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-      gap: 2rem; 
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
-    
-    .demo-card { 
-      padding: 1.5rem; 
-      border-radius: 1rem; 
+
+    .demo-card {
+      padding: 1.5rem;
+      border-radius: 1rem;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
       transition: transform 0.2s;
     }
     .demo-card:hover { transform: translateY(-4px); }
     .demo-card h3 { margin: 0 0 1rem; }
-    
-    .demo-target { 
-      padding: 1rem; 
+
+    .demo-target {
+      padding: 1rem;
       margin: 1rem 0;
       border-radius: 0.5rem;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
-      text-align: center; 
+      text-align: center;
       cursor: pointer;
       user-select: none;
     }
-    
-    .demo-button { 
-      padding: 0.5rem 1rem; 
-      border: none; 
+
+    .demo-button {
+      padding: 0.5rem 1rem;
+      border: none;
       border-radius: 0.5rem;
-      background: #3b82f6; 
-      color: white; 
+      background: #3b82f6;
+      color: white;
       cursor: pointer;
       transition: background 0.2s;
     }
     .demo-button:hover { background: #2563eb; }
-    
-    .modal-overlay { 
-      position: fixed; 
-      inset: 0; 
-      background: rgba(0,0,0,0.5); 
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
       display: flex;
-      align-items: center; 
+      align-items: center;
       justify-content: center;
       z-index: 1000;
     }
-    .modal-dialog { 
-      padding: 2rem; 
-      border-radius: 1rem; 
-      max-width: 400px; 
-      width: 90%; 
+    .modal-dialog {
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 400px;
+      width: 90%;
     }
-    
-    .tab-button { 
-      padding: 0.5rem 1rem; 
+
+    .tab-button {
+      padding: 0.5rem 1rem;
       border: none;
-      background: rgba(255,255,255,0.1); 
+      background: rgba(255,255,255,0.1);
       color: #e2e8f0;
       cursor: pointer;
       border-radius: 0.25rem;
     }
     .tab-button.active { background: #3b82f6; }
     .tab-panel { padding: 1rem; margin-top: 1rem; }
-    
-    .accordion-button { 
-      width: 100%; 
-      padding: 1rem; 
+
+    .accordion-button {
+      width: 100%;
+      padding: 1rem;
       border: none;
-      background: rgba(255,255,255,0.1); 
+      background: rgba(255,255,255,0.1);
       color: #e2e8f0;
-      text-align: left; 
+      text-align: left;
       cursor: pointer;
       border-radius: 0.25rem;
       margin-bottom: 0.5rem;
     }
-    .accordion-content { 
-      padding: 1rem; 
+    .accordion-content {
+      padding: 1rem;
       background: rgba(255,255,255,0.05);
       border-radius: 0.25rem;
       margin-bottom: 1rem;

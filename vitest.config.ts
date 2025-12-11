@@ -13,10 +13,10 @@ export default defineConfig({
         '**/*.config.*',
         '**/demo/**',
         '**/documentation/**',
-        '**/*.d.ts'
-      ]
+        '**/*.d.ts',
+      ],
     },
     include: ['packages/**/*.{test,spec}.{ts,tsx}'],
-    exclude: ['node_modules', 'dist', 'demo']
-  }
+    exclude: ['node_modules', 'dist', 'demo'],
+  },
 });

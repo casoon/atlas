@@ -1,7 +1,7 @@
-import { resolveElement } from '../utils/element';
-import { createStyleManager } from '../utils/style';
-import { rafThrottle } from '../utils/performance';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { resolveElement } from '../utils/element';
+import { rafThrottle } from '../utils/performance';
+import { createStyleManager } from '../utils/style';
 
 export interface ParallaxOptions {
   speed?: number;

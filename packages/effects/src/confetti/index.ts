@@ -1,6 +1,6 @@
-import { resolveElement } from '../utils/element';
-import { createSimpleAnimationLoop } from '../utils/animation';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { resolveElement } from '../utils/element';
 
 export interface ConfettiOptions {
   count?: number;
@@ -60,7 +60,7 @@ export function confetti(
 
   const noop = {
     cleanup: () => {},
-    trigger: () => {}
+    trigger: () => {},
   };
 
   if (!element) {
@@ -83,7 +83,7 @@ export function confetti(
     origin = { x: 0.5, y: 0.5 },
     shapes = ['circle', 'square'],
     trigger: triggerMode = 'auto',
-    duration = 3000
+    duration = 3000,
   } = options;
 
   // Create canvas
@@ -137,7 +137,7 @@ export function confetti(
         size: 5 + Math.random() * 10,
         color: colors[Math.floor(Math.random() * colors.length)],
         shape: shapes[Math.floor(Math.random() * shapes.length)],
-        opacity: 1
+        opacity: 1,
       });
     }
 
@@ -273,6 +273,6 @@ export function confetti(
         canvas.parentNode.removeChild(canvas);
       }
       particles = [];
-    }
+    },
   };
 }

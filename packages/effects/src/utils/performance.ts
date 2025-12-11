@@ -1,4 +1,11 @@
 /**
+ * Generic function type for throttle/debounce utilities.
+ * Using a dedicated type alias keeps the implementation clean.
+ */
+// biome-ignore lint/suspicious/noExplicitAny: Required for generic function wrappers that accept any function signature
+type AnyFunction = (...args: any[]) => void;
+
+/**
  * Creates a throttled version of a function that only executes once per specified interval.
  * Useful for limiting the rate of expensive operations like scroll or mousemove handlers.
  *
@@ -15,16 +22,16 @@
  * element.addEventListener('mousemove', handleMouseMove);
  * ```
  */
-export function throttle<T extends (...args: any[]) => void>(
+export function throttle<T extends AnyFunction>(
   func: T,
   limit: number
 ): T & { cancel: () => void } {
-  let inThrottle: boolean = false;
-  let lastResult: any;
+  let inThrottle = false;
+  let lastResult: ReturnType<T> | undefined;
 
-  const throttled = function (this: any, ...args: Parameters<T>) {
+  const throttled = function (this: ThisParameterType<T>, ...args: Parameters<T>) {
     if (!inThrottle) {
-      lastResult = func.apply(this, args);
+      lastResult = func.apply(this, args) as ReturnType<T>;
       inThrottle = true;
       setTimeout(() => {
         inThrottle = false;
@@ -63,15 +70,15 @@ export function throttle<T extends (...args: any[]) => void>(
  * handleResize.flush();
  * ```
  */
-export function debounce<T extends (...args: any[]) => void>(
+export function debounce<T extends AnyFunction>(
   func: T,
   wait: number
 ): T & { cancel: () => void; flush: () => void } {
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
   let lastArgs: Parameters<T> | null = null;
-  let lastThis: any = null;
+  let lastThis: ThisParameterType<T> | null = null;
 
-  const debounced = function (this: any, ...args: Parameters<T>) {
+  const debounced = function (this: ThisParameterType<T>, ...args: Parameters<T>) {
     lastArgs = args;
     lastThis = this;
 
@@ -80,7 +87,9 @@ export function debounce<T extends (...args: any[]) => void>(
     }
 
     timeoutId = setTimeout(() => {
-      func.apply(lastThis, lastArgs!);
+      if (lastArgs !== null) {
+        func.apply(lastThis, lastArgs);
+      }
       timeoutId = null;
       lastArgs = null;
       lastThis = null;
@@ -128,20 +137,20 @@ export function debounce<T extends (...args: any[]) => void>(
  * });
  * ```
  */
-export function rafThrottle<T extends (...args: any[]) => void>(
-  func: T
-): T & { cancel: () => void } {
+export function rafThrottle<T extends AnyFunction>(func: T): T & { cancel: () => void } {
   let rafId: number | null = null;
   let lastArgs: Parameters<T> | null = null;
-  let lastThis: any = null;
+  let lastThis: ThisParameterType<T> | null = null;
 
-  const throttled = function (this: any, ...args: Parameters<T>) {
+  const throttled = function (this: ThisParameterType<T>, ...args: Parameters<T>) {
     lastArgs = args;
     lastThis = this;
 
     if (rafId === null) {
       rafId = requestAnimationFrame(() => {
-        func.apply(lastThis, lastArgs!);
+        if (lastArgs !== null) {
+          func.apply(lastThis, lastArgs);
+        }
         rafId = null;
         lastArgs = null;
         lastThis = null;
@@ -200,7 +209,7 @@ export function observeLongTasks(
     observer.observe({ entryTypes: ['longtask'] });
 
     return () => observer.disconnect();
-  } catch (error) {
+  } catch (_error) {
     // PerformanceObserver might not support 'longtask' in all browsers
     return () => {};
   }

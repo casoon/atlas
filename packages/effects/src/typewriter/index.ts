@@ -1,5 +1,5 @@
-import { resolveElement } from '../utils/element';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { resolveElement } from '../utils/element';
 
 export interface TypewriterOptions {
   texts?: string[];
@@ -48,7 +48,7 @@ export function typewriter(target: Element | string, options: TypewriterOptions 
     pause = 1000,
     loop = true,
     cursor = true,
-    cursorChar = '|'
+    cursorChar = '|',
   } = options;
 
   // If reduced motion, just show the first text

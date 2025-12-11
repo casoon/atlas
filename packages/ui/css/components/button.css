@@ -1,0 +1,299 @@
+/**
+ * Atlas UI - Button Component
+ *
+ * CSS-first button with micro-interactions.
+ * Works standalone or as <atlas-button> Web Component.
+ *
+ * Usage:
+ *   <button class="atlas-btn">Click me</button>
+ *   <atlas-button variant="primary">Click me</atlas-button>
+ */
+
+/* ==========================================================================
+   Base Button
+   ========================================================================== */
+
+atlas-button,
+.atlas-btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--atlas-space-2);
+
+  /* Sizing */
+  padding: var(--atlas-btn-padding-y, var(--atlas-space-2-5))
+    var(--atlas-btn-padding-x, var(--atlas-space-4));
+  min-height: var(--atlas-btn-height, 2.5rem);
+
+  /* Typography */
+  font-family: var(--atlas-font-sans);
+  font-size: var(--atlas-btn-font-size, var(--atlas-text-sm));
+  font-weight: var(--atlas-font-medium);
+  line-height: var(--atlas-leading-tight);
+  text-decoration: none;
+  white-space: nowrap;
+
+  /* Appearance */
+  background: var(--atlas-btn-bg, var(--atlas-surface));
+  color: var(--atlas-btn-color, var(--atlas-text));
+  border: 1px solid var(--atlas-btn-border, var(--atlas-border));
+  border-radius: var(--atlas-btn-radius, var(--atlas-radius-lg));
+
+  /* Cursor */
+  cursor: pointer;
+  user-select: none;
+
+  /* Micro-Interactions */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  transition-property: transform, background-color, border-color, color, box-shadow, filter;
+  transition-duration: var(--atlas-duration-fast);
+  transition-timing-function: var(--atlas-ease-out);
+}
+
+/* ==========================================================================
+   Interactive States (CSS Micro-Interactions)
+   ========================================================================== */
+
+/* Hover - subtle lift and glow */
+atlas-button:hover:not([disabled]),
+.atlas-btn:hover:not(:disabled) {
+  --atlas-btn-bg: var(--atlas-btn-bg-hover, var(--atlas-surface-hover));
+  --atlas-btn-border: var(--atlas-btn-border-hover, var(--atlas-border-hover));
+  filter: brightness(1.02);
+}
+
+/* Active/Press - scale down feedback */
+atlas-button:active:not([disabled]),
+.atlas-btn:active:not(:disabled) {
+  transform: scale(0.97);
+  filter: brightness(0.98);
+  transition-duration: 50ms;
+}
+
+/* Focus - visible ring */
+atlas-button:focus-visible,
+.atlas-btn:focus-visible {
+  outline: 2px solid var(--atlas-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+atlas-button[disabled],
+.atlas-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Variants
+   ========================================================================== */
+
+/* Primary */
+atlas-button[variant='primary'],
+.atlas-btn--primary {
+  --atlas-btn-bg: var(--atlas-primary);
+  --atlas-btn-bg-hover: var(--atlas-primary-hover);
+  --atlas-btn-color: var(--atlas-white);
+  --atlas-btn-border: var(--atlas-primary);
+  --atlas-btn-border-hover: var(--atlas-primary-hover);
+}
+
+atlas-button[variant='primary']:active:not([disabled]),
+.atlas-btn--primary:active:not(:disabled) {
+  --atlas-btn-bg: var(--atlas-primary-active);
+}
+
+/* Secondary */
+atlas-button[variant='secondary'],
+.atlas-btn--secondary {
+  --atlas-btn-bg: var(--atlas-secondary);
+  --atlas-btn-bg-hover: var(--atlas-secondary-hover);
+  --atlas-btn-color: var(--atlas-white);
+  --atlas-btn-border: var(--atlas-secondary);
+  --atlas-btn-border-hover: var(--atlas-secondary-hover);
+}
+
+/* Ghost - transparent background */
+atlas-button[variant='ghost'],
+.atlas-btn--ghost {
+  --atlas-btn-bg: transparent;
+  --atlas-btn-bg-hover: var(--atlas-surface-hover);
+  --atlas-btn-border: transparent;
+  --atlas-btn-border-hover: transparent;
+}
+
+/* Outline */
+atlas-button[variant='outline'],
+.atlas-btn--outline {
+  --atlas-btn-bg: transparent;
+  --atlas-btn-bg-hover: var(--atlas-primary);
+  --atlas-btn-color: var(--atlas-primary);
+  --atlas-btn-border: var(--atlas-primary);
+}
+
+atlas-button[variant='outline']:hover:not([disabled]),
+.atlas-btn--outline:hover:not(:disabled) {
+  --atlas-btn-color: var(--atlas-white);
+}
+
+/* Danger */
+atlas-button[variant='danger'],
+.atlas-btn--danger {
+  --atlas-btn-bg: var(--atlas-error);
+  --atlas-btn-bg-hover: var(--atlas-error-hover);
+  --atlas-btn-color: var(--atlas-white);
+  --atlas-btn-border: var(--atlas-error);
+}
+
+/* Success */
+atlas-button[variant='success'],
+.atlas-btn--success {
+  --atlas-btn-bg: var(--atlas-success);
+  --atlas-btn-bg-hover: var(--atlas-success-hover);
+  --atlas-btn-color: var(--atlas-white);
+  --atlas-btn-border: var(--atlas-success);
+}
+
+/* ==========================================================================
+   Sizes
+   ========================================================================== */
+
+atlas-button[size='xs'],
+.atlas-btn--xs {
+  --atlas-btn-padding-y: var(--atlas-space-1);
+  --atlas-btn-padding-x: var(--atlas-space-2);
+  --atlas-btn-height: 1.75rem;
+  --atlas-btn-font-size: var(--atlas-text-xs);
+}
+
+atlas-button[size='sm'],
+.atlas-btn--sm {
+  --atlas-btn-padding-y: var(--atlas-space-1-5);
+  --atlas-btn-padding-x: var(--atlas-space-3);
+  --atlas-btn-height: 2rem;
+  --atlas-btn-font-size: var(--atlas-text-sm);
+}
+
+atlas-button[size='md'],
+.atlas-btn--md {
+  /* Default size, no overrides needed */
+}
+
+atlas-button[size='lg'],
+.atlas-btn--lg {
+  --atlas-btn-padding-y: var(--atlas-space-3);
+  --atlas-btn-padding-x: var(--atlas-space-6);
+  --atlas-btn-height: 3rem;
+  --atlas-btn-font-size: var(--atlas-text-base);
+}
+
+atlas-button[size='xl'],
+.atlas-btn--xl {
+  --atlas-btn-padding-y: var(--atlas-space-4);
+  --atlas-btn-padding-x: var(--atlas-space-8);
+  --atlas-btn-height: 3.5rem;
+  --atlas-btn-font-size: var(--atlas-text-lg);
+}
+
+/* Icon-only buttons (square) */
+atlas-button[size='icon'],
+.atlas-btn--icon {
+  --atlas-btn-padding-x: var(--atlas-space-2-5);
+  aspect-ratio: 1;
+}
+
+/* Full width */
+atlas-button[full],
+.atlas-btn--full {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+atlas-button[loading],
+.atlas-btn--loading {
+  color: transparent;
+  pointer-events: none;
+}
+
+atlas-button[loading]::after,
+.atlas-btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: atlas-spin 600ms linear infinite;
+
+  /* Restore color for spinner */
+  color: var(--atlas-btn-color, var(--atlas-text));
+}
+
+/* ==========================================================================
+   Ripple Effect (requires JS enhancer)
+   ========================================================================== */
+
+atlas-button .atlas-ripple,
+.atlas-btn .atlas-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.3;
+  pointer-events: none;
+  transform: scale(0);
+  animation: atlas-ripple var(--atlas-duration-slow) var(--atlas-ease-out) forwards;
+}
+
+/* ==========================================================================
+   Button Group
+   ========================================================================== */
+
+.atlas-btn-group {
+  display: inline-flex;
+}
+
+.atlas-btn-group > atlas-button,
+.atlas-btn-group > .atlas-btn {
+  --atlas-btn-radius: 0;
+}
+
+.atlas-btn-group > atlas-button:first-child,
+.atlas-btn-group > .atlas-btn:first-child {
+  --atlas-btn-radius: var(--atlas-radius-lg) 0 0 var(--atlas-radius-lg);
+}
+
+.atlas-btn-group > atlas-button:last-child,
+.atlas-btn-group > .atlas-btn:last-child {
+  --atlas-btn-radius: 0 var(--atlas-radius-lg) var(--atlas-radius-lg) 0;
+}
+
+.atlas-btn-group > atlas-button:not(:first-child),
+.atlas-btn-group > .atlas-btn:not(:first-child) {
+  margin-left: -1px;
+}
+
+/* ==========================================================================
+   Icon Support
+   ========================================================================== */
+
+atlas-button svg,
+.atlas-btn svg {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+/* Icon position */
+atlas-button[icon-end] svg:last-child,
+.atlas-btn--icon-end svg:last-child {
+  order: 1;
+}

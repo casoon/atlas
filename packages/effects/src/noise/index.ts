@@ -1,7 +1,7 @@
-import { resolveElement } from '../utils/element';
-import { createSimpleAnimationLoop } from '../utils/animation';
-import { ensurePositioned } from '../utils/style';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { resolveElement } from '../utils/element';
+import { ensurePositioned } from '../utils/style';
 
 export interface NoiseOptions {
   intensity?: number;

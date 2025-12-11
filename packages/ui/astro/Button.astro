@@ -1,0 +1,109 @@
+---
+/**
+ * Atlas Button - Astro Component
+ *
+ * Wraps the atlas-button Web Component with TypeScript props.
+ * Server-renders the HTML, hydrates only when needed.
+ *
+ * @example
+ * ---
+ * import Button from '@casoon/atlas/astro/Button.astro';
+ * ---
+ *
+ * <Button variant="primary">Click me</Button>
+ * <Button variant="outline" size="lg" ripple>With Ripple</Button>
+ * <Button variant="danger" loading>Loading...</Button>
+ */
+
+export interface Props {
+  /** Button variant */
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline' | 'danger' | 'success';
+  /** Button size */
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon';
+  /** Button type (for forms) */
+  type?: 'button' | 'submit' | 'reset';
+  /** Disabled state */
+  disabled?: boolean;
+  /** Loading state */
+  loading?: boolean;
+  /** Full width */
+  full?: boolean;
+  /** Enable ripple effect (requires JS) */
+  ripple?: boolean;
+  /** Icon at end instead of start */
+  iconEnd?: boolean;
+  /** Additional CSS classes */
+  class?: string;
+  /** HTML id */
+  id?: string;
+  /** HTMX attributes - passed through */
+  'hx-get'?: string;
+  'hx-post'?: string;
+  'hx-put'?: string;
+  'hx-delete'?: string;
+  'hx-patch'?: string;
+  'hx-target'?: string;
+  'hx-swap'?: string;
+  'hx-trigger'?: string;
+  'hx-indicator'?: string;
+  'hx-confirm'?: string;
+  'hx-vals'?: string;
+  /** Alpine.js attributes */
+  'x-data'?: string;
+  'x-bind'?: string;
+  'x-on:click'?: string;
+  '@click'?: string;
+  /** Any other attributes */
+  [key: string]: any;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  disabled = false,
+  loading = false,
+  full = false,
+  ripple = false,
+  iconEnd = false,
+  class: className,
+  id,
+  ...rest
+} = Astro.props;
+
+// Build attributes object
+const attrs: Record<string, any> = {
+  variant,
+  size: size !== 'md' ? size : undefined,
+  type: type !== 'button' ? type : undefined,
+  disabled: disabled ? '' : undefined,
+  loading: loading ? '' : undefined,
+  full: full ? '' : undefined,
+  ripple: ripple ? '' : undefined,
+  'icon-end': iconEnd ? '' : undefined,
+  class: className,
+  id,
+  ...rest,
+};
+
+// Filter out undefined values
+const filteredAttrs = Object.fromEntries(
+  Object.entries(attrs).filter(([_, v]) => v !== undefined)
+);
+---
+
+<atlas-button {...filteredAttrs}>
+  <slot />
+</atlas-button>
+
+{/* Load Web Component JS only on client */}
+<script>
+  import '@casoon/atlas/elements/atlas-button';
+</script>
+
+{/* Load ripple enhancer if requested */}
+{ripple && (
+  <script>
+    import '@casoon/atlas/enhancers/ripple';
+  </script>
+)}

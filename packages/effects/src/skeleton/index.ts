@@ -1,7 +1,7 @@
-import { resolveElement } from '../utils/element';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { resolveElement } from '../utils/element';
 
-export interface SkeletonOptions {
+export interface SkeletonEffectOptions {
   variant?: 'text' | 'circle' | 'rect' | 'custom';
   width?: string;
   height?: string;
@@ -33,7 +33,10 @@ export interface SkeletonOptions {
  * cleanup();
  * ```
  */
-export function skeleton(target: Element | string, options: SkeletonOptions = {}): () => void {
+export function skeletonEffect(
+  target: Element | string,
+  options: SkeletonEffectOptions = {}
+): () => void {
   const element = resolveElement(target as string | HTMLElement);
   if (!element) {
     console.warn('[Atlas Skeleton] Element not found:', target);
@@ -49,7 +52,7 @@ export function skeleton(target: Element | string, options: SkeletonOptions = {}
     animation = 'wave',
     baseColor = '#e0e0e0',
     highlightColor = '#f5f5f5',
-    borderRadius = variant === 'circle' ? '50%' : '4px'
+    borderRadius = variant === 'circle' ? '50%' : '4px',
   } = options;
 
   const reduceMotion = shouldReduceMotion();

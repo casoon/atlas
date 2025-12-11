@@ -1,6 +1,6 @@
+import { shouldReduceMotion } from '../utils/accessibility';
 import { resolveElement } from '../utils/element';
 import { createStyleManager } from '../utils/style';
-import { shouldReduceMotion } from '../utils/accessibility';
 
 export interface ScrollRevealOptions {
   distance?: string;
@@ -55,7 +55,7 @@ export function scrollReveal(
     scale = 0.95,
     opacity = [0, 1],
     threshold = 0.1,
-    once = true
+    once = true,
   } = options;
 
   // Check if user prefers reduced motion - if so, just show the element
@@ -97,7 +97,7 @@ export function scrollReveal(
       opacity: opacity[0].toString(),
       transform: transforms.join(' '),
       transition: `all ${duration}ms ${easing} ${delay}ms`,
-      'will-change': 'transform, opacity'
+      'will-change': 'transform, opacity',
     });
   };
 
@@ -107,7 +107,7 @@ export function scrollReveal(
 
     styleManager.setStyles(element, {
       opacity: opacity[1].toString(),
-      transform: 'translateX(0) translateY(0) scale(1)'
+      transform: 'translateX(0) translateY(0) scale(1)',
     });
     hasAnimated = true;
   };
@@ -132,7 +132,7 @@ export function scrollReveal(
     },
     {
       threshold,
-      rootMargin: '50px 0px -50px 0px'
+      rootMargin: '50px 0px -50px 0px',
     }
   );
 

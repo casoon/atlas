@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { glow } from '../index';
 
 describe('glow', () => {
@@ -18,7 +18,7 @@ describe('glow', () => {
       removeListener: vi.fn(),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn()
+      dispatchEvent: vi.fn(),
     }));
   });
 
@@ -95,7 +95,7 @@ describe('glow', () => {
       removeListener: vi.fn(),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn()
+      dispatchEvent: vi.fn(),
     }));
 
     const cleanup = glow(element, { animated: true });
@@ -112,12 +112,12 @@ describe('glow', () => {
       interactive: true,
       animated: false,
       intensity: 0.5,
-      size: 20
+      size: 20,
     });
 
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const initialShadow = element.style.getPropertyValue('box-shadow');
+    const _initialShadow = element.style.getPropertyValue('box-shadow');
 
     // Trigger mouseenter
     const enterEvent = new MouseEvent('mouseenter');

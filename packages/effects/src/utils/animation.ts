@@ -49,9 +49,7 @@ export function createAnimationLoop(callback: (deltaTime: number) => void): () =
  * @param callback - The animation callback function
  * @returns An object with pause, resume, and stop methods
  */
-export function createControllableAnimationLoop(
-  callback: (deltaTime: number) => void
-): {
+export function createControllableAnimationLoop(callback: (deltaTime: number) => void): {
   pause: () => void;
   resume: () => void;
   stop: () => void;

@@ -4,12 +4,33 @@ export interface TabsOptions {
   orientation?: 'horizontal' | 'vertical';
 }
 
+export interface TabProps {
+  'aria-selected': boolean;
+  'aria-controls': string;
+  'aria-orientation'?: 'horizontal' | 'vertical';
+  tabIndex: number;
+  role: string;
+  id: string;
+}
+
+export interface PanelProps {
+  hidden: boolean;
+  'aria-labelledby': string;
+  role: string;
+  id: string;
+}
+
 export interface TabsState {
   activeTab: string;
+  orientation: 'horizontal' | 'vertical';
   setActiveTab: (tabId: string) => void;
   isActive: (tabId: string) => boolean;
-  getTabProps: (tabId: string) => { 'aria-selected': boolean; tabIndex: number; role: string };
-  getPanelProps: (tabId: string) => { hidden: boolean; 'aria-labelledby': string; role: string };
+  getTabProps: (tabId: string) => TabProps;
+  getPanelProps: (tabId: string) => PanelProps;
+  getTabListProps: () => {
+    role: string;
+    'aria-orientation': 'horizontal' | 'vertical';
+  };
   subscribe: (callback: (activeTab: string) => void) => () => void;
   destroy: () => void;
 }
@@ -76,19 +97,24 @@ export function createTabs(tabIds: string[], options: TabsOptions = {}): TabsSta
 
   const isActive = (tabId: string) => tabId === activeTab;
 
-  const getTabProps = (tabId: string) => ({
+  const getTabProps = (tabId: string): TabProps => ({
     'aria-selected': isActive(tabId),
     'aria-controls': `panel-${tabId}`,
     tabIndex: isActive(tabId) ? 0 : -1,
     role: 'tab',
-    id: `tab-${tabId}`
+    id: `tab-${tabId}`,
   });
 
-  const getPanelProps = (tabId: string) => ({
+  const getPanelProps = (tabId: string): PanelProps => ({
     hidden: !isActive(tabId),
     'aria-labelledby': `tab-${tabId}`,
     role: 'tabpanel',
-    id: `panel-${tabId}`
+    id: `panel-${tabId}`,
+  });
+
+  const getTabListProps = () => ({
+    role: 'tablist',
+    'aria-orientation': orientation,
   });
 
   const subscribe = (callback: (activeTab: string) => void) => {
@@ -109,11 +135,15 @@ export function createTabs(tabIds: string[], options: TabsOptions = {}): TabsSta
     get activeTab() {
       return activeTab;
     },
+    get orientation() {
+      return orientation;
+    },
     setActiveTab,
     isActive,
     getTabProps,
     getPanelProps,
+    getTabListProps,
     subscribe,
-    destroy
+    destroy,
   };
 }

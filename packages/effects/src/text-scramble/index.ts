@@ -1,5 +1,5 @@
-import { resolveElement } from '../utils/element';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { resolveElement } from '../utils/element';
 
 export interface TextScrambleOptions {
   text?: string;
@@ -41,7 +41,7 @@ export function textScramble(
     chars = '!<>-_\\/[]{}—=+*^?#________',
     speed = 50,
     iterations = 8,
-    onComplete
+    onComplete,
   } = options;
 
   // If reduced motion, just set the text immediately

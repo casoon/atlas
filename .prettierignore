@@ -1,0 +1,19 @@
+# Build outputs
+node_modules/
+dist/
+build/
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+
+# Generated files
+*.min.js
+*.min.css
+*.tsbuildinfo
+
+# Changeset
+.changeset/
+
+# Coverage
+coverage/

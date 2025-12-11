@@ -1,7 +1,7 @@
-import { resolveElement } from '../utils/element';
-import { createSimpleAnimationLoop } from '../utils/animation';
-import { createStyleManager } from '../utils/style';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { resolveElement } from '../utils/element';
+import { createStyleManager } from '../utils/style';
 
 export interface OrbsOptions {
   count?: number;
@@ -56,7 +56,7 @@ export function orbs(target: Element | string, options: OrbsOptions = {}): () =>
     minSize = 20,
     maxSize = 60,
     speed = 0.5,
-    color = 'rgba(255, 255, 255, 0.1)'
+    color = 'rgba(255, 255, 255, 0.1)',
   } = options;
 
   const orbs: Orb[] = [];
@@ -66,7 +66,7 @@ export function orbs(target: Element | string, options: OrbsOptions = {}): () =>
   // Ensure container has relative positioning and overflow hidden
   styleManager.setStyles(container, {
     position: container.style.position || 'relative',
-    overflow: 'hidden'
+    overflow: 'hidden',
   });
 
   cleanupFunctions.push(() => styleManager.restore(container));
@@ -84,7 +84,7 @@ export function orbs(target: Element | string, options: OrbsOptions = {}): () =>
       vx: (Math.random() - 0.5) * speed,
       vy: (Math.random() - 0.5) * speed,
       size,
-      element: document.createElement('div')
+      element: document.createElement('div'),
     };
 
     orb.element.className = 'atlas-orb';

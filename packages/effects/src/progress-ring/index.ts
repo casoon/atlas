@@ -1,5 +1,5 @@
-import { resolveElement } from '../utils/element';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { resolveElement } from '../utils/element';
 
 export interface ProgressRingOptions {
   progress?: number;
@@ -46,7 +46,7 @@ export function progressRing(
 
   const noop = {
     update: () => {},
-    cleanup: () => {}
+    cleanup: () => {},
   };
 
   if (!element) {
@@ -63,7 +63,7 @@ export function progressRing(
     showLabel = true,
     labelFormatter = (p: number) => `${Math.round(p)}%`,
     duration = 500,
-    lineCap = 'round'
+    lineCap = 'round',
   } = options;
 
   const reduceMotion = shouldReduceMotion();
@@ -162,6 +162,6 @@ export function progressRing(
     update: updateProgress,
     cleanup: () => {
       element.innerHTML = originalContent;
-    }
+    },
   };
 }

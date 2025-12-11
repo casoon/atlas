@@ -10,9 +10,7 @@
  * const el2 = resolveElement(document.querySelector('#my-element'));
  * ```
  */
-export function resolveElement(
-  target: string | HTMLElement | null
-): HTMLElement | null {
+export function resolveElement(target: string | HTMLElement | null): HTMLElement | null {
   if (!target) {
     return null;
   }
@@ -31,7 +29,7 @@ export function resolveElement(
  * @returns True if the element exists and is connected to the DOM
  */
 export function isValidElement(element: HTMLElement | null): element is HTMLElement {
-  return element !== null && element.isConnected;
+  return element !== null && element.isConnected === true;
 }
 
 /**
@@ -50,9 +48,7 @@ export function getElementOrThrow(
 
   if (!isValidElement(element)) {
     const selector = typeof target === 'string' ? target : 'provided element';
-    throw new Error(
-      errorMessage || `Element not found or not connected to DOM: ${selector}`
-    );
+    throw new Error(errorMessage || `Element not found or not connected to DOM: ${selector}`);
   }
 
   return element;

@@ -3,8 +3,8 @@
  * @packageDocumentation
  */
 
-export * from './element';
-export * from './animation';
-export * from './style';
-export * from './performance';
 export * from './accessibility';
+export * from './animation';
+export * from './element';
+export * from './performance';
+export * from './style';

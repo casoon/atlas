@@ -1,8 +1,8 @@
-import { resolveElement } from '../utils/element';
-import { createSimpleAnimationLoop } from '../utils/animation';
-import { createStyleManager } from '../utils/style';
-import { rafThrottle } from '../utils/performance';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { createSimpleAnimationLoop } from '../utils/animation';
+import { resolveElement } from '../utils/element';
+import { rafThrottle } from '../utils/performance';
+import { createStyleManager } from '../utils/style';
 
 export interface MagneticOptions {
   strength?: number;

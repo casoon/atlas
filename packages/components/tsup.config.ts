@@ -12,7 +12,7 @@ export default defineConfig({
     drawer: 'src/drawer/index.ts',
     card: 'src/card/index.ts',
     form: 'src/form/index.ts',
-    button: 'src/button/index.ts'
+    button: 'src/button/index.ts',
   },
   dts: true,
   format: ['esm'],
@@ -20,5 +20,5 @@ export default defineConfig({
   sourcemap: true,
   treeshake: true,
   splitting: true,
-  clean: true
+  clean: true,
 });

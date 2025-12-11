@@ -1,7 +1,7 @@
-import { resolveElement } from '../utils/element';
-import { createStyleManager } from '../utils/style';
-import { rafThrottle } from '../utils/performance';
 import { shouldReduceMotion } from '../utils/accessibility';
+import { resolveElement } from '../utils/element';
+import { rafThrottle } from '../utils/performance';
+import { createStyleManager } from '../utils/style';
 
 export interface TiltOptions {
   intensity?: number;
@@ -47,7 +47,7 @@ export function tilt(target: Element | string, options: TiltOptions = {}): () =>
     scale = 1.05,
     perspective = 1000,
     speed = 300,
-    glareEffect = true
+    glareEffect = true,
   } = options;
 
   const styleManager = createStyleManager();
@@ -72,7 +72,7 @@ export function tilt(target: Element | string, options: TiltOptions = {}): () =>
   // Set initial styles
   styleManager.setStyles(element, {
     'transform-style': 'preserve-3d',
-    transition: `transform ${speed}ms ease`
+    transition: `transform ${speed}ms ease`,
   });
 
   const handleMouseMove = rafThrottle((e: MouseEvent) => {
@@ -110,7 +110,7 @@ export function tilt(target: Element | string, options: TiltOptions = {}): () =>
     element.removeEventListener('mousemove', handleMouseMove);
     element.removeEventListener('mouseleave', handleMouseLeave);
 
-    if (glareElement && glareElement.parentNode) {
+    if (glareElement?.parentNode) {
       glareElement.parentNode.removeChild(glareElement);
     }
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,13 +17,13 @@ if (!existsSync(distDir)) {
 
 // Get all CSS files except index.css
 const cssFiles = readdirSync(srcDir)
-  .filter(file => file.endsWith('.css') && file !== 'index.css')
+  .filter((file) => file.endsWith('.css') && file !== 'index.css')
   .sort(); // Sort for consistent output
 
 console.log('Found CSS files:', cssFiles);
 
 // Copy individual CSS files
-cssFiles.forEach(file => {
+cssFiles.forEach((file) => {
   const srcPath = join(srcDir, file);
   const distPath = join(distDir, file);
   const content = readFileSync(srcPath, 'utf8');
@@ -52,11 +52,11 @@ const indexHeader = `/*!
 // Combine all CSS files into index.css
 let combinedContent = indexHeader;
 
-cssFiles.forEach(file => {
+cssFiles.forEach((file) => {
   const filePath = join(srcDir, file);
   const content = readFileSync(filePath, 'utf8');
   const fileName = file.replace('.css', '');
-  
+
   combinedContent += `/* ===== ${fileName.toUpperCase()} ===== */\n`;
   combinedContent += content;
   combinedContent += '\n\n';
@@ -64,7 +64,7 @@ cssFiles.forEach(file => {
 
 // Write combined index.css
 const indexPath = join(distDir, 'index.css');
-writeFileSync(indexPath, combinedContent.trim() + '\n');
+writeFileSync(indexPath, `${combinedContent.trim()}\n`);
 
 console.log('Generated combined index.css');
 console.log(`Total files processed: ${cssFiles.length + 1}`);

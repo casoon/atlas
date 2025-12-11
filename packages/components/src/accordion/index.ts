@@ -51,7 +51,10 @@ export interface AccordionState {
  * accordion.destroy();
  * ```
  */
-export function createAccordion(panelIds: string[], options: AccordionOptions = {}): AccordionState {
+export function createAccordion(
+  panelIds: string[],
+  options: AccordionOptions = {}
+): AccordionState {
   if (!panelIds || panelIds.length === 0) {
     throw new Error('[Atlas Accordion] panelIds must be a non-empty array');
   }
@@ -66,7 +69,7 @@ export function createAccordion(panelIds: string[], options: AccordionOptions = 
     );
   }
 
-  let openPanels = new Set(defaultOpen);
+  const openPanels = new Set(defaultOpen);
   const subscribers = new Set<(openPanels: Set<string>) => void>();
 
   const notifySubscribers = () => {
@@ -133,14 +136,14 @@ export function createAccordion(panelIds: string[], options: AccordionOptions = 
     'aria-controls': `panel-${panelId}`,
     id: `button-${panelId}`,
     role: 'button',
-    tabIndex: 0
+    tabIndex: 0,
   });
 
   const getPanelProps = (panelId: string) => ({
     id: `panel-${panelId}`,
     'aria-labelledby': `button-${panelId}`,
     role: 'region',
-    hidden: !isOpen(panelId)
+    hidden: !isOpen(panelId),
   });
 
   const subscribe = (callback: (openPanels: Set<string>) => void) => {
@@ -169,6 +172,6 @@ export function createAccordion(panelIds: string[], options: AccordionOptions = 
     getButtonProps,
     getPanelProps,
     subscribe,
-    destroy
+    destroy,
   };
 }
