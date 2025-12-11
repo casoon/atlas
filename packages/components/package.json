@@ -1,6 +1,6 @@
 {
   "name": "@casoon/atlas-components",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Headless UI components with accessibility focus - framework-agnostic",
   "type": "module",
   "files": [

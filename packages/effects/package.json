@@ -1,6 +1,6 @@
 {
   "name": "@casoon/atlas-effects",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "13+ interactive JavaScript effects - SSR-safe, tree-shakeable, framework-agnostic",
   "type": "module",
   "files": [

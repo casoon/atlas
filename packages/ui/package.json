@@ -1,6 +1,6 @@
 {
   "name": "@casoon/atlas-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CSS-first UI components with optional JS enhancements. SSR-safe, Tailwind-compatible, AHA stack ready.",
   "type": "module",
   "main": "./elements/index.js",

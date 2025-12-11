@@ -40,7 +40,7 @@ export interface CardOptions {
   tiltMax?: number;
   /** Enable shine/glare effect (default: false) */
   shine?: boolean;
-  /** Lift distance in pixels (default: 8) */
+  /** Lift distance in pixels (default: 4) */
   liftDistance?: number;
   /** Enable click feedback (default: true) */
   clickable?: boolean;
@@ -72,7 +72,7 @@ export function createCard(element: HTMLElement, options: CardOptions = {}): Car
     tilt = false,
     tiltMax = 10,
     shine = false,
-    liftDistance = 8,
+    liftDistance = 4,
     clickable = true,
     onClick,
     onHoverChange,
@@ -209,7 +209,9 @@ export function createCard(element: HTMLElement, options: CardOptions = {}): Car
 
   // Remove hover effects
   const removeHoverEffects = () => {
-    element.style.transform = originalTransform || '';
+    // Always reset to none/empty - don't rely on originalTransform
+    // as it may have been captured during grid stagger animation
+    element.style.transform = '';
     element.style.boxShadow = originalBoxShadow || '';
 
     if (shineElement) {
