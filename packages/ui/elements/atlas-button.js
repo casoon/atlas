@@ -52,7 +52,7 @@ class AtlasButton extends HTMLElement {
     this.removeEventListener('keydown', this.handleKeydown);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name, _oldValue, newValue) {
     if (name === 'disabled') {
       if (newValue !== null) {
         this.setAttribute('aria-disabled', 'true');
