@@ -239,15 +239,14 @@ export function createContextMenu(
 
       // Setup roving focus
       rovingFocus = createRovingFocus(contentEl, {
-        selector: `[${ATTRS.ITEM}]:not([aria-disabled="true"])`,
+        itemSelector: `[${ATTRS.ITEM}]:not([aria-disabled="true"])`,
         orientation: 'vertical',
         loop: true,
       });
 
       // Setup typeahead
       typeahead = createTypeahead(contentEl, {
-        selector: `[${ATTRS.ITEM}]:not([aria-disabled="true"])`,
-        textSelector: `.${CLASSES.ITEM_LABEL}`,
+        itemSelector: `[${ATTRS.ITEM}]:not([aria-disabled="true"])`,
       });
 
       // Focus first item
@@ -259,8 +258,7 @@ export function createContextMenu(
       });
 
       // Setup dismissal
-      dismissHandler = createDismissHandler({
-        containers: [contentEl],
+      dismissHandler = createDismissHandler(contentEl, {
         onDismiss: close,
         escapeKey: true,
         clickOutside: true,

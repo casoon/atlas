@@ -5,7 +5,12 @@
 
 import { generateId } from '../shared/aria.js';
 import { addListener, isBrowser } from '../shared/dom.js';
-import { autoUpdate, computePosition, type FloatingPlacement } from '../shared/floating.js';
+import {
+  applyFloatingStyles,
+  autoUpdate,
+  computeFloatingPosition,
+  type FloatingPlacement,
+} from '../shared/floating.js';
 
 // ============================================================================
 // Types
@@ -201,7 +206,7 @@ export function createHoverCard(element: HTMLElement, options: HoverCardOptions 
   function updatePosition(): void {
     if (!triggerEl || !contentEl) return;
 
-    const result = computePosition(triggerEl, contentEl, {
+    const result = computeFloatingPosition(triggerEl, contentEl, {
       placement,
       offset,
       flip: true,
@@ -209,9 +214,7 @@ export function createHoverCard(element: HTMLElement, options: HoverCardOptions 
       shiftPadding: 8,
     });
 
-    contentEl.style.position = 'absolute';
-    contentEl.style.left = `${result.x}px`;
-    contentEl.style.top = `${result.y}px`;
+    applyFloatingStyles(contentEl, result);
     contentEl.setAttribute('data-placement', result.placement);
   }
 
