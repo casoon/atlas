@@ -1,5 +1,6 @@
 // Shared utilities and types
 
+export * from './animation';
 export * from './aria';
 export * from './dismissal';
 export * from './dom';

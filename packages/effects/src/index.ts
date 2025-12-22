@@ -17,6 +17,27 @@ export { type ParticlesOptions, particles } from './particles/index';
 export { type ProgressRingOptions, progressRing } from './progress-ring/index';
 // Core effects
 export { type RippleOptions, ripple } from './ripple/index';
+// Modern Scroll Effects (2025)
+export {
+  type HorizontalScrollOptions,
+  horizontalScroll,
+  type MagneticSnapOptions,
+  magneticSnap,
+  type ParallaxLayerOptions,
+  parallaxLayer,
+  type ScrollCounterOptions,
+  type ScrollProgressOptions,
+  type ScrollTimelineOptions,
+  type ScrollVelocityOptions,
+  type StickyTransitionOptions,
+  scrollCounter,
+  scrollProgress,
+  scrollTimeline,
+  scrollVelocity,
+  stickyTransition,
+  type TextSplitOptions,
+  textSplit,
+} from './scroll-effects/index';
 export { type ScrollRevealOptions, scrollReveal } from './scroll-reveal/index';
 export { type ShimmerOptions, shimmer } from './shimmer/index';
 // Loading & Progress

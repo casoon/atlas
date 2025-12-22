@@ -70,6 +70,13 @@ export {
 } from './carousel/index';
 export { type CheckboxOptions, type CheckboxState, createCheckbox } from './checkbox/index';
 export {
+  AtlasCombobox,
+  type Combobox,
+  type ComboboxConfig,
+  type ComboboxOption,
+  createCombobox,
+} from './combobox/index';
+export {
   type CommandGroup,
   type CommandItem,
   type CommandOptions,
@@ -184,11 +191,12 @@ export {
   type ScrollAreaType,
 } from './scroll-area/index';
 export {
+  AtlasSelect,
   createSelect,
-  initSelects,
+  type Select,
+  type SelectConfig,
+  type SelectGroup,
   type SelectOption,
-  type SelectOptions,
-  type SelectState,
 } from './select/index';
 export {
   createSeparator,
