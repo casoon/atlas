@@ -78,6 +78,14 @@ export {
   initCommands,
 } from './command/index';
 export {
+  createDatePicker,
+  type DatePickerMode,
+  type DatePickerOptions,
+  type DatePickerPreset,
+  type DatePickerState,
+  initDatePickers,
+} from './date-picker/index';
+export {
   createDialog,
   type DialogOptions,
   type DialogSize,
@@ -99,6 +107,13 @@ export {
   type InputState,
   type InputType,
 } from './input/index';
+export {
+  createInputOtp,
+  type InputOtpOptions,
+  type InputOtpState,
+  type InputOtpType,
+  initInputOtps,
+} from './input-otp/index';
 export { createLabel, type LabelOptions, type LabelState } from './label/index';
 export {
   createMenu,
@@ -108,7 +123,28 @@ export {
   type MenuState,
   type MenuTrigger,
 } from './menu/index';
+export {
+  createMenubar,
+  initMenubars,
+  type MenubarItem,
+  type MenubarMenu,
+  type MenubarOptions,
+  type MenubarState,
+} from './menubar/index';
 export { createModal, type ModalOptions, type ModalState } from './modal/index';
+export {
+  createNavigationMenu,
+  initNavigationMenus,
+  type NavigationMenuItem,
+  type NavigationMenuOptions,
+  type NavigationMenuState,
+} from './navigation-menu/index';
+export {
+  createPagination,
+  initPaginations,
+  type PaginationOptions,
+  type PaginationState,
+} from './pagination/index';
 export {
   createPopover,
   initPopovers,
@@ -132,6 +168,22 @@ export {
   type RadioGroupState,
 } from './radio-group/index';
 export {
+  createResizable,
+  initResizables,
+  type ResizableDirection,
+  type ResizableOptions,
+  type ResizablePanelConfig,
+  type ResizableState,
+} from './resizable/index';
+export {
+  createScrollArea,
+  initScrollAreas,
+  type ScrollAreaOptions,
+  type ScrollAreaOrientation,
+  type ScrollAreaState,
+  type ScrollAreaType,
+} from './scroll-area/index';
+export {
   createSelect,
   initSelects,
   type SelectOption,
@@ -154,6 +206,15 @@ export {
   type SheetState,
 } from './sheet/index';
 export {
+  createSidebar,
+  initSidebars,
+  type SidebarGroup,
+  type SidebarMenuItem,
+  type SidebarOptions,
+  type SidebarSide,
+  type SidebarState,
+} from './sidebar/index';
+export {
   createInlineSkeleton,
   createSkeleton,
   type SkeletonAnimation,
@@ -161,6 +222,15 @@ export {
   type SkeletonState,
   type SkeletonType,
 } from './skeleton/index';
+export {
+  createSlider,
+  initSliders,
+  type SliderMark,
+  type SliderOptions,
+  type SliderOrientation,
+  type SliderSize,
+  type SliderState,
+} from './slider/index';
 export {
   createStaggerAnimation,
   type StaggerAnimation,
@@ -183,6 +253,14 @@ export {
 } from './table/index';
 export { createTabs, type TabsOptions, type TabsState } from './tabs/index';
 export {
+  createTextarea,
+  initTextareas,
+  type TextareaOptions,
+  type TextareaResize,
+  type TextareaSize,
+  type TextareaState,
+} from './textarea/index';
+export {
   createToastManager,
   type ToastAction,
   type ToastItem,
@@ -193,6 +271,16 @@ export {
   type ToastType,
 } from './toast/index';
 export { createToggle, type ToggleOptions, type ToggleState } from './toggle/index';
+export {
+  createToggleGroup,
+  initToggleGroups,
+  type ToggleGroupItemOptions,
+  type ToggleGroupOptions,
+  type ToggleGroupSize,
+  type ToggleGroupState,
+  type ToggleGroupType,
+  type ToggleGroupVariant,
+} from './toggle-group/index';
 export { createTooltip, type TooltipOptions, type TooltipState } from './tooltip/index';
 
 export const VERSION = '0.0.4';
