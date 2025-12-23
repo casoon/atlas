@@ -15,7 +15,7 @@ CASOON Atlas provides a complete toolkit of **SSR-safe effects**, **headless com
 
 | Package                                               | Description                        | Version |
 | ----------------------------------------------------- | ---------------------------------- | ------- |
-| **[@casoon/atlas-styles](./packages/styles)**         | Complete Tailwind v4 design system | 0.0.9   |
+| **[@casoon/atlas-styles](./packages/styles)**         | Complete Tailwind v4 design system | 0.1.0   |
 | **[@casoon/atlas-effects](./packages/effects)**       | Interactive JavaScript effects     | 0.2.0   |
 | **[@casoon/atlas-components](./packages/components)** | Headless UI components             | 0.1.0   |
 | **[@casoon/atlas](./packages/all)**                   | Meta-package with namespaces       | 0.2.0   |
