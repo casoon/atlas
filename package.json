@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:",
+    "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "catalog:",
     "@testing-library/dom": "catalog:",
     "@vitest/ui": "catalog:",
