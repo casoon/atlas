@@ -1,6 +1,20 @@
 // Targeted re-exports - no export * for optimal tree-shaking
 
 export { type ConfettiOptions, confetti } from './confetti/index';
+// Effect Composition API (fx)
+export {
+  combineEffects,
+  type EffectBuilder,
+  type EffectDefinition,
+  type EffectFactory,
+  type EffectFn,
+  type EffectManager,
+  type EffectPreset,
+  fx,
+  registerDefaultPresets,
+  sequenceEffects,
+  wrapEffect,
+} from './core/fx';
 // Interactive effects
 export { type CursorFollowOptions, cursorFollow } from './cursor-follow/index';
 // Custom Cursor
