@@ -3,6 +3,10 @@
  * Ensures consistency across the component library
  */
 
+// ============================================
+// Base Component Types
+// ============================================
+
 /** Base options that all components share */
 export interface BaseComponentOptions {
   /** Called when component is opened/activated */
@@ -25,8 +29,34 @@ export interface BaseComponentState {
   destroy: () => void;
 }
 
-/** Placement options for positioned components */
+// ============================================
+// Placement & Positioning
+// ============================================
+
+/** Simple placement options */
 export type Placement = 'top' | 'bottom' | 'left' | 'right';
+
+/** Extended placement with alignment */
+export type PlacementWithAlignment =
+  | 'top'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end'
+  | 'right'
+  | 'right-start'
+  | 'right-end';
+
+/** Side of the screen (for drawers, sheets) */
+export type Side = 'top' | 'bottom' | 'left' | 'right';
+
+// ============================================
+// Animation & Timing
+// ============================================
 
 /** Animation timing presets */
 export type AnimationTiming = 'instant' | 'fast' | 'normal' | 'slow';
@@ -53,6 +83,10 @@ export const EASING = {
   spring: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
 } as const;
 
+// ============================================
+// Z-Index Layers
+// ============================================
+
 /** Z-index layers for consistent stacking */
 export const Z_INDEX = {
   dropdown: 100,
@@ -62,3 +96,64 @@ export const Z_INDEX = {
   toast: 500,
   tooltip: 600,
 } as const;
+
+// ============================================
+// Component Size & Variants
+// ============================================
+
+/** Common size options */
+export type Size = 'sm' | 'md' | 'lg';
+
+/** Extended size options */
+export type SizeExtended = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+/** Common variant types for styling */
+export type Variant = 'default' | 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost';
+
+/** Visual state for components with feedback */
+export type VisualState = 'idle' | 'loading' | 'success' | 'error';
+
+// ============================================
+// Form & Input Types
+// ============================================
+
+/** Common input types */
+export type InputType =
+  | 'text'
+  | 'email'
+  | 'password'
+  | 'number'
+  | 'tel'
+  | 'url'
+  | 'search'
+  | 'date'
+  | 'time'
+  | 'datetime-local';
+
+/** Form field validation state */
+export interface ValidationState {
+  /** Whether the field is valid */
+  valid: boolean;
+  /** Error message if invalid */
+  message?: string;
+}
+
+// ============================================
+// Event Types
+// ============================================
+
+/** Change event detail */
+export interface ChangeEventDetail<T = unknown> {
+  /** Previous value */
+  previousValue: T;
+  /** New value */
+  value: T;
+}
+
+/** Select event detail */
+export interface SelectEventDetail<T = unknown> {
+  /** Selected value */
+  value: T;
+  /** Selected element */
+  element?: HTMLElement;
+}

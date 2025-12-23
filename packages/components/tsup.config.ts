@@ -3,6 +3,7 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: {
     index: 'src/index.ts',
+    // Original components
     modal: 'src/modal/index.ts',
     dropdown: 'src/dropdown/index.ts',
     tabs: 'src/tabs/index.ts',
@@ -13,6 +14,24 @@ export default defineConfig({
     card: 'src/card/index.ts',
     form: 'src/form/index.ts',
     button: 'src/button/index.ts',
+    // New components
+    alert: 'src/alert/index.ts',
+    'alert-dialog': 'src/alert-dialog/index.ts',
+    'aspect-ratio': 'src/aspect-ratio/index.ts',
+    collapsible: 'src/collapsible/index.ts',
+    'context-menu': 'src/context-menu/index.ts',
+    'date-picker': 'src/date-picker/index.ts',
+    'hover-card': 'src/hover-card/index.ts',
+    'input-otp': 'src/input-otp/index.ts',
+    menubar: 'src/menubar/index.ts',
+    'navigation-menu': 'src/navigation-menu/index.ts',
+    pagination: 'src/pagination/index.ts',
+    resizable: 'src/resizable/index.ts',
+    'scroll-area': 'src/scroll-area/index.ts',
+    sidebar: 'src/sidebar/index.ts',
+    slider: 'src/slider/index.ts',
+    textarea: 'src/textarea/index.ts',
+    'toggle-group': 'src/toggle-group/index.ts',
   },
   dts: true,
   format: ['esm'],

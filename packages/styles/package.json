@@ -17,11 +17,17 @@
     "./dist/orbs.css": "./dist/orbs.css",
     "./dist/animations.css": "./dist/animations.css",
     "./dist/utilities.css": "./dist/utilities.css",
+    "./dist/components.css": "./dist/components.css",
+    "./dist/tokens.css": "./dist/tokens.css",
+    "./dist/recipes.css": "./dist/recipes.css",
     "./core.css": "./dist/core.css",
     "./glass.css": "./dist/glass.css",
     "./orbs.css": "./dist/orbs.css",
     "./animations.css": "./dist/animations.css",
-    "./utilities.css": "./dist/utilities.css"
+    "./utilities.css": "./dist/utilities.css",
+    "./components.css": "./dist/components.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./recipes.css": "./dist/recipes.css"
   },
   "scripts": {
     "build": "rimraf dist && node build.js",

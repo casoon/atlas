@@ -7,7 +7,7 @@ on:
     branches: [main, master]
 
 env:
-  PNPM_VERSION: '9.15.4'
+  PNPM_VERSION: '10.26.1'
 
 jobs:
   quality:
@@ -45,6 +45,9 @@ jobs:
 
       - name: Check formatting & linting (Biome)
         run: pnpm check
+
+      - name: Build all packages
+        run: pnpm build
 
       - name: Type check
         run: pnpm typecheck
@@ -88,6 +91,3 @@ jobs:
 
       - name: Build all packages
         run: pnpm build
-
-      - name: Build demo
-        run: pnpm demo:build
