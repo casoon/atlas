@@ -33,6 +33,15 @@ export {
   type BadgeVariant,
   createBadge,
 } from './badge/index';
+// 2025 Modern Components
+export {
+  AtlasBentoGrid,
+  type BentoGrid,
+  type BentoGridConfig,
+  type BentoItem,
+  type BentoSize,
+  createBentoGrid,
+} from './bento-grid/index';
 export {
   type BreadcrumbItem,
   type BreadcrumbOptions,
@@ -122,6 +131,7 @@ export {
   initInputOtps,
 } from './input-otp/index';
 export { createLabel, type LabelOptions, type LabelState } from './label/index';
+export { AtlasMarquee, createMarquee, type Marquee, type MarqueeConfig } from './marquee/index';
 export {
   createMenu,
   initMenus,
