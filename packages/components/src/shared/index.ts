@@ -10,6 +10,5 @@ export * from './floating';
 export * from './focus-trap';
 export * from './keyboard';
 export * from './plugins';
-export * from './state';
 export * from './types';
 export * from './validation';

@@ -230,17 +230,13 @@ import {
   animateAsync,
   animateSpring,
   announce,
-  combineStores,
   // Base component system
   createComponentFactory,
   createElement,
   createEventEmitter,
   createSpring,
-  // State management
-  createStore,
   createTransition,
   DURATION,
-  derivedStore,
   EASING,
   easingFn,
   // ARIA utilities
@@ -251,12 +247,9 @@ import {
   getPlugins,
   // DOM utilities
   isBrowser,
-  loggerMiddleware,
   registerAnimation,
   registerPlugin,
-  shallowEqual,
   stagger,
-  validatorMiddleware,
   wrapComponent,
 } from '@casoon/atlas-components';
 
@@ -289,14 +282,6 @@ export const utils = {
   registerPlugin,
   getPlugins,
   wrapComponent,
-
-  // State management
-  createStore,
-  derivedStore,
-  combineStores,
-  shallowEqual,
-  loggerMiddleware,
-  validatorMiddleware,
 
   // Animations
   animate,

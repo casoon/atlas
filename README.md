@@ -48,10 +48,10 @@ fx(element)
   .add(effects.tilt({ intensity: 15 }))
   .apply();
 
-// State Management
-const store = utils.createStore({ count: 0 });
-store.subscribe((state) => console.log(state.count));
-store.set({ count: 1 });
+// For state management, we recommend nanostores:
+// npm install nanostores
+import { atom } from 'nanostores';
+const count = atom(0);
 
 // Quick Init (auto-discovers data-atlas attributes)
 atlas.init();
@@ -182,25 +182,26 @@ fx(element).preset('interactive').apply();
 fx(element).preset('hero').apply();
 ```
 
-### Unified State Management
+### State Management
 
-Reactive store with undo/redo and persistence:
+For state management, we recommend established libraries:
 
 ```typescript
-import { createStore, derivedStore } from '@casoon/atlas-components';
+// nanostores (~1KB) - Framework-agnostic, minimal
+import { atom, computed } from 'nanostores';
 
-const store = createStore({ count: 0, items: [] }, { history: true, persist: 'my-app-state' });
+const count = atom(0);
+const doubled = computed(count, (c) => c * 2);
 
-// Subscribe to changes
-store.subscribe((state) => render(state));
-
-// Computed values
-const doubled = derivedStore(store, (s) => s.count * 2);
-
-// Undo/Redo
-store.set({ count: 5 });
-store.undo();
+count.subscribe((value) => console.log(value));
+count.set(5);
 ```
+
+**Recommended libraries:**
+
+- [nanostores](https://github.com/nanostores/nanostores) - Minimal, framework-agnostic
+- [zustand](https://github.com/pmndrs/zustand) - React-focused but vanilla-compatible
+- [@preact/signals](https://preactjs.com/guide/v10/signals/) - Fast reactive primitives
 
 ### Animation Registry
 
@@ -393,7 +394,7 @@ See [CHANGELOG.md](./CHANGELOG.md) for version history.
 
 - Base Component System with lifecycle hooks
 - Effect Composition API (fx builder)
-- Unified State Management with undo/redo
+- Recommends nanostores for state management
 - Animation Registry with spring physics
 - Plugin System for extensibility
 - Config Validation with schemas
