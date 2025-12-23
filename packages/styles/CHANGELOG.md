@@ -1,11 +1,20 @@
 # @casoon/atlas-styles
 
+## 0.1.0
+
+### Minor Changes
+
+- feat: add comprehensive CSS styles for new components
+  - Add recipes.css with component recipes
+  - Add tokens.css with design tokens
+  - Expand components.css with styles for 40+ components
+  - Add CSS custom properties for inline style usage
+
 ## 0.0.6
 
 ### Patch Changes
 
 - Add 8 new interactive effects and improve project configuration
-
   - Add spotlight effect with customizable size and blur
   - Add text-scramble effect with character randomization
   - Add glitch effect with RGB channel splitting
@@ -23,7 +32,6 @@
 ### Patch Changes
 
 - Add deep path exports for maximum build system compatibility
-
   - Added explicit deep path exports with /dist/ prefix for all CSS files
   - Users can now import using both short and deep path syntax
   - Explicit index.css deep path export added
@@ -35,7 +43,6 @@
 ### Patch Changes
 
 - Generate flat combined CSS and improve Tailwind compatibility
-
   - Generate flat index.css with all CSS content combined (no @import statements)
   - Add .css extension to all subpath exports for better Tailwind compatibility
   - Individual CSS files remain available for granular imports
@@ -47,7 +54,6 @@
 ### Patch Changes
 
 - Fix CSS imports for better build compatibility
-
   - Replace relative imports (./core.css) with package-based imports (@casoon/atlas-styles/core)
   - Improves compatibility with Cloudflare Pages and other build environments
   - Uses npm package resolution instead of file system paths for more reliable import resolution

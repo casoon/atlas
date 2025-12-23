@@ -1,5 +1,12 @@
 # @casoon/atlas
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @casoon/atlas-styles@0.1.0
+
 ## 0.2.0
 
 ### Minor Changes
